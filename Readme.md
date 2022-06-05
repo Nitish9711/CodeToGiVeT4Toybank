@@ -16,6 +16,7 @@
    admin username 
    admin password
    Email
+   contact no:
 
 
 -  Onground Event
@@ -67,7 +68,11 @@
         Writing and editing
         other
     Phone no
-    Address
+    town
+    city
+    district
+    maharashtra
+    Prefred District
     Language known
     Nationality
     EmailAddress:
@@ -89,6 +94,19 @@ Timeline   backend                       frontend
 13                            Intergrating whole project + ppt 
 
 
+
+Routes to be made
+make sure routes will be like this domain name/api/typeofROute/routeWork
+                                    exampel localhost:5000/api/onGroundEvents/create
+1. volunteer creation route and controllers
+2. onGround Creation route and controllers
+3. VirtualEvent Creation route and controllers
+4. edit volunteer info route  // all the information will be send again when edit
+5. edit virtualEvent route
+6. VirtualEvent edit route
+7. deletion of onGround Events route with route url be like  /api/onGroundEvents/delete/:objectId
+8. deletion of virutal Events route
+9. deletion of volunters route
 
 
    
