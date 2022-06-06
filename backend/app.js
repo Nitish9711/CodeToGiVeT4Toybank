@@ -6,6 +6,12 @@ const fs = require("fs");
 
 const HttpError = require("./models/http-error");
 
+const adminRoutes = require("./routes/adminRoutes");
+const onGroundRoutes = require("./routes/onGroundEventsRoutes");
+const virtualEventsRoutes = require("./routes/virtualEventsRoutes");
+const volunteerRoutes = require("./routes/volunteerRoutes");
+const utilRoutes = require("./routes/utilRoutes");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -27,6 +33,11 @@ app.use("/check", (req, res, next) => {
 });
 
 // main routes here
+app.use("/api/admin", adminRoutes);
+app.use("/api/onGroundEvents", onGroundRoutes);
+app.use("/api/virtualEvents", virtualEventsRoutes);
+app.use("/api/volunteers", volunteerRoutes);
+app.use("/api/util", utilRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("Could not find this route.", 404);
@@ -43,16 +54,8 @@ mongoose
     `mongodb+srv://nitish_kumar:1234567890@cluster0.xt7ds.mongodb.net/CodeToGiveToyBankProject?retryWrites=true&w=majority`
   )
   .then(() => {
-    https
-      .createServer(app)
-      .listen(5000, () => {
-        console.log("server is running");
-      });
+    app.listen(5000);
   })
   .catch((err) => {
     console.log(err);
-  });
-
-  app.listen(5000, () => {
-    console.log('Server running on port 5000');
   });

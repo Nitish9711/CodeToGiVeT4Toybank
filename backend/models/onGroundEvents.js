@@ -19,4 +19,4 @@ const onGroundEventsSchema = new Schema({
     state:{type: String, required: true, default: "Maharashtra"},
     volunteers:[{type: mongoose.Types.ObjectId, ref: 'Volunteers'}]
 });
-module.exports = mongoose.model('OnGroundEventsSchema', onGroundEventsSchema);
+module.exports = mongoose.model('OnGroundEvents', onGroundEventsSchema);

@@ -15,4 +15,4 @@ const virtualEventsSchema = new Schema({
     linksIfAny: {type: String,required: true},
     volunteers:[{type: mongoose.Types.ObjectId, ref: 'Volunteers'}]
 });
-module.exports = mongoose.model('VirtualEventsSchema', virtualEventsSchema);
+module.exports = mongoose.model('VirtualEvents', virtualEventsSchema);
