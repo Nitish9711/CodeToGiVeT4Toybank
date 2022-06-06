@@ -6,6 +6,11 @@ const fs = require("fs");
 
 const HttpError = require("./models/http-error");
 
+const adminRoutes = require('./routes/adminRoutes');
+const onGroundRoutes = require('./routes/onGroundEventsRoutes');
+const virtualEventsRoutes = require('./routes/virtualEventsRoutes');
+const volunteerRoutes = require('./routes/volunteerRoutes');
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -27,6 +32,10 @@ app.use("/check", (req, res, next) => {
 });
 
 // main routes here
+app.use("/api/admin", adminRoutes);
+app.use('/api/onGroundEvents', onGroundRoutes);
+app.use('/api/virtualEvents', virtualEventsRoutes)
+app.use('/api/volunteers', volunteerRoutes);
 
 app.use((req, res, next) => {
   const error = new HttpError("Could not find this route.", 404);

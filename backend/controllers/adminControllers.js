@@ -19,3 +19,4 @@ module.exports.allVolunteers =async(req,res) =>{
     console.log(allVolunteers);
     res.status(200).json(allVolunteers);
 };
+

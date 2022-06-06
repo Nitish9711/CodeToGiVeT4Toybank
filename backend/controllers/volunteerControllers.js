@@ -23,7 +23,7 @@ module.exports.editVolunteer = async(req,res) =>{
     res.status(200).json(newvolunteer);
 };
 
-module.exports.deleteCampground = async (req, res) => {
+module.exports.deleteVolunteer = async (req, res) => {
     const { id } = req.params;
     await Volunteer.findByIdAndDelete(id);
     req.flash('success', 'Successfully deleted Volunteer');
