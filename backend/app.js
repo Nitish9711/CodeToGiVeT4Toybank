@@ -54,7 +54,7 @@ mongoose
     `mongodb+srv://nitish_kumar:1234567890@cluster0.xt7ds.mongodb.net/CodeToGiveToyBankProject?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(5000);
+    app.listen(3000);
   })
   .catch((err) => {
     console.log(err);
