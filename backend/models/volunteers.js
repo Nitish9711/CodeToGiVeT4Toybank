@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const onGroundEventsSchema = new Schema({
+const volunteerSchema = new Schema({
     name: {type: String, required: true},
     userName: {type: String, required: true, unique: true},
     password:{type: String, required: true},
@@ -26,4 +26,4 @@ const onGroundEventsSchema = new Schema({
     longTermAvailability: [{day: String, startDate: Date, endDate: Date, time: String}],
     shortTermAvailability: [{date: Date, time: String}]
 });
-module.exports = mongoose.model('OnGroundEventsSchema', onGroundEventsSchema);
+module.exports = mongoose.model('Volunteer', volunteerSchema);

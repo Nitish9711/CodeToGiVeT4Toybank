@@ -1,5 +1,10 @@
 const Volunteer = require('../models/volunteers');
 
+
+module.exports.signUp = async(req, res)=>{
+
+};
+
 module.exports.createVolunteer = async (req,res) =>{
     try{
     // const {name,userName,password,age,phoneno,email,profession,organization,skills,address,town,district,city,state,preferredDistrict,nationality,academicQualification,languagesKnown} = req.body;
