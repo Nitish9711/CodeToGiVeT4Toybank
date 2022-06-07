@@ -1,9 +1,10 @@
-export const userColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+export const volunteerColumns = [
+  { field: "id", headerName: "ID", width: 110 },
   {
-    field: "user",
-    headerName: "User",
+    field: "volunteerName",
+    headerName: "Volunteer Name",
     width: 230,
+    sortable:false,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
@@ -14,6 +15,11 @@ export const userColumns = [
     },
   },
   {
+    field: "username",
+    headerName: "Username",
+    width: 230,
+  },
+  {
     field: "email",
     headerName: "Email",
     width: 230,
@@ -22,12 +28,12 @@ export const userColumns = [
   {
     field: "age",
     headerName: "Age",
-    width: 100,
+    width: 120,
   },
   {
     field: "status",
     headerName: "Status",
-    width: 160,
+    width: 150,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.status}`}>
@@ -114,6 +120,14 @@ export const userRows = [
   },
   {
     id: 10,
+    username: "Roxie",
+    img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    email: "snow@gmail.com",
+    status: "active",
+    age: 65,
+  },
+  {
+    id: 11,
     username: "Roxie",
     img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
     email: "snow@gmail.com",
