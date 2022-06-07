@@ -21,16 +21,15 @@ module.exports.createonGroundEvent = async (req,res) =>{
     await onGroundEvent.save();
     res.status(200).json(onGroundEvent);
     } catch(e){
-        req.flash('error',e.message);
-        res.status(400);
+        res.status(400).json({"error": e});
         return;
     }
 };
 
 module.exports.editonGroundEvent = async(req,res) =>{
     const { id } = req.params;
-    await onGroundEvents.findByIdAndUpdate(id, { ...req.body.onGroundEvent});
-    // await onGroundEvent.save();
+
+    await onGroundEvents.findByIdAndUpdate(id, { ...req.body});
     const onGroundEvent = await onGroundEvents.findById(id);
     res.status(200).json(onGroundEvent);
     return;
@@ -39,6 +38,6 @@ module.exports.editonGroundEvent = async(req,res) =>{
 module.exports.deleteonGroundEvent = async (req, res) => {
     const { id } = req.params;
     await onGroundEvents.findByIdAndDelete(id);
-    res.status(200);
+    res.status(200).json({message: "EVENT_DELETED"});
     return;
 };

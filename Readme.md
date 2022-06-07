@@ -7,7 +7,7 @@
 Request 
 Type: POST
 URL: HOST_URL +  '/api/onGroundEvents/create/'
-BODY: {
+BODY: 
     {
     "name": "event 1",
     "date": "2022-06-07",
@@ -30,7 +30,128 @@ Response:
    response -{
                 created doc of event
             }
+2. Some error occured
+    status - 400
+    response - {
+        message : "error"
+    }
 ```
+### 2. Editing onground events
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/onGroundEvents/edit/:id' // here id is the object of the event document stored in mongodb
+BODY: 
+    {
+    "name": "event 1",
+    "date": "2022-06-07",
+    "StartTime": "3:00 PM",
+    "EndTime": "4:00 PM",
+    "typeOfEvent": "something",
+    "description":"something is going to happen for sure",
+    "noOfVolunteersRequired": "2",
+    "typeOfVolunteers": "professional",
+    "languagesRequired": ["English", "Hindi"],
+    "skillsRequired":["computer"],
+    "venue": "at one of the centeres",
+    "town": "Andheri",
+    "district":"North District",
+    "city":"Mumbai"
+}
+Response: 
+1. Event has edited
+   status - 201
+   response -{
+                created doc of event
+            }
+```
+### 3. Deleting onground events
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/onGroundEvents/delete/:id'
+BODY: 
+    {}
+Response: 
+1. Event has been Deleted
+   status - 201
+   response -{
+        message: "EVENT_DELETED"
+}
+```
+## Virtual events realted route  
+### 1. Creating virtual events
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/virtualEvents/create/'
+BODY: 
+   {
+    "name": "event 1",
+    "date": "2022-06-07",
+    "StartTime": "3:00 PM",
+    "EndTime": "4:00 PM",
+    "typeOfEvent": "something",
+    "description":"something is going to happen for sure",
+    "noOfVolunteersRequired": "2",
+    "typeOfVolunteers": "professional",
+    "languagesRequired": ["English", "Hindi"],
+    "skillsRequired":["computer"],
+    "linksIfAny": "https:somthing.com"
+}
+Response: 
+1. Event has created
+   status - 201
+   response -{
+                created doc of event
+            }
+2. Some error occured
+    status - 400
+    response - {
+        message : "error"
+    }
+```
+### 2. Editing onground events
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/virtualEvents/edit/:id' // here id is the object of the event document stored in mongodb
+BODY: 
+   {
+    "name": "event 1",
+    "date": "2022-06-07",
+    "StartTime": "3:00 PM",
+    "EndTime": "4:00 PM",
+    "typeOfEvent": "something",
+    "description":"something is going to happen for sure",
+    "noOfVolunteersRequired": "2",
+    "typeOfVolunteers": "professional",
+    "languagesRequired": ["English", "Hindi"],
+    "skillsRequired":["computer"],
+    "linksIfAny": "https:somthing.com"
+}
+Response: 
+1. Event has edited
+   status - 201
+   response -{
+                created doc of event
+            }
+```
+### 3. Deleting onground events
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/virtualEvents/delete/:id'
+BODY: 
+    {}
+Response: 
+1. Event has been Deleted
+   status - 201
+   response -{
+        message: "EVENT_DELETED"
+}
+```
+
 
 ## Volunteer Events Realted Routes  
 ### 1. Email verification

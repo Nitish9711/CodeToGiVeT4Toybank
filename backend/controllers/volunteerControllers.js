@@ -32,8 +32,8 @@ module.exports.createVolunteer = async (req,res) =>{
 
 module.exports.editVolunteer = async(req,res) =>{
     const { id } = req.params;
-    const newvolunteer = await Volunteer.findByIdAndUpdate(id, { ...req.body.volunteer});
-    await newvolunteer.save();
+    await Volunteer.findByIdAndUpdate(id, { ...req.body.volunteer});
+    const newVolunteer = Volunteer.findById(id);
     res.status(200).json(newvolunteer);
     return;
 };
@@ -41,7 +41,7 @@ module.exports.editVolunteer = async(req,res) =>{
 module.exports.deleteVolunteer = async (req, res) => {
     const { id } = req.params;
     await Volunteer.findByIdAndDelete(id);
-    res.status(200);
+    res.status(200).json({message: "VOLUNTEER_DELETED"});
     return;
 };
 

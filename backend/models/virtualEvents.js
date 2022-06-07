@@ -13,7 +13,7 @@ const virtualEventsSchema = new Schema({
     typeOfVolunteers:{type:String , required:true},
     languagesRequired: [{type: String}],
     skillsRequired:[{type: String}],
-    linksIfAny: {type: String,required: true},
+    linksIfAny: {type: String},
     volunteers:[{type: mongoose.Types.ObjectId, ref: 'Volunteers'}]
 });
 module.exports = mongoose.model('VirtualEvents', virtualEventsSchema);
