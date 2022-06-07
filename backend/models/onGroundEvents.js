@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const onGroundEventsSchema = new Schema({
     name: {type: String, required: true},
     date: {type: Date, required: true},
-    time: {type: String, required: true},
+    StartTime: {type: String, required: true},
+    EndTime: {type: String, required: true},
     typeOfEvent:{type: String, required: true},
     description:{type: String, required: true},
     noOfVolunteersRequired:{type: String, required: true},

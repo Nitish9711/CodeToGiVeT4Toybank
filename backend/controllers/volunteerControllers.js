@@ -1,8 +1,21 @@
 const Volunteer = require('../models/volunteers');
 
+module.exports.getVolunteerById = async(req, res)=>{
+    const {id} = req.params;
+    const volunteerDoc = await Volunteer.findById(id);
+    if(volunteerDoc){
+        res.status(201).json(volunteerDoc);
+        return;
+    }
+    else{
+        res.status(201).json({message: "VOLUNTEER_NOT_FOUND"});
+        return;
+    }
+
+}
 
 module.exports.signUp = async(req, res)=>{
-
+    
 };
 
 module.exports.createVolunteer = async (req,res) =>{

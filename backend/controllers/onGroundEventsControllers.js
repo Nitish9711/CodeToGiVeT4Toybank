@@ -1,5 +1,20 @@
 const onGroundEvents = require('../models/onGroundEvents');
 
+
+
+module.exports.getonGoundEventById = async(req, res)=>{
+    const {id} = req.params;
+    const onGroundEvent = await onGroundEvents.findById(id);
+    if(onGroundEvent){
+        res.status(201).json(onGroundEvent);
+        return;
+    }
+    else{
+        res.status(201).json({message: "EVENT_NOT_FOUND"});
+        return;
+    }
+
+}
 module.exports.createonGroundEvent = async (req,res) =>{
     try{
     const onGroundEvent=new onGroundEvents(req.body);
@@ -14,8 +29,9 @@ module.exports.createonGroundEvent = async (req,res) =>{
 
 module.exports.editonGroundEvent = async(req,res) =>{
     const { id } = req.params;
-    const onGroundEvent = await onGroundEvents.findByIdAndUpdate(id, { ...req.body.onGroundEvent});
-    await onGroundEvents.save();
+    await onGroundEvents.findByIdAndUpdate(id, { ...req.body.onGroundEvent});
+    // await onGroundEvent.save();
+    const onGroundEvent = await onGroundEvents.findById(id);
     res.status(200).json(onGroundEvent);
     return;
 };

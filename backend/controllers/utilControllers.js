@@ -12,7 +12,7 @@ const sendOtp = async (req, res, next) => {
   const response = await utilityFunctions.sendMailForOtp(email, otp);
   console.log(response);
   if (response != "OTP_SENT") {
-    res.status(201).json("COULD_NOT_SENT_OTP");
+    res.status(401).json("OTP_SENT_FAILED");
     return;
   }
   const emailAlreadyexist = await Otp.findOne({ email: email });
@@ -39,10 +39,10 @@ const verifyOtp = async (req, res, next) => {
   console.log(otpDoc);
   if (otpDoc) {
     if (new Date().getTime() - new Date(otpDoc.updatedAt).getTime() > 3600000) {
-      res.status(201).json({ message: "OTP_EXPIRED" });
+      res.status(401).json({ message: "OTP_EXPIRED" });
       return;
     } else if (otpDoc.otp != otp) {
-      res.status(201).json({ message: "WRONG_OTP" });
+      res.status(402).json({ message: "WRONG_OTP" });
       return;
     } else {
       await otpDoc.update({ status: true });
@@ -50,7 +50,7 @@ const verifyOtp = async (req, res, next) => {
       return;
     }
   } else {
-    res.status(201).json({ message: "EMAIL_NOT_FOUND" });
+    res.status(404).json({ message: "EMAIL_NOT_FOUND" });
     return;
   }
 };
