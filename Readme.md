@@ -79,6 +79,24 @@ Response:
         message: "EVENT_DELETED"
 }
 ```
+### 4. Sending Mail to All the volunteers assigned
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/onGroundEvents/sendMail'
+BODY: 
+        {
+    "id": "Event Objectid",
+    "message": "message Entered"
+}
+    
+Response: 
+1. Mail sent
+   status - 201
+   response -{
+        message: "MAIL_SENT"
+}
+```
 ## Virtual events realted route  
 ### 1. Creating virtual events
 ```javascript
@@ -151,6 +169,24 @@ Response:
         message: "EVENT_DELETED"
 }
 ```
+### 4. Sending Mail to All the volunteers assigned
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/onGroundEvents/virtualEvents'
+BODY: 
+        {
+    "id": "Event Objectid",
+    "message": "message Entered"
+}
+    
+Response: 
+1. Mail sent
+   status - 201
+   response -{
+        message: "MAIL_SENT"
+}
+```
 
 
 ## Volunteer Events Realted Routes  
@@ -210,5 +246,21 @@ Response:
                  message: "OTP_VERIFIED"
            }
 ```
-
-
+### 3. Sending Mail to a particular volunteer
+```javascript
+Request 
+Type: POST
+URL: HOST_URL +  '/api/volunteers/sendMail'
+BODY: 
+        {
+    "id": "Volunteer Objectid",
+    "message": "message Entered"
+}
+    
+Response: 
+1. Mail sent
+   status - 201
+   response -{
+        message: "MAIL_SENT"
+}
+```
