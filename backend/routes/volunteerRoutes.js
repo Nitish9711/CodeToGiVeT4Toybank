@@ -7,7 +7,7 @@ router.get('/getDetails/:id', volunteerController.getVolunteerById);
 router.post('/create', volunteerController.createVolunteer);
 router.post('/edit/:id', volunteerController.editVolunteer);
 router.post('/delete/:id', volunteerController.deleteVolunteer);
-
+router.post('/sendMail', volunteerController.sendMail);
 
 
 module.exports = router;

@@ -4,6 +4,7 @@ const router = express.Router();
 const virtualEventsController = require('../controllers/virtualEventControllers');
 
 router.get('/getDetails/:id/', virtualEventsController.getvirtualEventById);
+router.post('/sendMail', virtualEventsController.sendMailToAllVolunteers);
 router.post('/create', virtualEventsController.createVirtualEvent);
 router.post('/edit/:id', virtualEventsController.editVirtualEvent);
 router.post('/delete/:id', virtualEventsController.deleteVirtualEvent);

@@ -1,5 +1,5 @@
 const Volunteer = require('../models/volunteers');
-
+const mailUtility = require('../util/mail');
 module.exports.getVolunteerById = async(req, res)=>{
     const {id} = req.params;
     const volunteerDoc = await Volunteer.findById(id);
@@ -24,7 +24,6 @@ module.exports.createVolunteer = async (req,res) =>{
     await newvolunteer.save();
     res.status(200).json(newVolunteer);
     } catch(e){
-        req.flash('error',e.message);
         res.status(400);
         return;
     }
@@ -44,5 +43,13 @@ module.exports.deleteVolunteer = async (req, res) => {
     res.status(200).json({message: "VOLUNTEER_DELETED"});
     return;
 };
+module.exports.sendMail = async(req, res)=>{
+    const {id, message} = req.body;
+    const volunteerDoc = await Volunteer.findById(id);
+    const response = await mailUtility.sendMailToVolunteer(volunteerDoc.email, message);
+
+    res.status(201).json({message: "MAIL_SENT"});
+    return;
+}
 
 
