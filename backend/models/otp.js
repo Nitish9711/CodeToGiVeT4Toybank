@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const otpSchema = new Schema({
     email: String,
     otp: String,
-    status: {type: String, default: "NOT_SENT"} // SENT, VERIFIED
+    status: {type: Boolean, default: false} // SENT, VERIFIED
    },
  { timestamps: true }
 );
