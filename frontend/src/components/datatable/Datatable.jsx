@@ -1,8 +1,10 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { volunteerColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Button from '@mui/material/Button';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
@@ -15,13 +17,18 @@ const Datatable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 180,
+      sortable: false,
+      filterable: false,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to="/volunteers/test" style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
+            <div className="editButton">
+              Edit
+            </div>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -36,18 +43,18 @@ const Datatable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/users/new" className="link">
-          Add New
+        Volunteers
+        <Link to="/volunteers/new" className="link">
+          <Button size="medium" variant="outlined" endIcon={<AddCircleIcon />}>Add New</Button>
         </Link>
       </div>
       <DataGrid
         className="datagrid"
         rows={data}
-        columns={userColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
+        columns={volunteerColumns.concat(actionColumn)}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        disableSelectionOnClick
       />
     </div>
   );
