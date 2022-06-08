@@ -3,8 +3,11 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const https = require("https");
 const fs = require("fs");
-
+const session = require('express-session');
+const passport = require('passport');
+const localstrategy = require('passport-local');
 const HttpError = require("./models/http-error");
+const Volunteer=require('./models/volunteers');
 
 const adminRoutes = require("./routes/adminRoutes");
 const onGroundRoutes = require("./routes/onGroundEventsRoutes");
@@ -14,7 +17,26 @@ const utilRoutes = require("./routes/utilRoutes");
 
 const app = express();
 
+const sessionConfig = {
+  name: 'session',
+  secret:'thisisasecret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+      httpOnly: true,
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24 * 7
+  }
+}
+
 app.use(bodyParser.json());
+app.use(session(sessionConfig));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localstrategy(Volunteer.authenticate()));
+
+passport.serializeUser(Volunteer.serializeUser());
+passport.deserializeUser(Volunteer.deserializeUser());
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,6 +52,12 @@ app.use((req, res, next) => {
 app.use("/check", (req, res, next) => {
   res.status(200);
   res.json({ message: "Api server is working" });
+});
+
+app.get('/fakeuser',async(req,res)=>{
+  const volunteer=new Volunteer({name:'akshat',username:'akshat1234',email:'akshat1234@gmail.com'});
+  const newVolunteer=await Volunteer.register(volunteer,'ojha');
+  res.send(newVolunteer);
 });
 
 // main routes here
