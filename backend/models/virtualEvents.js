@@ -14,6 +14,11 @@ const virtualEventsSchema = new Schema({
     languagesRequired: [{type: String}],
     skillsRequired:[{type: String}],
     linksIfAny: {type: String},
-    volunteers:[{type: mongoose.Types.ObjectId, ref: 'Volunteers'}]
+    volunteers:[{type: mongoose.Types.ObjectId, ref: 'Volunteers'}],
+    scheduledMeet: {
+    time: String
+    }      date: Date,
+        link: String,
+      
 });
 module.exports = mongoose.model('VirtualEvents', virtualEventsSchema);

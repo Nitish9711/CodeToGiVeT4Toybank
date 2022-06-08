@@ -98,32 +98,39 @@ Timeline   backend                       frontend
 Routes to be made
 make sure routes will be like this domain name/api/typeofROute/routeWork
                                     exampel localhost:5000/api/onGroundEvents/create
-1. volunteer creation route and controllers
-2. onGround Creation route and controllers
-3. VirtualEvent Creation route and controllers
-4. edit volunteer info route  // all the information will be send again when edit
-5. edit virtualEvent route
-6. VirtualEvent edit route
+1. volunteer creation route and controllers // done 
+2. onGround Creation route and controllers // done
+3. VirtualEvent Creation route and controllers   done
+4. edit volunteer info route  // all the information will be send again when edit/done
+5. edit virtualEvent route //done
+6. VirtualEvent edit route done
 7. deletion of onGround Events route with route url be like  /api/onGroundEvents/delete/:objectId
 8. deletion of virutal Events route
 9. deletion of volunters route
 
 
-10. Admin Create route password should be encrypted
-11. Admin Edit route
-12. Admin Login Route  - Session Token
-15. Volunteer Login Route - session token
-16. Get info route of a particular event both onground and virtual
-
-
-13. Volunteer Signup route 
+16. Get info route of a particular event both onground and virtual - done
 14. Mail Verification Route
-17. Bulk Emails For event
-18. Single Email
-19. Bulk Meet Route 
+
+
+
+10. Admin Create route - 
+11. Admin Edit route  - 
+12. Admin Login Route  - 
+13. Volunteer Signup route 
+15. Volunteer Login Route - 
+19. Bulk Meet Route - message, date, time, event id
 20. Single Meet Route 
+
 21. long term availibility route
 22. Short Term availibility Route
+24. upcoming event details event name, date, mode
+25. All availibility of an volunteer with its id - 
+26. upcoming events // event id, Event Date, Mode
+27. Past /// event id, Event Date, Mode
+28. meet schedule details with event id
 
 
+29. ask doubt // volunteer id, event id, message  
+23. Mapping Route
    

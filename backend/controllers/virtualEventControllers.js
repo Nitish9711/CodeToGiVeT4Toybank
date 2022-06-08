@@ -40,6 +40,7 @@ module.exports.deleteVirtualEvent = async (req, res) => {
     res.status(200).json({message: "EVENT_DELETED"});
     return;
 };
+
 module.exports.sendMailToAllVolunteers = async(req, res)=>{
     const {id, message} = req.body;
     // console.log(req.body);
@@ -47,8 +48,7 @@ module.exports.sendMailToAllVolunteers = async(req, res)=>{
     const promises  = event.volunteers.map(async (volunteerId) =>{
         const volunteer =  await Volunteers.findById(volunteerId);
         return volunteer.email;
-      })
-    
+      })   
 const volunteerEmailList = await Promise.all(promises)
 console.log(volunteerEmailList)
   
