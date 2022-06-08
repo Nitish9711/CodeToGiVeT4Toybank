@@ -7,18 +7,18 @@ const virtualEventsSchema = new Schema({
     date: {type: Date, required: true},
     StartTime: {type: String, required: true},
     EndTime: {type: String, required: true},
-    typeOfEvent:{type: String, required: true},
-    description:{type: String, required: true},
-    noOfVolunteersRequired:{type: String, required: true},
-    typeOfVolunteers:{type:String , required:true},
+    typeOfEvent: {type: String, required: true},
+    description: {type: String, required: true},
+    noOfVolunteersRequired: {type: String, required: true},
+    typeOfVolunteers: {type:String , required:true},
     languagesRequired: [{type: String}],
-    skillsRequired:[{type: String}],
+    skillsRequired: [{type: String}],
     linksIfAny: {type: String},
-    volunteers:[{type: mongoose.Types.ObjectId, ref: 'Volunteers'}],
+    volunteers: [{type: mongoose.Types.ObjectId, ref: 'Volunteers'}],
     scheduledMeet: {
-    time: String
-    }      date: Date,
-        link: String,
-      
+    time: String,
+    date: Date,
+    link: String
+    } 
 });
 module.exports = mongoose.model('VirtualEvents', virtualEventsSchema);
