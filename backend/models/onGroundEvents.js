@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 const onGroundEventsSchema = new Schema({
     name: {type: String, required: true},
     date: {type: Date, required: true},
-    time: {type: String, required: true},
+    StartTime: {type: String, required: true},
+    EndTime: {type: String, required: true},
     typeOfEvent:{type: String, required: true},
     description:{type: String, required: true},
     noOfVolunteersRequired:{type: String, required: true},
@@ -17,6 +18,11 @@ const onGroundEventsSchema = new Schema({
     district:{type: String, required: true},
     city:{type: String, required: true},
     state:{type: String, required: true, default: "Maharashtra"},
-    volunteers:[{type: mongoose.Types.ObjectId, ref: 'Volunteers'}]
+    volunteers:[{type: String}],
+    scheduledMeet: {
+        date: Date,
+        link: String,
+        time: String
+    }
 });
 module.exports = mongoose.model('OnGroundEvents', onGroundEventsSchema);

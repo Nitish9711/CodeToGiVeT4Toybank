@@ -31,7 +31,7 @@
       padding: 0;
 
       .title {
-        font-size: 10px;
+        font-size: 13px;
         font-weight: bold;
         color: #999;
         margin-top: 15px;
@@ -54,7 +54,7 @@
         }
 
         span {
-          font-size: 13px;
+          font-size: 16px;
           font-weight: 600;
           color: #888;
           margin-left: 10px;
@@ -63,7 +63,7 @@
     }
   }
 
-  .bottom {
+  .bottomOpt {
     display: flex;
     align-items: center;
     margin: 10px;
@@ -93,4 +93,13 @@
   li {
     background-color: #ece8ff;
   }
+}
+
+.bottomtitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #999;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  margin-left: 10px;
 }

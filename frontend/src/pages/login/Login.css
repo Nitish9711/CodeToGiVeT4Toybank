@@ -1,0 +1,16 @@
+.mainBody {
+    height: 100vh;
+    width: 100vw;
+    background-color: #FFCB05;
+}
+
+.mainBodyTop {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mainBodyTop > img {
+    height: 230px;
+    width: 30%;
+}

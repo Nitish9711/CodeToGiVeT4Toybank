@@ -22,8 +22,9 @@ const volunteerSchema = new Schema({
     academicQualification: {type: String},
     languagesKnown:[{type: String}],
     // Assigned events array event id - [{eventids, contributionStatus - Voluteered|| Not Voluteered || Nonverified || verified}]
-    assignedEvents: [{eventId: mongoose.Types.ObjectId, contributionStatus: String}],
-    longTermAvailability: [{day: String, startDate: Date, endDate: Date, time: String}],
-    shortTermAvailability: [{date: Date, time: String}]
+    //  type OnGroundEvents || VirtualEvents
+    assignedEvents: [{eventId: String, type: String, contributionStatus: String}],
+    longTermAvailability: [{day: String, startDate: Date, endDate: Date, time: String, status:{type: String, default: "PENDING"}}],
+    shortTermAvailability: [{date: Date, time: String, status:{type: String, default: "PENDING"}}]
 });
 module.exports = mongoose.model('Volunteer', volunteerSchema);

@@ -4,8 +4,8 @@ const router = express.Router();
 const utilController = require('../controllers/utilControllers');
 
 
-router.get('/sentOtp', utilController.sendOtp);
-
+router.post('/sendOtp', utilController.sendOtp);
+router.post('/verifyOtp', utilController.verifyOtp);
 
 
 module.exports = router;

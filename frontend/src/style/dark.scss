@@ -39,7 +39,7 @@
     ul {
       li {
         &:hover {
-          background-color: #333;
+          background-color: #ece8ff;
         }
 
         .icon {
@@ -53,17 +53,22 @@
     .datagrid {
       color: gray;
       border: none;
-
-      .viewButton,
-      .deleteButton,
-      .cellWithStatus {
-        color: gray;
-        border: none;
-      }
     }
   }
 
-  input{
-      background-color: transparent;
+  .TablePagination{
+    color: gray;
+    border:none;
   }
+  .TablePaginationIcon{
+    color: gray;
+  }
+
+  input {
+    background-color: transparent;
+  }
+}
+
+.bottom, .profileBottom {
+  background-color: white;
 }

@@ -82,7 +82,7 @@ const Widget = ({ type }) => {
         <span className="counter">
           {amount}
         </span>
-        <NavLink to="/users" style={{ textDecoration: "none" }}>
+        <NavLink to="/volunteers" style={{ textDecoration: "none" }}>
           <span className="link" style={{ cursor: "pointer" }}>{data.link}</span>
         </NavLink>
       </div>
