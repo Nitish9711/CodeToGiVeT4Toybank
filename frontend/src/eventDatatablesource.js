@@ -33,8 +33,13 @@ export const onGroundColumns = [
     width: 120,
   },
   {
-    field: "time",
-    headerName: "Time",
+    field: "startTime",
+    headerName: "Start Time",
+    width: 180,
+  },
+  {
+    field: "endTime",
+    headerName: "End Time",
     width: 180,
   },
   {
@@ -84,8 +89,13 @@ export const virtualColumns = [
     width: 120,
   },
   {
-    field: "time",
-    headerName: "Time",
+    field: "startTime",
+    headerName: "Start Time",
+    width: 180,
+  },
+  {
+    field: "endTime",
+    headerName: "End Time",
     width: 180,
   },
   {
@@ -117,7 +127,8 @@ export const userRows = [
     town: "New Delhi",
     district: "Northern",
     date: "06 June 2022",
-    time: "17:38:58 GMT+0530",
+    startTime: "17:38:58 GMT+0530",
+    endTime: "17:38:58 GMT+0530",
     noOfVolunteers: 5,
   },
   

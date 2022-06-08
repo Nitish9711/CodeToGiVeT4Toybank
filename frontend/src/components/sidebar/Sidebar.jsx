@@ -60,10 +60,12 @@ const Sidebar = () => {
             <span>Settings</span>
           </li>
           <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
-          </li>
+          <NavLink to="/profile" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Edit Profile</span>
+            </li>
+          </NavLink>
           <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
@@ -71,7 +73,7 @@ const Sidebar = () => {
         </ul>
       </div>
       <p className="bottomtitle">THEMES</p>
-      <div className="bottom">
+      <div className="bottomOpt">
         <div
           className="colorOption"
           onClick={() => dispatch({ type: "LIGHT" })}

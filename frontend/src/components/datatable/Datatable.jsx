@@ -3,8 +3,6 @@ import { DataGrid } from "@mui/x-data-grid";
 import { volunteerColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Button from '@mui/material/Button';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const Datatable = () => {
   const [data, setData] = useState(userRows);
@@ -44,9 +42,6 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Volunteers
-        <Link to="/volunteers/new" className="link">
-          <Button size="medium" variant="outlined" endIcon={<AddCircleIcon />}>Add New</Button>
-        </Link>
       </div>
       <DataGrid
         className="datagrid"
