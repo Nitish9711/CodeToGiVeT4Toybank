@@ -7,7 +7,7 @@ const adminController = require('../controllers/adminControllers');
 router.get('/allVirtualEvents', adminController.allVirtualEvents);
 router.get('/allonGroundEvents', adminController.allonGroundEvents);
 router.get('/allVolunteers', adminController.allVolunteers);
-
-
+router.post('/login',adminController.login);
+router.post('/signUp',adminController.signUp);
 
 module.exports = router;

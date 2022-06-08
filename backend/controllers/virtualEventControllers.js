@@ -56,6 +56,28 @@ console.log(volunteerEmailList)
     await mailUtility.sendMailToVoluntersOfAnEvent(emails, message);
     
     res.status(201).json({"message": "MAIL_SENT"})
+};
+
+const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function generateString(length) {
+    let result = ' ';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
 }
+
+module.exports.meetLink = async(req,res)=>{
+    const {id} = req.params;
+    let roomId=generateString(8);
+    roomId=roomId.substring(1);
+    const meetlink='https://videolify.up.railway.app/join/'+roomId;
+    console.log(meetlink);
+    const virtualEvent = await VirtualEvents.findById(id);
+    virtualEvent.scheduledMeet.link=meetlink;
+    virtualEvent.save();
+    res.status(200).json({"message": "MEET_DONE"});
+};
 
 
