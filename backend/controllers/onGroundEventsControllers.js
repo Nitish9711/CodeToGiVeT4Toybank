@@ -79,5 +79,5 @@ module.exports.meetLink = async(req,res)=>{
     const onGroundEvent = await onGroundEvents.findById(id);
     onGroundEvent.scheduledMeet.link=meetlink;
     onGroundEvent.save();
-    res.send("meet done");
+    res.status(200).json({"message": "MEET_DONE"});
 };
