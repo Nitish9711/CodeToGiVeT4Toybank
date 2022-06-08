@@ -8,6 +8,7 @@ router.post('/create', volunteerController.createVolunteer);
 router.post('/edit/:id', volunteerController.editVolunteer);
 router.post('/delete/:id', volunteerController.deleteVolunteer);
 router.post('/sendMail', volunteerController.sendMail);
+router.post('/askDoubt', volunteerController.askDoubt);
 
 
 module.exports = router;

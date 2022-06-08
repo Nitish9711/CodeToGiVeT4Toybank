@@ -1,5 +1,8 @@
 const Volunteer = require('../models/volunteers');
 const mailUtility = require('../util/mail');
+const onGroundEvents = require('../models/onGroundEvents');
+const VirtualEvents = require('../models/virtualEvents');
+
 module.exports.getVolunteerById = async(req, res)=>{
     const {id} = req.params;
     const volunteerDoc = await Volunteer.findById(id);
@@ -53,3 +56,15 @@ module.exports.sendMail = async(req, res)=>{
 }
 
 
+module.exports.askDoubt = async(req, res)=>{
+    const {volunteerId, message, eventId} = req.body;
+    const volunteerDoc = Volunteer.findById(volunteerId);
+    let eventDoc = await onGroundEvents.findById(eventId);
+    if (!eventDoc) {
+      eventDoc = await VirtualEvents.findById(eventId);
+    }
+    newmessage = "This email is regarding the event " + eventDoc.name + message; 
+    const response = mailUtility.askDoubtViaEmail("nitishkumar12c@outlook.com", newmessage);
+    res.status(201).json({message: "Mail_Sent"});
+
+}

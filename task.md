@@ -131,6 +131,9 @@ make sure routes will be like this domain name/api/typeofROute/routeWork
 28. meet schedule details with event id
 
 
+
+
 29. ask doubt // volunteer id, event id, message  
 23. Mapping Route
+
    
