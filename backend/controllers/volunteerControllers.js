@@ -1,7 +1,5 @@
 const Volunteer = require('../models/volunteers');
 const mailUtility = require('../util/mail');
-const onGroundEvents = require('../models/onGroundEvents');
-const VirtualEvents = require('../models/virtualEvents');
 
 module.exports.getVolunteerById = async(req, res)=>{
     const {id} = req.params;
@@ -17,8 +15,20 @@ module.exports.getVolunteerById = async(req, res)=>{
 
 }
 
-module.exports.signUp = async(req, res)=>{
-    
+module.exports.login = async(req, res)=>{
+    const u=req.body.username;
+    const p=req.body.password;
+    const help= await Volunteer.find();
+    for(let user in help){
+        console.log(help[user].password);
+      if(help[user].username===u && help[user].password===p){
+        // res.send("Logged in");
+        res.status(200).json({message:"LOGGED_IN"});
+        return;
+      }
+    }
+    // res.send("No user");
+    res.status(400).json({message:"NO_USER_FOUND"});
 };
 
 module.exports.createVolunteer = async (req,res) =>{
