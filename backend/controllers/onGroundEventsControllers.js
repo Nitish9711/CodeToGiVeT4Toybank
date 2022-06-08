@@ -59,3 +59,25 @@ console.log(volunteerEmailList)
     
     res.status(201).json({"message": "MAIL_SENT"})
 }
+
+const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+function generateString(length) {
+    let result = ' ';
+    const charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+module.exports.meetLink = async(req,res)=>{
+    const {id} = req.params;
+    let roomId=generateString(8);
+    roomId=roomId.substring(1);
+    const meetlink='https://videolify.up.railway.app/join/'+roomId;
+    console.log(meetlink);
+    const onGroundEvent = await onGroundEvents.findById(id);
+    onGroundEvent.scheduledMeet.link=meetlink;
+    onGroundEvent.save();
+    res.send("meet done");
+};
