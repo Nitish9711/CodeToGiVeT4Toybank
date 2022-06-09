@@ -137,3 +137,7 @@ make sure routes will be like this domain name/api/typeofROute/routeWork
 23. Mapping Route
 
    
+1. Date
+2. Location 
+3. Type of Event
+4. Area of Thing
