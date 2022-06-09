@@ -1,0 +1,65 @@
+.profileContainer {
+    .top,
+    .bottom {
+        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+        padding: 20px;
+        margin: 20px;
+        display: flex;
+        align-items: center;
+
+        h1 {
+            color: lightgray;
+            font-size: 20px;
+        }
+
+        .left {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            img {
+                width: 180px;
+                height: 180px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+        .right {
+            flex: 2;
+            .newForm {
+                display: flex;
+                justify-content: space-between;
+                .rightOne {
+                    width: 48%;
+                }
+                .rightTwo {
+                    width: 48%;
+                }
+            }
+        }
+    }
+}
+
+.addBtnWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.fileInputDiv {
+    position: absolute;
+    bottom: 0;
+    right: 134px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(188, 185, 185);
+    border-radius: 50%;
+    label,
+    .icon {
+        cursor: pointer;
+    }
+}

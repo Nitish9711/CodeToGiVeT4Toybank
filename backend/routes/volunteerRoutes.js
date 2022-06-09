@@ -9,5 +9,7 @@ router.post('/edit/:id', volunteerController.editVolunteer);
 router.post('/delete/:id', volunteerController.deleteVolunteer);
 router.post('/sendMail', volunteerController.sendMail);
 router.post('/login',volunteerController.login);
+router.get('/upcomingEvents/:id', volunteerController.upcomingEvents);
+router.get('/pastEvents/:id', volunteerController.pastEvents);
 
 module.exports = router;
