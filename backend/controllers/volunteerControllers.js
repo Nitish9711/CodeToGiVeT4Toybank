@@ -1,3 +1,5 @@
+const onGroundEvents = require('../models/onGroundEvents');
+const virtualEvents = require('../models/virtualEvents');
 const Volunteer = require('../models/volunteers');
 const mailUtility = require('../util/mail');
 
@@ -76,5 +78,72 @@ module.exports.askDoubt = async(req, res)=>{
     newmessage = "This email is regarding the event " + eventDoc.name + message; 
     const response = mailUtility.askDoubtViaEmail("nitishkumar12c@outlook.com", newmessage);
     res.status(201).json({message: "Mail_Sent"});
-
 }
+
+
+module.exports.upcomingEvents = async(req,res) =>{
+    const {id}=req.params;
+    const vol=await Volunteer.findById(id);
+    const eventsArray=vol.assignedEvents;
+    // console.log(eventsArray);
+    let events=[];
+    for(let e in eventsArray){
+        let ob=eventsArray[e];
+        if(ob.contributionStatus==="Not Volunteered"){
+            let evId=ob.eventId;
+            let evName,mode,evDate;
+            const virtual = await virtualEvents.findById(evId);
+            if(virtual){
+                evName=virtual.name;
+                mode="virtual";
+                evDate=virtual.date;
+            }else{
+                const onGround = await onGroundEvents.findById(evId);
+                if(onGround){
+                    evName=onGround.name;
+                    mode="onGround";
+                    evDate=onGround.date;
+                }
+            }
+            const event = {eventId : evId , eventName : evName , eventMode : mode , eventDate : evDate};
+            // console.log(event);
+            events.push(event); 
+        }
+    }
+    // console.log(events);
+    res.status(200).json(events);
+};
+
+module.exports.pastEvents = async(req,res) =>{
+    const {id}=req.params;
+    const vol=await Volunteer.findById(id);
+    const eventsArray=vol.assignedEvents;
+    // console.log(eventsArray);
+    let events=[];
+    for(let e in eventsArray){
+        let ob=eventsArray[e];
+        if(ob.contributionStatus==="Volunteered"){
+            let evId=ob.eventId;
+            let evName,mode,evDate;
+            const virtual = await virtualEvents.findById(evId);
+            if(virtual){
+                evName=virtual.name;
+                mode="virtual";
+                evDate=virtual.date;
+            }else{
+                const onGround = await onGroundEvents.findById(evId);
+                if(onGround){
+                    evName=onGround.name;
+                    mode="onGround";
+                    evDate=onGround.date;
+                }
+            }
+            const event = {eventId : evId , eventName : evName , eventMode : mode , eventDate : evDate};
+            // console.log(event);
+            events.push(event); 
+        }
+    }
+    // console.log(events);
+    res.status(200).json(events);
+};
+
