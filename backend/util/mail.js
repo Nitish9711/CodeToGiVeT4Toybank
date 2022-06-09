@@ -129,7 +129,42 @@ async function sendMailToVoluntersOfAnEvent(emails, message) {
   );
   return "MAIL_SENT";
 }
+async function askDoubtViaEmail(email, message) {
+  // setup e-mail data, even with unicode symbols
+  var mailOptions = {
+    from: '"Toy Bank "nitishkumar12c@outlook.com', // sender address (who sends)
+    to: email, // list of receivers (who receives)
+    // bcc:email,
+    subject: "Mail From Volunteer", // Subject line
+    text: "", // plaintext body
+    html: `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+    <div style="margin:50px auto;width:70%;padding:20px 0">
+      <div style="border-bottom:1px solid #eee">
+        <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Toy Bank</a>
+      </div>
+      <p style="font-size:1.1em">Hi,</p>
+      <p>${message}</p>
+      <p style="font-size:0.9em;">Regards,<br /></p>
+      <hr style="border:none;border-top:1px solid #eee" />
+    </div>
+  </div>`,
+    // html body
+  };
+
+  // send mail with defined transport object
+  await transporter.sendMail(
+    mailOptions,
+    function (error, info) {
+      if (error) {
+        console.log(error);
+        return error;
+      }
+    }
+  );
+  return "MAIL_SENT";
+}
 
 exports.sendMailForOtp = sendMailForOtp;
 exports.sendMailToVolunteer = sendMailToVolunteer
 exports.sendMailToVoluntersOfAnEvent = sendMailToVoluntersOfAnEvent
+exports.askDoubtViaEmail = askDoubtViaEmail;
