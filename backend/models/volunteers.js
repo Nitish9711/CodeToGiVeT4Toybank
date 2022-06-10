@@ -24,7 +24,8 @@ const volunteerSchema = new Schema({
     // Assigned events array event id - [{eventids, contributionStatus - Voluteered|| Not Voluteered || Nonverified || verified}]
     assignedEvents: [{eventId: mongoose.Types.ObjectId, contributionStatus: String}],
     longTermAvailability: [{day: String, startDate: Date, endDate: Date, time: String, status:{type:String, default:"FREE"}}],
-    shortTermAvailability: [{date: Date, time: String,status:{type:String, default:"FREE"}}]
+    shortTermAvailability: [{date: Date, time: String,status:{type:String, default:"FREE"}}],
+    availibility:  [{date: Date, time: String,status:{type:String, default:"FREE"}}]
 });
 volunteerSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('Volunteer', volunteerSchema);

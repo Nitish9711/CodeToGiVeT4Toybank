@@ -1,0 +1,10 @@
+{
+    "name": "toybank_backend",
+    "version": "1.0.0",
+    "main": "",
+    "scripts": {
+        "start": "npm start --prefix server",
+        "install-server": "cd backend && npm install && cd .. ",
+        "heroku-postbuild": "npm run install-server"
+    }
+}

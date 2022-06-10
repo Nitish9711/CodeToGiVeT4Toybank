@@ -15,6 +15,8 @@ const virtualEventsRoutes = require("./routes/virtualEventsRoutes");
 const volunteerRoutes = require("./routes/volunteerRoutes");
 const utilRoutes = require("./routes/utilRoutes");
 
+const mappingUtil = require("../backend/util/algo");
+
 const app = express();
 
 const sessionConfig = {
@@ -49,8 +51,10 @@ app.use((req, res, next) => {
   next();
 });
 
+
 app.use("/check", (req, res, next) => {
   res.status(200);
+  mappingUtil.OnGroudnmapping();
   res.json({ message: "Api server is working" });
 });
 
