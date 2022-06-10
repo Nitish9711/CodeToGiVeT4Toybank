@@ -2,7 +2,10 @@ const onGroundEvents = require('../models/onGroundEvents');
 const virtualEvents = require('../models/virtualEvents');
 const Volunteer = require('../models/volunteers');
 const mailUtility = require('../util/mail');
-
+module.exports.getAllVolunteers = async(req, res)=>{
+    const allVolunteers = await Volunteer.find({});
+    res.status(201).json(allVolunteers);
+}
 module.exports.getVolunteerById = async(req, res)=>{
     const {id} = req.params;
     const volunteerDoc = await Volunteer.findById(id);

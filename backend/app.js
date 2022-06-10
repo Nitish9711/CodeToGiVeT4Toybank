@@ -15,7 +15,7 @@ const virtualEventsRoutes = require("./routes/virtualEventsRoutes");
 const volunteerRoutes = require("./routes/volunteerRoutes");
 const utilRoutes = require("./routes/utilRoutes");
 
-const mappingUtil = require("../backend/util/algo");
+const mappingUtil = require("./util/algo");
 
 const app = express();
 
@@ -86,7 +86,7 @@ mongoose
     `mongodb+srv://nitish_kumar:1234567890@cluster0.xt7ds.mongodb.net/CodeToGiveToyBankProject?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(3000);
+    app.listen(process.env.PORT || 5000);
   })
   .catch((err) => {
     console.log(err);

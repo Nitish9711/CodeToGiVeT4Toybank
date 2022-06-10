@@ -2,6 +2,10 @@ const VirtualEvents = require('../models/virtualEvents');
 const Volunteers = require('../models/volunteers');
 const mailUtility = require('../util/mail')
 
+module.exports.getAllVirtualEvents = async(req, res)=>{
+    const AllVirtualEvents = await VirtualEvents.find({});
+    res.status(201).json(AllVirtualEvents);
+}
 module.exports.getvirtualEventById = async(req, res)=>{
     const {id} = req.params;
     const virtualEvent = await VirtualEvents.findById(id);
