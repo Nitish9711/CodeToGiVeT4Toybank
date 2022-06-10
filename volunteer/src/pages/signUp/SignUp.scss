@@ -1,0 +1,80 @@
+.signUpLayout {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    .signUpNavbar {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 50px;
+        background-color: #ffcb05;
+        align-items: center;
+        img {
+            height: 60px;
+        }
+    }
+    .signUpMiddle {
+        flex: 9;
+    }
+    .signUpBottom {
+        flex: 2;
+    }
+}
+
+.Section_top {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-image: url(https://i0.wp.com/rotarynewsonline.org/wp-content/uploads/2017/09/toybank.png?resize=800%2C445&ssl=1);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    justify-content: center;
+    animation: change 35s infinite ease-in-out;
+}
+.content {
+    text-transform: uppercase;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    background: #C04848; 
+    background: linear-gradient(rgb(72,0,72,0.65), rgb(192,72,72,0.65));
+    background: linear-gradient(rgb(72,0,72,0.65), rgb(192,72,72,0.65));
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content h1 {
+    color: rgb(236, 233, 233);
+    font-size: 60px;
+    letter-spacing: 15px;
+    margin-bottom: 30px;
+}
+@keyframes change {
+    0% {
+        background-image:url(https://thebetterindia-static.gumlet.io/wp-content/uploads/2010/08/toybank-team.jpg);;
+    }
+    20% {
+        background-image: url(https://imgstaticcontent.lbb.in/lbbnew/wp-content/uploads/sites/1/2015/08/IMG_0640-1.jpg?w=1200&h=628&fill=blur&fit=fill);
+    }
+    40% {
+        background-image: url(https://i0.wp.com/rotarynewsonline.org/wp-content/uploads/2017/09/toybank.png?resize=800%2C445&ssl=1);
+    }
+    60% {
+        background-image: url(https://30stades.com/wp-content/uploads/2021/09/Toybank-toybank-Play2Learn-Center-30stades.jpg);
+    }
+    80% {
+        background-image: url(https://miro.medium.com/max/800/1*MGTD0o-YzkyjXwHek9Cfyw.jpeg);
+    }
+    100% {
+        background-image: url(https://thebetterindia-static.gumlet.io/wp-content/uploads/2010/08/toybank-team.jpg);
+    }
+}

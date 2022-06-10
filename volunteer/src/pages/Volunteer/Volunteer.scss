@@ -1,0 +1,25 @@
+.volunteerEvents {
+    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+    padding: 20px;
+    width: calc(100% - 80px);
+    margin: 50px 20px;
+    .bottomTopSection {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .bottomButtons {
+            margin-bottom: 18px;
+            .ShortTermBtn {
+                margin-right: 30px;
+            }
+        }
+    }
+}
+
+.title {
+    font-size: 25px;
+    color: lightgray;
+    margin-bottom: 20px;
+}
