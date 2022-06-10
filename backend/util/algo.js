@@ -5,5 +5,8 @@ const VirtualEvents = require('../models/virtualEvents');
 
 
 async function mapping(){
-     
+    var onGround = onGroundEvents.find({});
+    var virtual = VirtualEvents.find({});
+    console.log(onGround);
+    console.log(virtual);
 }
