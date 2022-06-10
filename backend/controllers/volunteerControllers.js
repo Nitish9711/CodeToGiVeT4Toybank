@@ -147,3 +147,36 @@ module.exports.pastEvents = async(req,res) =>{
     res.status(200).json(events);
 };
 
+module.exports.setlongTermAvailability = async(req,res) =>{
+    const {id}= req.params;
+    console.log(id);
+    const toset = req.body;
+    const vol = await Volunteer.findById(id);
+    vol.longTermAvailability.push(toset);
+    await vol.save();
+    res.status(200).json("WORK_DONE");
+};
+
+module.exports.showlongTermAvailability = async(req,res) =>{
+    const {id}= req.params;
+    const vol = await Volunteer.findById(id);
+    const avail = vol.longTermAvailability;
+    res.status(200).json(avail);
+};
+
+module.exports.setshortTermAvailability = async(req,res) =>{
+    const {id}= req.params;
+    const toset = req.body;
+    const vol = await Volunteer.findById(id);
+    vol.shortTermAvailability.push(toset);
+    console.log(vol.shortTermAvailability);
+    await vol.save();
+    res.status(200).json("WORK_DONE");
+};
+
+module.exports.showshortTermAvailability = async(req,res) =>{
+    const {id}= req.params;
+    const vol = await Volunteer.findById(id);
+    const avail = vol.shortTermAvailability;
+    res.status(200).json(avail);
+};

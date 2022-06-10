@@ -11,5 +11,9 @@ router.post('/sendMail', volunteerController.sendMail);
 router.post('/login',volunteerController.login);
 router.get('/upcomingEvents/:id', volunteerController.upcomingEvents);
 router.get('/pastEvents/:id', volunteerController.pastEvents);
+router.get('/showlongTermAvailability/:id' , volunteerController.showlongTermAvailability);
+router.post('/setlongTermAvailability/:id' , volunteerController.setlongTermAvailability);
+router.get('/showshortTermAvailability/:id' , volunteerController.showshortTermAvailability);
+router.post('/setshortTermAvailability/:id' , volunteerController.setshortTermAvailability);
 
 module.exports = router;
