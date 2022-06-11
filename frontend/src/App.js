@@ -32,7 +32,7 @@ function App() {
             </Route>
             <Route path="virtual">
               <Route index element={<List type='virtualEvent' />} />
-              <Route path=":evnetId" element={<SingleVirtualEvent />} />
+              <Route path=":eventId" element={<SingleVirtualEvent />} />
               <Route
                 path="new"
                 element={<OnGroundNew title="Add New Virtual Event" type="new" category="virtual" />}

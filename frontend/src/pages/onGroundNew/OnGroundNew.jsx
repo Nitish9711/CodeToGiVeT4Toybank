@@ -1,40 +1,59 @@
 import "./OnGroundNew.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import TextField from '@mui/material/TextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import React from 'react';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import FormControl from '@mui/material/FormControl';
-import MultipleSelect from "../../components/multiselectDropdown/Multiselect";
-import Button from '@mui/material/Button';
-import EditIcon from '@mui/icons-material/Edit';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import NewOnGround from "../../components/NewForms/NewOnGround";
+import NewVirtual from "../../components/NewForms/NewVirtual";
+// import EventIcon from '@mui/icons-material/Event';
 
 const OnGroundNew = ({ title, type, category }) => {
-  const list1 = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
+  const [event, setEvent] = useState({
+    name: "",
+    date: new Date(),
+    StartTime: "",
+    EndTime: "",
+    typeOfEvent: "",
+    description: "",
+    noOfVolunteersRequired: 0,
+    typeOfVolunteers: "",
+    languagesRequired: [],
+    skillsRequired: [],
+    venue: "",
+    town: "",
+    district: "",
+    city: "",
+    state: "",
+  })
+  const languages = [
+    'English',
+    'Hindi',
+    'Marathi',
   ];
-  const [file, setFile] = useState("");
-  const [date, setDate] = React.useState(new Date());
-  const [startTime, setStartTime] = React.useState(null)
-  const [endTime, setEndTime] = React.useState(null)
+  const skills = [
+    'Story Telling',
+    'Photography',
+    'Writing and editing',
+    'Board Games'
+  ];
+  const typeOfEvent = [
+    "Play sessions with Children",
+    "Toy collection and Distribution",
+    "Inventory and Gameplay",
+    "Research and Impact Assessments",
+    "Events and Fundraising",
+    "Content and Design",
+    "Toybank Ambassador",
+  ];
+
+  const district = [
+    "Outside Mumbai",
+    "Navi Mumbai",
+    "Central zone",
+    "Western Zone",
+    "Harbour Zone",
+    "In - Office (Mahim)",
+  ]
 
   return (
     <div className="new">
@@ -45,7 +64,7 @@ const OnGroundNew = ({ title, type, category }) => {
           <h1>{title}</h1>
         </div>
         <div className="bottom">
-          <div className="left">
+          {/* <div className="left">
             <img
               src={
                 file
@@ -54,20 +73,9 @@ const OnGroundNew = ({ title, type, category }) => {
               }
               alt=""
             />
-            <div className="fileInputDiv">
-              <label htmlFor="file">
-                <DriveFolderUploadOutlinedIcon className="icon" />
-              </label>
-              <input
-                type="file"
-                id="file"
-                onChange={(e) => setFile(e.target.files[0])}
-                style={{ display: "none" }}
-              />
-            </div>
-          </div>
+          </div> */}
           <div className="right">
-            <form>
+            {/* <form>
               <div className="newForm">
                 <div className="rightOne">
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -76,26 +84,28 @@ const OnGroundNew = ({ title, type, category }) => {
                       label="Select Date (mm/dd/yyyy)"
                       openTo="day"
                       views={['year', 'month', 'day']}
-                      value={date}
+                      value={event.date}
                       onChange={(newValue) => {
-                        setDate(newValue);
+                        setEvent({ ...event, date: newValue })
                       }}
                       renderInput={(params) => <TextField style={{ marginBottom: 20 }} fullWidth {...params} />}
                     />
 
                     <TimePicker
                       label="Select Starting Time"
-                      value={startTime}
+                      value={event.StartTime}
+                      required
                       onChange={(newValue) => {
-                        setStartTime(newValue);
+                        setEvent({ ...event, StartTime: newValue })
                       }}
                       renderInput={(params) => <TextField style={{ marginBottom: 20 }} fullWidth {...params} />}
                     />
                     <TimePicker
                       label="Select Ending Time"
-                      value={endTime}
+                      value={event.EndTime}
+                      required
                       onChange={(newValue) => {
-                        setEndTime(newValue);
+                        setEvent({ ...event, EndTime: newValue })
                       }}
                       renderInput={(params) => <TextField style={{ marginBottom: 20 }} fullWidth {...params} />}
                     />
@@ -106,9 +116,13 @@ const OnGroundNew = ({ title, type, category }) => {
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       label="Type of Volunteers"
+                      value={event.typeOfVolunteers}
+                      onChange={(e) => {
+                        setEvent({ ...event, typeOfVolunteers: e.target.value })
+                      }}
                     >
                       <MenuItem value="Students">Students</MenuItem>
-                      <MenuItem value="Adults">Adults</MenuItem>
+                      <MenuItem value="Professionals">Professionals</MenuItem>
                     </Select>
                   </FormControl>
                   {category === 'onGround' &&
@@ -120,17 +134,31 @@ const OnGroundNew = ({ title, type, category }) => {
                         fullWidth
                         style={{ marginBottom: 20 }}
                         placeholder='Enter the city of the event'
+                        value={event.city}
+                        onChange={(NewValue) => {
+                          setEvent({ ...event, city: NewValue })
+                        }}
                       />
-                      <TextField
-                        required
-                        id="outlined-required"
-                        label="District"
-                        fullWidth
-                        style={{ marginBottom: 20 }}
-                        placeholder='Enter the district of the event'
-                      />
+                      <FormControl fullWidth style={{ marginBottom: 20 }} required>
+                        <InputLabel id="demo-simple-select-label">District</InputLabel>
+                        <Select
+                          labelId="demo-simple-select-label"
+                          id="demo-simple-select"
+                          label="District"
+                          value={event.district}
+                          onChange={(e) => {
+                            setEvent({ ...event, ["district"]: e.target.value })
+                          }}
+                        >
+                          {district.map((name) => (
+                            <MenuItem key={name} value={name}>
+                              <ListItemText primary={name} />
+                            </MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
                     </>}
-                  <MultipleSelect label="Languages Required" list={list1} />
+                  <MultipleSelect label="Languages Required" list={languages} />
                 </div>
                 <div className="rightTwo">
                   <TextField
@@ -140,15 +168,29 @@ const OnGroundNew = ({ title, type, category }) => {
                     fullWidth
                     placeholder='Enter the name of the event'
                     style={{ marginBottom: 20 }}
+                    value={event.name}
+                    onChange={(e) => {
+                      setEvent({ ...event, ["name"]: e.target.value })
+                    }}
                   />
-                  <TextField
-                    required
-                    id="outlined-required"
-                    label="Type"
-                    fullWidth
-                    style={{ marginBottom: 20 }}
-                    placeholder='Enter the type of the event'
-                  />
+                  <FormControl fullWidth style={{ marginBottom: 20 }} required>
+                    <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      label="Type"
+                      value={event.typeOfEvent}
+                      onChange={(e) => {
+                        setEvent({ ...event, ["typeOfEvent"]: e.target.value })
+                      }}
+                    >
+                      {typeOfEvent.map((name) => (
+                        <MenuItem key={name} value={name}>
+                          <ListItemText primary={name} />
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                   <TextField
                     id="outlined-number"
                     fullWidth
@@ -159,16 +201,25 @@ const OnGroundNew = ({ title, type, category }) => {
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    value={event.noOfVolunteersRequired}
+                    onChange={(val) => {
+                      setEvent({ ...event, ["noOfVolunteersRequired"]: val })
+                    }}
                   />
                   {category === 'onGround' ?
-                    <TextField
-                      required
-                      id="outlined-required"
-                      label="Venue"
-                      fullWidth
-                      style={{ marginBottom: 20 }}
-                      placeholder='Enter the venue of the event'
-                    />
+                    <>
+                      <TextField
+                        id="outlined-required"
+                        label="Venue"
+                        fullWidth
+                        style={{ marginBottom: 20 }}
+                        placeholder='Enter the venue of the event'
+                        value={event.venue}
+                        onChange={(val) => {
+                          setEvent({ ...event, ["venue"]: val })
+                        }}
+                      />
+                    </>
                     :
                     <TextField
                       id="outlined-required"
@@ -188,6 +239,10 @@ const OnGroundNew = ({ title, type, category }) => {
                         fullWidth
                         style={{ marginBottom: 20 }}
                         placeholder='Enter the town of the event'
+                        value={event.town}
+                        onChange={(val) => {
+                          setEvent({ ...event, ["town"]: val })
+                        }}
                       />
                       <TextField
                         required
@@ -196,10 +251,14 @@ const OnGroundNew = ({ title, type, category }) => {
                         fullWidth
                         style={{ marginBottom: 20 }}
                         placeholder='Enter the state of the event'
+                        value={event.state}
+                        onChange={(val) => {
+                          setEvent({ ...event, ["state"]: val })
+                        }}
                       />
                     </>
                   }
-                  <MultipleSelect label="Skills Required" list={list1} />
+                  <MultipleSelect label="Skills Required" list={skills} />
                 </div>
               </div>
               <TextField
@@ -210,14 +269,21 @@ const OnGroundNew = ({ title, type, category }) => {
                 placeholder='Enter the description of the event'
                 style={{ marginBottom: 20 }}
                 multiline rows={5}
+                value={event.description}
+                onChange={(val) => {
+                  setEvent({ ...event, ["description"]: val })
+                }}
               />
               <div className="addBtnWrapper">
                 {type === 'edit' ?
                   <Button size="large" variant="outlined" endIcon={<EditIcon />}>Edit</Button>
-                  : <Button size="large" variant="outlined" endIcon={<AddCircleIcon />}>Add New</Button>
+                  : <Button size="large" variant="outlined" endIcon={<AddCircleIcon />} onClick={handleAdd}>Add New</Button>
                 }
               </div>
-            </form>
+            </form> */}
+            {console.log(category)}
+            {category === "onGround" ? <NewOnGround type={type} /> : <NewVirtual type={type} />}
+
           </div>
         </div>
       </div>
