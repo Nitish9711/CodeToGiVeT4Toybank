@@ -79,16 +79,29 @@ function generateString(length) {
     return result;
 }
 
+// title: String,
+// date: Date,
+// link: String,
+// time: String,
+// purpose: String
+
 module.exports.meetLink = async(req,res)=>{
     const {id} = req.params;
+    const {title,date,time,purpose} = req.body;
     let roomId=generateString(8);
     roomId=roomId.substring(1);
     const meetlink='https://videolify.up.railway.app/join/'+roomId;
     console.log(meetlink);
     const virtualEvent = await VirtualEvents.findById(id);
     virtualEvent.scheduledMeet.link=meetlink;
-    virtualEvent.save();
+    virtualEvent.scheduledMeet.title=title;
+    virtualEvent.scheduledMeet.purpose=purpose;
+    virtualEvent.scheduledMeet.date=new Date(date);
+    virtualEvent.scheduledMeet.time=time;
+    // virtualEvent.save();
+    console.log(virtualEvent);
     res.status(200).json({"message": "MEET_DONE"});
 };
+
 
 

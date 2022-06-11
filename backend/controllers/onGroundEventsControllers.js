@@ -84,12 +84,19 @@ function generateString(length) {
 
 module.exports.meetLink = async(req,res)=>{
     const {id} = req.params;
+    const {title,date,time,purpose} = req.body;
+
     let roomId=generateString(8);
     roomId=roomId.substring(1);
     const meetlink='https://videolify.up.railway.app/join/'+roomId;
     console.log(meetlink);
     const onGroundEvent = await onGroundEvents.findById(id);
     onGroundEvent.scheduledMeet.link=meetlink;
+    onGroundEvent.scheduledMeet.title=title;
+    onGroundEvent.scheduledMeet.date=new Date(date);
+    onGroundEvent.scheduledMeet.time=time;
+    onGroundEvent.scheduledMeet.purpose=purpose;
     onGroundEvent.save();
+    // console.log(onGroundEvent);
     res.status(200).json({"message": "MEET_DONE"});
 };
