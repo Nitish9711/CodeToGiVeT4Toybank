@@ -20,6 +20,7 @@ const utilRoutes = require("./routes/utilRoutes");
 const mappingUtil = require("./util/algo");
 
 const app = express();
+// mappingUtil.OnGroudnmapping();
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -54,7 +55,6 @@ passport.deserializeUser(Volunteer.deserializeUser());
 
 app.use("/check", (req, res, next) => {
   res.status(200);
-  mappingUtil.OnGroudnmapping();
   res.json({ message: "Api server is working" });
 });
 
