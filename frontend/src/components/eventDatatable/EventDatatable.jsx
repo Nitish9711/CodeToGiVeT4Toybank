@@ -1,16 +1,63 @@
 import "./EventDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { onGroundColumns, virtualColumns, userRows } from "../../eventDatatablesource";
+import { onGroundColumns, virtualColumns } from "../../eventDatatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import axios from 'axios';
 
 const EventDatatable = ({ type }) => {
-  const [data, setData] = useState(userRows);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function getAllOnGroundEvents() {
+      try {
+        const response = await axios.get(`/onGroundEvents/getAll`, { withCredentials: true });
+        console.log("response: ", response);
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    async function getAllVirtualEvents() {
+      try {
+        const response = await axios.get(`/virtualEvents/getAll`, { withCredentials: true });
+        console.log(response.data);
+        setData(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    type === 'onGroundEvent' ? getAllOnGroundEvents() : getAllVirtualEvents();
+    // return () => {
+    //   second
+    // }
+  }, [type])
+
 
   const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+    async function deleteOnGroundEvents() {
+      try {
+        const response = await axios.post(`/onGroundEvents/delete/${id}`, { withCredentials: true });
+        console.log("response: ", response);
+        setData(data.filter((item) => item._id !== id));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    async function deleteVirtualEvents() {
+      try {
+        const response = await axios.post(`/virtualEvents/delete/${id}`, { withCredentials: true });
+        console.log("response: ", response);
+        setData(data.filter((item) => item._id !== id));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    type === 'onGroundEvent' ? deleteOnGroundEvents() : deleteVirtualEvents();
+    // return () => {
+    //   second
+    // }
   };
 
   const OnGroundEventDatatable = () => {
@@ -24,7 +71,7 @@ const EventDatatable = ({ type }) => {
         renderCell: (params) => {
           return (
             <div className="cellAction">
-              <Link to="/onGround/test" style={{ textDecoration: "none" }}>
+              <Link to={`/onGround/${params.row._id}`} style={{ textDecoration: "none" }}>
                 <div className="viewButton">View</div>
               </Link>
               <div className="editButton">
@@ -32,11 +79,11 @@ const EventDatatable = ({ type }) => {
               </div>
               <div
                 className="deleteButton"
-                onClick={() => handleDelete(params.row.id)}
+                onClick={() => handleDelete(params.row._id)}
               >
                 Delete
               </div>
-            </div>
+            </div >
           );
         },
       },
@@ -46,7 +93,7 @@ const EventDatatable = ({ type }) => {
         <div className="datatableTitle">
           On Ground Events
           <Link to="/onGround/new" className="link">
-            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon/>}>Add New</Button>
+            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon />}>Add New</Button>
           </Link>
         </div>
         <DataGrid
@@ -56,6 +103,7 @@ const EventDatatable = ({ type }) => {
           pageSize={10}
           disableSelectionOnClick
           rowsPerPageOptions={[10]}
+          getRowId={(row) => row._id}
         />
       </div>
     );
@@ -72,7 +120,7 @@ const EventDatatable = ({ type }) => {
         renderCell: (params) => {
           return (
             <div className="cellAction">
-              <Link to="/virtual/test" style={{ textDecoration: "none" }}>
+              <Link to={`/virtual/${params.row._id}`} style={{ textDecoration: "none" }}>
                 <div className="viewButton">View</div>
               </Link>
               <div className="editButton">
@@ -80,7 +128,7 @@ const EventDatatable = ({ type }) => {
               </div>
               <div
                 className="deleteButton"
-                onClick={() => handleDelete(params.row.id)}
+                onClick={() => handleDelete(params.row._id)}
               >
                 Delete
               </div>
@@ -94,7 +142,7 @@ const EventDatatable = ({ type }) => {
         <div className="datatableTitle">
           Virtual Events
           <Link to="/virtual/new" className="link">
-            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon/>}>Add New</Button>
+            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon />}>Add New</Button>
           </Link>
         </div>
         <DataGrid
@@ -104,6 +152,7 @@ const EventDatatable = ({ type }) => {
           pageSize={10}
           disableSelectionOnClick
           rowsPerPageOptions={[10]}
+          getRowId={(row) => row._id}
         />
       </div>
     );

@@ -18,16 +18,17 @@ const MenuProps = {
     },
 };
 
-export default function Multiselect({ label, list }) {
+export default function Multiselect({ label, list, setState }) {
     const [personName, setPersonName] = React.useState([]);
 
-    const handleChange = (event) => {
+    const handleChange = (e) => {
         const {
             target: { value },
-        } = event;
+        } = e;
         setPersonName(
             typeof value === 'string' ? value.split(',') : value,
         );
+        setState(typeof value === 'string' ? value.split(',') : value)
     };
 
     return (

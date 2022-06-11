@@ -9,10 +9,30 @@ import * as React from 'react';
 import Popup from "../../components/popup/Popup"
 import MailForm from "../../components/mailForm/mailForm";
 import Form from "../../components/form/Form";
+import { useParams } from 'react-router-dom';
+import EventIcon from '@mui/icons-material/Event';
+import axios from 'axios';
 
 const SingleVirtualEvent = () => {
   const [openPopup, setOpenPopup] = React.useState(false);
   const [openMail, setOpenMail] = React.useState(false);
+  const EventID = useParams().eventId;
+  const [event, setEvent] = React.useState({});
+  React.useEffect(() => {
+    async function fetchEvent() {
+      try {
+        const response = await axios.get(`/virtualEvents/getDetails/${EventID}`, { withCredentials: true });
+        setEvent(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    EventID && fetchEvent();
+
+    // return () => {
+    //   second
+    // }
+  }, [EventID])
   return (
     <div className="single">
       <Sidebar />
@@ -23,29 +43,34 @@ const SingleVirtualEvent = () => {
             <div className="editButton">Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img
+              {/* <img
                 src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
                 alt=""
                 className="itemImg"
-              />
+              /> */}
+              <EventIcon className="itemImg" />
               <div className="details">
-                <h1 className="itemTitle">Random Event Name</h1>
+                <h1 className="itemTitle">{event.name ? event.name : 'No Name'}</h1>
                 <div className="alldetails">
                   <div className="leftdetails">
                     <div className="detailItem">
                       <span className="itemKey">Date:</span>
                       <span className="itemValue">
-                        06 June 2022
+                        {event.date ? event.date.split('T')[0] : '--/--/--'}
                       </span>
                     </div>
                     <div className="detailItem">
                       <span className="itemKey">Time:</span>
-                      <span className="itemValue">17:38:58 GMT+0530</span>
+                      <span className="itemValue">{event.StartTime ? event.StartTime : '--:--'}</span>
+                    </div>
+                    <div className="detailItem">
+                      <span className="itemKey">End Time:</span>
+                      <span className="itemValue">{event.EndTime ? event.EndTime : '--:--'}</span>
                     </div>
                     <div className="detailItem">
                       <span className="itemKey">Description:</span>
                       <span className="itemValue">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae ullam, fugit suscipit unde, voluptatum eum magni, dolorum commodi ut architecto facilis soluta harum laudantium.
+                        {event.description ? event.description : 'No Description added'}
                       </span>
                     </div>
                   </div>
@@ -53,23 +78,27 @@ const SingleVirtualEvent = () => {
                     <div className="detailItem">
                       <span className="itemKey">Link (if any):</span>
                       <span className="itemValue">
-                        http://localhost:5000/login
+                        {event.linksIfAny ? event.linksIfAny : 'No Links Provided'}
                       </span>
                     </div>
                     <div className="detailItem">
                       <span className="itemKey">Volunteers Required:</span>
-                      <span className="itemValue">5</span>
+                      <span className="itemValue">{event.noOfVolunteersRequired ? event.noOfVolunteersRequired : '--'}</span>
                     </div>
                     <div className="detailItem">
                       <span className="itemKey">Languages:</span>
                       <span className="itemValue">
-                        English, Hindi, Marathi
+                        {event.languagesRequired?.map(langauge => (
+                          langauge + ' '
+                        ))}
                       </span>
                     </div>
                     <div className="detailItem">
                       <span className="itemKey">Skills Required:</span>
                       <span className="itemValue">
-                        Analytical, Problem Solving, Leadership
+                        {event.skillsRequired?.map(skill => (
+                          skill + ' '
+                        ))}
                       </span>
                     </div>
                   </div>
@@ -104,7 +133,7 @@ const SingleVirtualEvent = () => {
               </Popup>
             </div>
           </div>
-          <List />
+          <List rows={event.volunteers} />
         </div>
       </div>
     </div>
