@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import "./mailForm.scss"
 
-function MailForm({type, id}) {
+function MailForm({ type, id }) {
     const [message, setmessage] = React.useState("");
     const [title, settitle] = React.useState("");
     const handleSubmit = (e) => {
@@ -36,7 +36,22 @@ function MailForm({type, id}) {
             }
         }
 
-        type === "onGround" ? onGroundMail() : virtualMail();
+        const volunteerMail = async () => {
+            try {
+                const response = await axios.post(`/volunteers/sendMail`, payload, { withCredentials: true });
+                console.log(response.data);
+                window.location.reload();
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        if (type === 'onGround')
+            onGroundMail()
+        else if (type === 'virtual')
+            virtualMail();
+        else
+            volunteerMail();
     }
     return (
         <div className="mailformLayout">
@@ -49,11 +64,11 @@ function MailForm({type, id}) {
                     placeholder='Enter the title'
                     style={{ marginBottom: 20 }}
                     value={title}
-                    onChange={(e)=>{
+                    onChange={(e) => {
                         settitle(e.target.value)
                     }}
                 />
-               
+
                 <TextField
                     required
                     id="outlined-required"
@@ -63,7 +78,7 @@ function MailForm({type, id}) {
                     style={{ marginBottom: 20 }}
                     multiline rows={5}
                     value={message}
-                    onChange={(e)=>{
+                    onChange={(e) => {
                         setmessage(e.target.value)
                     }}
                 />

@@ -141,7 +141,7 @@ const SingleVolunteer = () => {
                             openPopup={openMail}
                             setOpenPopup={setOpenMail}
                         >
-                            <MailForm />
+                            <MailForm type="volunteer" id={VolunteerID} />
                         </Popup>
                     </div>
                 </div>
