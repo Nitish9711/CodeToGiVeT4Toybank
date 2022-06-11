@@ -10,6 +10,6 @@ router.post('/edit/:id', virtualEventsController.editVirtualEvent);
 router.post('/delete/:id', virtualEventsController.deleteVirtualEvent);
 router.get('/getAll', virtualEventsController.getAllVirtualEvents);
 
-router.get('/meetLink/:id',virtualEventsController.meetLink);
+router.post('/meetLink/:id',virtualEventsController.meetLink);
 
 module.exports = router;
