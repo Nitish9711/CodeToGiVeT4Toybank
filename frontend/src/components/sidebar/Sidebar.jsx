@@ -12,6 +12,10 @@ import { useContext } from "react";
 import LanguageOutlined from "@mui/icons-material/LanguageOutlined";
 
 const Sidebar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem("admin");
+    window.location.reload();
+  }
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
@@ -66,7 +70,7 @@ const Sidebar = () => {
               <span>Edit Profile</span>
             </li>
           </NavLink>
-          <li>
+          <li onClick={handleLogout}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>

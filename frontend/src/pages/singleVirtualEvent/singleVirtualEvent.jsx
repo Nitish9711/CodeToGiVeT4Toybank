@@ -18,11 +18,14 @@ const SingleVirtualEvent = () => {
   const [openMail, setOpenMail] = React.useState(false);
   const EventID = useParams().eventId;
   const [event, setEvent] = React.useState({});
+  const [volunteerList, setVolunteerList] = React.useState([])
   React.useEffect(() => {
     async function fetchEvent() {
       try {
         const response = await axios.get(`/virtualEvents/getDetails/${EventID}`, { withCredentials: true });
-        setEvent(response.data);
+        console.log("Response: ", response.data);
+        setVolunteerList(response.data.volunteerList);
+        setEvent(response.data.virtualEvent);
       } catch (error) {
         console.log(error);
       }
@@ -133,7 +136,7 @@ const SingleVirtualEvent = () => {
               </Popup>
             </div>
           </div>
-          <List rows={event.volunteers} />
+          <List impRow={volunteerList} />
         </div>
       </div>
     </div>

@@ -183,3 +183,33 @@ module.exports.showshortTermAvailability = async(req,res) =>{
     const avail = vol.shortTermAvailability;
     res.status(200).json(avail);
 };
+
+module.exports.setAvailability = async(req,res) =>{
+    const islong=req.body.islong;
+    const {id}=req.params;
+    console.log(id);
+    console.log(islong);
+  
+    if(islong){
+      const {day,startDate,endDate,time,status} = req.body;
+      const vol = await Volunteer.findById(id);
+      var daysOfYear = [];
+      let start = new Date(startDate);
+      let end = new Date(endDate);
+      while(start-end<0){
+          var date=new Date(start);
+          console.log(date);
+          vol.availibility.push({date,time,status});
+          start.setDate(start.getDate()+7);
+      }
+      console.log(vol.availibility);
+      await vol.save();
+    }else{
+      const {date,time,status} = req.body;
+      const vol = await Volunteer.findById(id);
+      vol.availibility.push({date,time,status});
+      console.log(vol.availibility);
+      await vol.save();
+    }
+    res.status(200).json("DONE");
+};

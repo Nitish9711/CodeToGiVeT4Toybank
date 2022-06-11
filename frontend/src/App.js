@@ -10,40 +10,43 @@ import { DarkModeContext } from "./context/darkModeContext";
 import SingleOnGroundEvent from "./pages/singleOnGroundEvent/singleOnGroundEvent";
 import SingleVolunteer from "./pages/singleVolunteer/singleVolunteer";
 import Profile from "./pages/profile/Profile";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
-
+  const { user } = useContext(AuthContext);
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="onGround">
-              <Route index element={<List type='onGroundEvent' />} />
-              <Route path=":eventId" element={<SingleOnGroundEvent />} />
-              <Route
-                path="new"
-                element={<OnGroundNew title="Add New On Ground Event" type="new" category="onGround" />}
-              />
+        {user ?
+          <Routes>
+            <Route path="/">
+              <Route index element={<Home />} />
+              <Route path="login" element={<Login />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="onGround">
+                <Route index element={<List type='onGroundEvent' />} />
+                <Route path=":eventId" element={<SingleOnGroundEvent />} />
+                <Route
+                  path="new"
+                  element={<OnGroundNew title="Add New On Ground Event" type="new" category="onGround" />}
+                />
+              </Route>
+              <Route path="virtual">
+                <Route index element={<List type='virtualEvent' />} />
+                <Route path=":eventId" element={<SingleVirtualEvent />} />
+                <Route
+                  path="new"
+                  element={<OnGroundNew title="Add New Virtual Event" type="new" category="virtual" />}
+                />
+              </Route>
+              <Route path="volunteers">
+                <Route index element={<List type='volunteer' />} />
+                <Route path=":volunteerId" element={<SingleVolunteer />} />
+              </Route>
             </Route>
-            <Route path="virtual">
-              <Route index element={<List type='virtualEvent' />} />
-              <Route path=":eventId" element={<SingleVirtualEvent />} />
-              <Route
-                path="new"
-                element={<OnGroundNew title="Add New Virtual Event" type="new" category="virtual" />}
-              />
-            </Route>
-            <Route path="volunteers">
-              <Route index element={<List type='volunteer' />} />
-              <Route path=":volunteerId" element={<SingleVolunteer />} />
-            </Route>
-          </Route>
-        </Routes>
+          </Routes>
+          : <Login />}
       </BrowserRouter>
     </div>
   );
