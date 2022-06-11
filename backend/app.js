@@ -6,6 +6,10 @@ const fs = require("fs");
 const session = require('express-session');
 const passport = require('passport');
 const localstrategy = require('passport-local');
+const cors = require('cors');
+
+
+
 const HttpError = require("./models/http-error");
 const Volunteer=require('./models/volunteers');
 
@@ -30,7 +34,7 @@ const sessionConfig = {
       maxAge: 1000 * 60 * 60 * 24 * 7
   }
 }
-
+app.use(cors({credentials: true, origin: true}));
 app.use(bodyParser.json());
 app.use(session(sessionConfig));
 app.use(passport.initialize());
