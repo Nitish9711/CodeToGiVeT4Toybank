@@ -19,7 +19,7 @@ module.exports.getonGoundEventById = async(req, res)=>{
     let volunteerList = await Promise.all(promises)
 
     if(onGroundEvent){
-        res.status(201).json(onGroundEvent, volunteerList);
+        res.status(201).json({onGroundEvent, volunteerList});
         return;
     }
     else{

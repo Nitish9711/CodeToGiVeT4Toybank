@@ -140,9 +140,13 @@ make sure routes will be like this domain name/api/typeofROute/routeWork
 1. Date
 2. Location 
 3. Type of Event
-4. Area of Thing
+<!-- 4. Area of Thing -->
 5. Schdule a meet on base of intrest
 6. Our side mail
+
+
 7. Waiting List of event
 8. Notify about it the change
+
 9. Turn on/off the assignment
+
