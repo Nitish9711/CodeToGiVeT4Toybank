@@ -72,13 +72,28 @@ const PersonalForm = () => {
         <>
             <Controller
                 control={control}
-                name="address1"
+                name="name"
                 render={({ field }) => (
                     <TextField
-                        id="address1"
-                        label="Address 1"
+                        id="name"
+                        label="Name"
                         variant="outlined"
-                        placeholder="Enter Your Address 1"
+                        placeholder="Enter Your Name"
+                        fullWidth
+                        margin="normal"
+                        {...field}
+                    />
+                )}
+            />
+            <Controller
+                control={control}
+                name="username"
+                render={({ field }) => (
+                    <TextField
+                        id="username"
+                        label="Name"
+                        variant="outlined"
+                        placeholder="Enter Your Name"
                         fullWidth
                         margin="normal"
                         {...field}
