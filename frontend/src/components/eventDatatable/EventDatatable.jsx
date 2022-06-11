@@ -2,12 +2,38 @@ import "./EventDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { onGroundColumns, virtualColumns, userRows } from "../../eventDatatablesource";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from '@mui/material/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import axios from 'axios';
 
 const EventDatatable = ({ type }) => {
   const [data, setData] = useState(userRows);
+  useEffect(() => {
+    async function getAllOnGroundEvents() {
+      try {
+        const response = await axios.get(`https://toybank-admin-frontend.web.app/allonGroundEvents`, { withCredentials: true });
+        console.log("response: ", response);
+        // setSearches(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    async function getAllVirtualEvents() {
+      try {
+        const response = await axios.get(`https://toybank-admin-frontend.web.app/allVirtualEvents`, { withCredentials: true });
+        console.log("response: ", response);
+        // setSearches(response.data);        
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    type === 'onGroundEvent' ? getAllOnGroundEvents() : getAllVirtualEvents();
+    // return () => {
+    //   second
+    // }
+  }, [type])
+
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -46,7 +72,7 @@ const EventDatatable = ({ type }) => {
         <div className="datatableTitle">
           On Ground Events
           <Link to="/onGround/new" className="link">
-            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon/>}>Add New</Button>
+            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon />}>Add New</Button>
           </Link>
         </div>
         <DataGrid
@@ -94,7 +120,7 @@ const EventDatatable = ({ type }) => {
         <div className="datatableTitle">
           Virtual Events
           <Link to="/virtual/new" className="link">
-            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon/>}>Add New</Button>
+            <Button size="medium" variant="outlined" endIcon={<AddCircleIcon />}>Add New</Button>
           </Link>
         </div>
         <DataGrid
