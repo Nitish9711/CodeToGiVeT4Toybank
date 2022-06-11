@@ -2,6 +2,7 @@ const onGroundEvents = require('../models/onGroundEvents');
 const Volunteers = require('../models/volunteers');
 const mailUtility = require('../util/mail')
 
+
 module.exports.getAllonGroundEvents = async(req, res)=>{
     const allOnGroundEvents = await onGroundEvents.find({});
     res.status(201).json(allOnGroundEvents);
@@ -10,8 +11,15 @@ module.exports.getAllonGroundEvents = async(req, res)=>{
 module.exports.getonGoundEventById = async(req, res)=>{
     const {id} = req.params;
     const onGroundEvent = await onGroundEvents.findById(id);
+    const promises  = onGroundEvent.volunteers.map(async (volId) =>{
+        const trans =  await Volunteers.findById(volId);
+        return trans;
+      })
+    
+    let volunteerList = await Promise.all(promises)
+
     if(onGroundEvent){
-        res.status(201).json(onGroundEvent);
+        res.status(201).json(onGroundEvent, volunteerList);
         return;
     }
     else{
