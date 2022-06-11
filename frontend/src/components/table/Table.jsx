@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const List = ({ impRow }) => {
   const [rows, setRows] = React.useState([]);
   React.useEffect(() => {
+    console.log("Rows: ", impRow);
     impRow && setRows(impRow);
   }, [impRow])
 
@@ -190,7 +191,8 @@ const List = ({ impRow }) => {
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows).map((row) => (
-              <TableRow key={row.id}>
+              row &&
+              <TableRow key={row._id}>
                 <TableCell className="tableCell">{row._id}</TableCell>
                 <TableCell className="tableCell">
                   <div className="cellWrapper">
