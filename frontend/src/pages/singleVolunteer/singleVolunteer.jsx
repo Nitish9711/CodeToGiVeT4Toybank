@@ -8,10 +8,30 @@ import * as React from 'react';
 import Popup from "../../components/popup/Popup"
 import MailForm from "../../components/mailForm/mailForm";
 import Form from "../../components/form/Form";
+import PersonIcon from '@mui/icons-material/Person';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const SingleVolunteer = () => {
     const [openPopup, setOpenPopup] = React.useState(false);
     const [openMail, setOpenMail] = React.useState(false);
+    const VolunteerID = useParams().volunteerId;
+    const [event, setEvent] = React.useState({});
+    React.useEffect(() => {
+        async function fetchEvent() {
+            try {
+                const response = await axios.get(`/volunteers/getDetails/${VolunteerID}`, { withCredentials: true });
+                setEvent(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        VolunteerID && fetchEvent();
+
+        // return () => {
+        //   second
+        // }
+    }, [VolunteerID])
     return (
         <div className="single">
             <Sidebar />
@@ -19,44 +39,44 @@ const SingleVolunteer = () => {
                 <Navbar />
                 <div className="top">
                     <div className="left">
-                        <div className="editButton">Edit</div>
                         <h1 className="title">Information</h1>
                         <div className="item">
-                            <img
+                            {/* <img
                                 src="https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
                                 alt=""
                                 className="itemImg"
-                            />
+                            /> */}
+                            <PersonIcon className="itemImg" />
                             <div className="details">
-                                <h1 className="itemTitle">Random Volunteer Name</h1>
+                                <h1 className="itemTitle">{event.name ? event.name : 'No Name'}</h1>
                                 <div className="alldetails">
                                     <div className="leftdetails">
                                         <div className="detailItem">
                                             <span className="itemKey">Username:</span>
                                             <span className="itemValue">
-                                                Test_volunteer
+                                                {event.username ? event.username : 'No Username'}
                                             </span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Age:</span>
-                                            <span className="itemValue">24</span>
+                                            <span className="itemValue">{event.age ? event.age : '--'}</span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Email Id:</span>
                                             <span className="itemValue">
-                                                test@gmail.com
+                                                {event.email ? event.email : 'No email'}
                                             </span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Contact:</span>
                                             <span className="itemValue">
-                                                +91 1234567890
+                                                {event.phoneno ? event.phoneno : '+91 - '}
                                             </span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Organization:</span>
                                             <span className="itemValue">
-                                                Morgan Stanley
+                                                {event.organization ? event.organization : '--'}
                                             </span>
                                         </div>
                                     </div>
@@ -64,27 +84,31 @@ const SingleVolunteer = () => {
                                         <div className="detailItem">
                                             <span className="itemKey">Address:</span>
                                             <span className="itemValue">
-                                                Elton St. 234 Garden Yd. NewYork
+                                                {event.address ? event.address : 'No Name'}
                                             </span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Academic Qualification:</span>
-                                            <span className="itemValue">Graduation</span>
+                                            <span className="itemValue">{event.academicQualification ? event.academicQualification : 'Not Provided'}</span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Profession:</span>
-                                            <span className="itemValue">Student</span>
+                                            <span className="itemValue">{event.profession ? event.profession : 'No Provided'}</span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Languages Known:</span>
                                             <span className="itemValue">
-                                                English, Hindi, Marathi
+                                                {event.languagesKnown?.map(langauge => (
+                                                    langauge + ' '
+                                                ))}
                                             </span>
                                         </div>
                                         <div className="detailItem">
                                             <span className="itemKey">Skills Known:</span>
                                             <span className="itemValue">
-                                                Analytical, Problem Solving, Leadership
+                                                {event.skills?.map(skill => (
+                                                    skill + ' '
+                                                ))}
                                             </span>
                                         </div>
                                     </div>

@@ -12,9 +12,17 @@ import "./Form.scss"
 function Form() {
     const [date, setDate] = React.useState(new Date());
     const [time, setTime] = React.useState(null)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div className="formLayout">
-            <form>
+            <form onSubmit={handleSubmit}>
                 <TextField
                     required
                     id="outlined-required"
@@ -55,7 +63,7 @@ function Form() {
                     style={{ marginBottom: 20 }}
                     multiline rows={5}
                 />
-                <Button variant="contained" color="success" endIcon={<VideoCallIcon />}>
+                <Button variant="contained" color="success" endIcon={<VideoCallIcon />} type="submit">
                     Schedule Meet
                 </Button>
             </form>
