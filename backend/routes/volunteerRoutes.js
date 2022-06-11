@@ -13,6 +13,8 @@ router.get('/getAll', volunteerController.getAllVolunteers);
 
 router.get('/upcomingEvents/:id', volunteerController.upcomingEvents);
 router.get('/pastEvents/:id', volunteerController.pastEvents);
+
+
 router.get('/showlongTermAvailability/:id' , volunteerController.showlongTermAvailability);
 router.post('/setlongTermAvailability/:id' , volunteerController.setlongTermAvailability);
 router.get('/showshortTermAvailability/:id' , volunteerController.showshortTermAvailability);
