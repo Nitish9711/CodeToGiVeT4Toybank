@@ -8,52 +8,52 @@ import NewVirtual from "../../components/NewForms/NewVirtual";
 // import EventIcon from '@mui/icons-material/Event';
 
 const OnGroundNew = ({ title, type, category }) => {
-  const [event, setEvent] = useState({
-    name: "",
-    date: new Date(),
-    StartTime: "",
-    EndTime: "",
-    typeOfEvent: "",
-    description: "",
-    noOfVolunteersRequired: 0,
-    typeOfVolunteers: "",
-    languagesRequired: [],
-    skillsRequired: [],
-    venue: "",
-    town: "",
-    district: "",
-    city: "",
-    state: "",
-  })
-  const languages = [
-    'English',
-    'Hindi',
-    'Marathi',
-  ];
-  const skills = [
-    'Story Telling',
-    'Photography',
-    'Writing and editing',
-    'Board Games'
-  ];
-  const typeOfEvent = [
-    "Play sessions with Children",
-    "Toy collection and Distribution",
-    "Inventory and Gameplay",
-    "Research and Impact Assessments",
-    "Events and Fundraising",
-    "Content and Design",
-    "Toybank Ambassador",
-  ];
+  // const [event, setEvent] = useState({
+  //   name: "",
+  //   date: new Date(),
+  //   StartTime: "",
+  //   EndTime: "",
+  //   typeOfEvent: "",
+  //   description: "",
+  //   noOfVolunteersRequired: 0,
+  //   typeOfVolunteers: "",
+  //   languagesRequired: [],
+  //   skillsRequired: [],
+  //   venue: "",
+  //   town: "",
+  //   district: "",
+  //   city: "",
+  //   state: "",
+  // })
+  // const languages = [
+  //   'English',
+  //   'Hindi',
+  //   'Marathi',
+  // ];
+  // const skills = [
+  //   'Story Telling',
+  //   'Photography',
+  //   'Writing and editing',
+  //   'Board Games'
+  // ];
+  // const typeOfEvent = [
+  //   "Play sessions with Children",
+  //   "Toy collection and Distribution",
+  //   "Inventory and Gameplay",
+  //   "Research and Impact Assessments",
+  //   "Events and Fundraising",
+  //   "Content and Design",
+  //   "Toybank Ambassador",
+  // ];
 
-  const district = [
-    "Outside Mumbai",
-    "Navi Mumbai",
-    "Central zone",
-    "Western Zone",
-    "Harbour Zone",
-    "In - Office (Mahim)",
-  ]
+  // const district = [
+  //   "Outside Mumbai",
+  //   "Navi Mumbai",
+  //   "Central zone",
+  //   "Western Zone",
+  //   "Harbour Zone",
+  //   "In - Office (Mahim)",
+  // ]
 
   return (
     <div className="new">
