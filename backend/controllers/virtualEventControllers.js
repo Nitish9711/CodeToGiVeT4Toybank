@@ -9,8 +9,15 @@ module.exports.getAllVirtualEvents = async(req, res)=>{
 module.exports.getvirtualEventById = async(req, res)=>{
     const {id} = req.params;
     const virtualEvent = await VirtualEvents.findById(id);
+    const promises  = virtualEvent.volunteers.map(async (volId) =>{
+        const trans =  await Volunteers.findById(volId);
+        return trans;
+      })
+    
+    let volunteerList = await Promise.all(promises)
+
     if(virtualEvent){
-        res.status(201).json(virtualEvent);
+        res.status(201).json({virtualEvent,volunteerList });
         return;
     }
     else{

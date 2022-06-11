@@ -18,12 +18,14 @@ const SingleOnGroundEvent = () => {
   const [openMail, setOpenMail] = React.useState(false);
   const EventID = useParams().eventId;
   const [event, setEvent] = React.useState({});
+  const [volunteerList, setVolunteerList] = React.useState([])
   React.useEffect(() => {
     async function fetchEvent() {
       try {
         const response = await axios.get(`/onGroundEvents/getDetails/${EventID}`, { withCredentials: true });
-        console.log("Event: ", response.data);
-        setEvent(response.data);
+        console.log("Response: ", response.data);
+        setVolunteerList(response.data.volunteerList);
+        setEvent(response.data.onGroundEvent);
       } catch (error) {
         console.log(error);
       }
@@ -51,7 +53,7 @@ const SingleOnGroundEvent = () => {
                 alt=""
                 className="itemImg"
               /> */}
-              <EventIcon className="itemImg"/>
+              <EventIcon className="itemImg" />
               <div className="details">
                 <h1 className="itemTitle">{event.name ? event.name : 'No Name'}</h1>
                 <div className="alldetails">
@@ -136,7 +138,7 @@ const SingleOnGroundEvent = () => {
               </Popup>
             </div>
           </div>
-          <List rows={event.volunteers} />
+          {volunteerList && <List impRow={volunteerList} />}
         </div>
       </div>
     </div>
