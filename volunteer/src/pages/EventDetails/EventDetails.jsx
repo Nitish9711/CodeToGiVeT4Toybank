@@ -1,7 +1,6 @@
 import './EventDetails.scss';
 import Navbar from '../../components/Navbar/Navbar';
 import Button from '@mui/material/Button';
-import List from '../../components/table/Table'
 import Popup from '../../components/popup/Popup';
 import { useState } from 'react';
 import AskToyBank from '../../components/form/AskToyBank'
