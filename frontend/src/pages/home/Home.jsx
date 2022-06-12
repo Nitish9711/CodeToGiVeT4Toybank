@@ -12,10 +12,9 @@ const Home = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          <Widget type="user" />
-          <Widget type="user" />
-          <Widget type="user" />
-          <Widget type="user" />
+          <Widget type="OnGround" />
+          <Widget type="Virtual" />
+          <Widget type="Volunteers" />
         </div>
         <div className="charts">
           <Chart title="Last 6 Months (Volunteers)" aspect={3 / 1} />

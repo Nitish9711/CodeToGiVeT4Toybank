@@ -1,23 +1,23 @@
 export const volunteerColumns = [
-  {
-    field: "_id", headerName: "ID", width: 230, renderCell: (params) => {
-      return (
-        <>
-          {params.row._id}
-        </>
-      );
-    },
-  },
+  // {
+  //   field: "_id", headerName: "ID", width: 230, renderCell: (params) => {
+  //     return (
+  //       <>
+  //         {params.row._id}
+  //       </>
+  //     );
+  //   },
+  // },
   {
     field: "name",
     headerName: "Volunteer Name",
-    width: 200,
+    width: 300,
     sortable: false,
   },
   {
     field: "username",
     headerName: "Username",
-    width: 200,
+    width: 300,
     sortable: false,
   },
 
@@ -29,7 +29,7 @@ export const volunteerColumns = [
   {
     field: "email",
     headerName: "E-mail ID",
-    width: 200,
+    width: 300,
   },
   // {
   //   field: "status",

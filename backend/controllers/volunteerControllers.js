@@ -63,9 +63,12 @@ module.exports.deleteVolunteer = async (req, res) => {
     return;
 };
 module.exports.sendMail = async(req, res)=>{
-    const {id, message} = req.body;
+    var {id,title, message} = req.body;
+    message  = "this mail is regaring " + title + ". " + message; 
     const volunteerDoc = await Volunteer.findById(id);
     const response = await mailUtility.sendMailToVolunteer(volunteerDoc.email, message);
+
+
 
     res.status(201).json({message: "MAIL_SENT"});
     return;
