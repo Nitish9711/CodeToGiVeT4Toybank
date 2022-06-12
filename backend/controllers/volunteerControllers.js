@@ -127,7 +127,7 @@ module.exports.pastEvents = async(req,res) =>{
     let events=[];
     for(let e in eventsArray){
         let ob=eventsArray[e];
-        if(ob.contributionStatus==="Volunteered"){
+        if(ob.contributionStatus==="VOLUNTEERED"){
             let evId=ob.eventId;
             let evName,mode,evDate;
             const virtual = await virtualEvents.findById(evId);
