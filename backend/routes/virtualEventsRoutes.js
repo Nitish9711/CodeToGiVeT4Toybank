@@ -12,4 +12,6 @@ router.get('/getAll', virtualEventsController.getAllVirtualEvents);
 
 router.post('/meetLink/:id',virtualEventsController.meetLink);
 
+router.get('/deleteVolEvent/:evId/:volId',virtualEventsController.deleteVolEvent);
+
 module.exports = router;
