@@ -71,3 +71,51 @@ module.exports.getAllMeets = async(req,res) =>{
     // res.send(ans);
     res.status(200).json(ans);
 };
+
+module.exports.monthWiseData = async(req,res)=>{
+    var ob1 = {
+       Jan : 0,
+       Feb : 0,
+       Mar : 0,
+       Apr : 0,
+       May : 0,
+       Jun : 0,
+       July : 0,
+       Aug : 0,
+       Sep : 0,
+       Oct : 0,
+       Nov : 0,
+       Dec : 0
+    };
+    var ob2 = {
+        1 : "Jan",
+        2 : "Feb",
+        3 : "Mar",
+        4 : "Apr",
+        5 : "May",
+        6 : "Jun",
+        7 : "July",
+        8 : "Aug",
+        9 : "Sep",
+        10 : "Oct",
+        11 : "Nov",
+        12 : "Dec"
+     };
+
+     const virtual = await VirtualEvents.find();
+     for(let e in virtual){
+         var mm = virtual[e].date.toISOString().slice(5,7);
+         var month = ob2[parseInt(mm)];
+         ob1[month]+=1;
+     }
+     const onground = await onGroundEvents.find();
+     for(let e in onground){
+         console.log(onground[e].date);
+         var mm = onground[e].date.toISOString().slice(5,7);
+         console.log(mm);
+         var month = ob2[parseInt(mm)];
+         console.log(month);
+         ob1[month]+=1;
+     }
+     res.status(201).json(ob1);
+};
