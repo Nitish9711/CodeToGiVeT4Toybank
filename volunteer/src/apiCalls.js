@@ -13,6 +13,7 @@ export const signUpCall = async (userCredential, dispatch) => {
   dispatch({ type: "SIGNUP_START" });
   try {
     const res = await axios.post("/volunteers/create", userCredential);
+    console.log("successful", res.data);
     dispatch({ type: "SIGNUP_SUCCESS", payload: res.data });
   } catch (err) {
     dispatch({ type: "SIGNUP_FAILURE", payload: err });
