@@ -1,6 +1,48 @@
 const Otp = require("../models/otp");
 const mongoose = require("mongoose");
 const utilityFunctions = require("../util/mail");
+const onGroundEvents = require("../models/onGroundEvents");
+const Volunteers = require("../models/volunteers");
+const VirtualEvents = require("../models/virtualEvents");
+
+const sendEvents = async (req, res, next) => {
+  var onGround = await onGroundEvents.find({});
+  onGround = onGround.filter((ele) => {
+    // console.log(ele.volunteers.length)
+    var d1 = new Date(Date.now());
+    var d2 = new Date(ele.date);
+    // console.log(d1);
+    return d1 < d2;
+  });
+
+  await onGround.sort(function (a, b) {
+    var d1 = new Date(a.date);
+    var d2 = new Date(b.date);
+    //    console.log(d1);
+    //    console.log(d2);
+    return d1 - d2;
+  });
+
+  var virtualEvent = await VirtualEvents.find({});
+
+  virtualEvent = virtualEvent.filter((ele)=>{
+      // console.log(ele.volunteers.length)
+      var d1 = new Date(Date.now());
+      var d2 = new Date(ele.date);
+      // console.log(d1);
+      return d1 < d2;
+  })
+  await virtualEvent.sort(function(a, b) {
+     var d1 = new Date(a.date);
+     var d2 = new Date(b.date);
+  //    console.log(d1);
+  //    console.log(d2);
+      return d1 - d2;
+  }); 
+
+  res.status(201).json({onGround, virtualEvent});
+  return;
+};
 const sendOtp = async (req, res, next) => {
   const { email } = req.body;
   var digits = "0123456789";
@@ -57,3 +99,4 @@ const verifyOtp = async (req, res, next) => {
 
 exports.sendOtp = sendOtp;
 exports.verifyOtp = verifyOtp;
+exports.sendEvents = sendEvents;
