@@ -120,3 +120,23 @@ module.exports.meetLink = async(req,res)=>{
 
     res.status(200).json({"message": "MEET_DONE"});
 };
+
+module.exports.deleteVolEvent=async(req,res)=>{
+    const {evId,volId} = req.params;
+    // console.log(evId);
+    // console.log(volId);
+    const event = await onGroundEvents.findById(evId);
+    let volArray = event.volunteers;
+    // console.log(volArray);
+    let array =[];
+    for(let v in volArray){
+        if(volArray[v]!=volId){
+            array.push(volArray[v]);
+        }
+    }
+    // console.log(event.volunteers);
+    event.volunteers = array;
+    // console.log(event.volunteers);
+    await event.save();
+    res.status(201).json("WORK_DONE");
+}
