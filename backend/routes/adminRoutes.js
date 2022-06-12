@@ -10,6 +10,6 @@ router.get('/allVolunteers', adminController.allVolunteers);
 router.post('/login',adminController.login);
 router.post('/signUp',adminController.signUp);
 router.get('/getAllMeets',adminController.getAllMeets);
-
+router.get('/monthWiseData',adminController.monthWiseData);
 
 module.exports = router;
