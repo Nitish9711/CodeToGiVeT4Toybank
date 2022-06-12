@@ -28,7 +28,7 @@ module.exports.login = async(req, res)=>{
         console.log(help[user].password);
       if(help[user].username===u && help[user].password===p){
         // res.send("Logged in");
-        res.status(200).json({message:"LOGGED_IN"});
+        res.status(200).json({ id: help[user]._id });
         return;
       }
     }
