@@ -50,6 +50,8 @@ async function sendMailForOtp(email, otp) {
       }
     }
   );
+
+  console.log("sending email");
   return "OTP_SENT";
 }
 async function sendMailToVolunteer(email, message) {

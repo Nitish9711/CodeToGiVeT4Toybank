@@ -122,7 +122,7 @@ const SingleVirtualEvent = () => {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
               >
-                <Form />
+                <Form type="virtual" id={EventID}/>
               </Popup>
               <Button variant="contained" size="medium" endIcon={<SendIcon />} onClick={() => { setOpenMail(true); }}>
                 Send Mail
@@ -132,7 +132,7 @@ const SingleVirtualEvent = () => {
                 openPopup={openMail}
                 setOpenPopup={setOpenMail}
               >
-                <MailForm />
+                <MailForm type="virtual" id={EventID}/>
               </Popup>
             </div>
           </div>

@@ -124,7 +124,7 @@ const SingleOnGroundEvent = () => {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
               >
-                <Form />
+                <Form type="onGround" id={EventID}/>
               </Popup>
               <Button variant="contained" size="medium" endIcon={<SendIcon />} onClick={() => { setOpenMail(true); }}>
                 Send Mail
@@ -134,7 +134,7 @@ const SingleOnGroundEvent = () => {
                 openPopup={openMail}
                 setOpenPopup={setOpenMail}
               >
-                <MailForm />
+                <MailForm type="onGround" id={EventID}/>
               </Popup>
             </div>
           </div>

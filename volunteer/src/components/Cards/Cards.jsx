@@ -82,7 +82,7 @@ const ExpandMore = styled((props) => {
     }),
 }));
 
-export default function Cards({ type }) {
+export default function Cards({ type, data, category }) {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -90,53 +90,56 @@ export default function Cards({ type }) {
     };
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title="Random Event"
-                subheader="September 14, 2016"
-            />
-            <CardMedia
-                component="img"
-                height="100"
-                image="https://thebetterindia-static.gumlet.io/wp-content/uploads/2010/08/toybank-collage.jpg"
-                alt="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body1" color="text.secondary">
-                    <b>On Ground Event.</b>
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                {type === 'own' &&
-                    <>
-                        <NavLink to="/myEvents/test" style={{ textDecoration: "none" }}>
-                            <Button size="small">Learn More</Button>
-                        </NavLink>
-
-                        <ExpandMore
-                            expand={expanded}
-                            onClick={handleExpandClick}
-                            aria-expanded={expanded}
-                            aria-label="show more"
-                        >
-                            <ExpandMoreIcon />
-                        </ExpandMore>
-                    </>
-                }
-            </CardActions>
-            <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <>
+            {data && <Card sx={{ maxWidth: 345 }}>
+                <CardHeader
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title={data.name ? data.name : "NA"}
+                    subheader={data.date ? new Date(data.date).toUTCString() : '--/--/--'}
+                />
+                <CardMedia
+                    component="img"
+                    height="100"
+                    image="https://thebetterindia-static.gumlet.io/wp-content/uploads/2010/08/toybank-collage.jpg"
+                    alt="Paella dish"
+                />
                 <CardContent>
-                    <Typography paragraph>Description:</Typography>
-                    <Typography paragraph>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto laborum, tempora repellendus laboriosam et debitis obcaecati ut quibusdam cupiditate aperiam facilis quos pariatur commodi explicabo.
+                    <Typography variant="body1" color="text.secondary">
+                        <b>{category ? category : "NA"}.</b>
                     </Typography>
                 </CardContent>
-            </Collapse>
-        </Card>
+                <CardActions disableSpacing>
+                    {type === 'own' &&
+                        <>
+                            <NavLink to="/myEvents/test" style={{ textDecoration: "none" }}>
+                                <Button size="small">Learn More</Button>
+                            </NavLink>
+
+                            <ExpandMore
+                                expand={expanded}
+                                onClick={handleExpandClick}
+                                aria-expanded={expanded}
+                                aria-label="show more"
+                            >
+                                <ExpandMoreIcon />
+                            </ExpandMore>
+                        </>
+                    }
+                </CardActions>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                        <Typography paragraph>Description:</Typography>
+                        <Typography paragraph>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto laborum, tempora repellendus laboriosam et debitis obcaecati ut quibusdam cupiditate aperiam facilis quos pariatur commodi explicabo.
+                        </Typography>
+                    </CardContent>
+                </Collapse>
+            </Card>
+            }
+        </>
     );
 }
