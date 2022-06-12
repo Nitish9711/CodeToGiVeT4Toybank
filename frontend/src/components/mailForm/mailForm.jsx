@@ -21,7 +21,7 @@ function MailForm({ type, id }) {
             try {
                 const response = await axios.post(`/onGroundEvents/sendMail`, payload, { withCredentials: true });
                 console.log(response.data);
-                // window.location.reload();
+                window.location.reload();
             } catch (error) {
                 console.log(error);
             }

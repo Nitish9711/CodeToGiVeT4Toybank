@@ -92,13 +92,13 @@ async function sendMailToVolunteer(email, message) {
   );
   return "MAIL_SENT";
 }
-async function sendMailToVoluntersOfAnEvent(emails, message) {
+async function sendMailToVoluntersOfAnEvent(emails,title, message) {
   // setup e-mail data, even with unicode symbols
   var mailOptions = {
     from: '"Toy Bank "nitishkumar12c@outlook.com', // sender address (who sends)
     // to: emails, // list of receivers (who receives)
     bcc:emails,
-    subject: "Mail From Toy Bank Excutiv", // Subject line
+    subject: title, // Subject line
     text: "", // plaintext body
     html: `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
     <div style="margin:50px auto;width:70%;padding:20px 0">
@@ -106,6 +106,7 @@ async function sendMailToVoluntersOfAnEvent(emails, message) {
         <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Toy Bank</a>
       </div>
       <p style="font-size:1.1em">Hi,</p>
+      <p>This mail is regarding ${title}</p>
       <p>${message}</p>
       <p style="font-size:0.9em;">Regards,<br />Toy Bank Team</p>
       <hr style="border:none;border-top:1px solid #eee" />

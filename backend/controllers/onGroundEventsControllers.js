@@ -55,8 +55,9 @@ module.exports.deleteonGroundEvent = async (req, res) => {
     return;
 };
 module.exports.sendMailToAllVolunteers = async(req, res)=>{
-    const {id, message} = req.body;
-    console.log(id, message);
+    const {id, title, message} = req.body;
+    
+    console.log(id, title, message);
     // console.log(req.body);
     const event = await onGroundEvents.findById(id);
     const promises  = event.volunteers.map(async (volunteerId) =>{
@@ -64,11 +65,13 @@ module.exports.sendMailToAllVolunteers = async(req, res)=>{
         return volunteer.email;
       })
     
-const volunteerEmailList = await Promise.all(promises)
-console.log(volunteerEmailList)
-  
+    const volunteerEmailList = await Promise.all(promises)
+    console.log(volunteerEmailList)
+    if(volunteerEmailList.len === 0)
+        res.status(201).json({"message": "MAIL_SENT"})
+
     var emails =await volunteerEmailList.join(", "); //"red,blue,green"
-    await mailUtility.sendMailToVoluntersOfAnEvent(emails, message);
+    await mailUtility.sendMailToVoluntersOfAnEvent(emails,title,  message);
     
     res.status(201).json({"message": "MAIL_SENT"})
 }
@@ -86,7 +89,7 @@ function generateString(length) {
 module.exports.meetLink = async(req,res)=>{
     const {id} = req.params;
     const {title,date,time,purpose} = req.body;
-
+    console.log(time);
     let roomId=generateString(8);
     roomId=roomId.substring(1);
     const meetlink='https://videolify.up.railway.app/join/'+roomId;
@@ -98,6 +101,22 @@ module.exports.meetLink = async(req,res)=>{
     onGroundEvent.scheduledMeet.time=time;
     onGroundEvent.scheduledMeet.purpose=purpose;
     onGroundEvent.save();
-    // console.log(onGroundEvent);
+    var message = "we have organized a meet regarding. The puropse of the meet is "  + purpose + ". It is on " + new Date(date).toISOString().split('T')[0]
+    + " at " + time + ". Hope to see you there!";
+    console.log(message);
+
+    const promises  = onGroundEvent.volunteers.map(async (volunteerId) =>{
+        const volunteer =  await Volunteers.findById(volunteerId);
+        return volunteer.email;
+      })
+    
+    const volunteerEmailList = await Promise.all(promises)
+    console.log(volunteerEmailList)
+    if(volunteerEmailList.len === 0)
+        res.status(201).json({"message": "MAIL_SENT"})
+
+    var emails =await volunteerEmailList.join(", "); //"red,blue,green"
+    await mailUtility.sendMailToVoluntersOfAnEvent(emails,title,  message);
+
     res.status(200).json({"message": "MEET_DONE"});
 };

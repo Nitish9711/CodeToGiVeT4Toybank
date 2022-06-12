@@ -59,6 +59,12 @@ const SingleOnGroundEvent = () => {
                 <div className="alldetails">
                   <div className="leftdetails">
                     <div className="detailItem">
+                      <span className="itemKey">Type of Event:</span>
+                      <span className="itemValue">
+                        {event.typeOfEvent}
+                      </span>
+                    </div>
+                    <div className="detailItem">
                       <span className="itemKey">Date:</span>
                       <span className="itemValue">
                         {event.date ? event.date.split('T')[0] : '--/--/--'}
@@ -78,10 +84,11 @@ const SingleOnGroundEvent = () => {
                         {event.description ? event.description : 'No Description added'}
                       </span>
                     </div>
+                   
                   </div>
                   <div className="rightdetails">
                     <div className="detailItem">
-                      <span className="itemKey">Address:</span>
+                      <span className="itemKey">Venue:</span>
                       <span className="itemValue">
                         {event.town + ', ' + event.city + ', ' + event.district + ', ' + event.state}
                       </span>
