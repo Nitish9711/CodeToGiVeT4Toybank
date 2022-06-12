@@ -106,48 +106,48 @@ export default function Profile() {
                       label="Password"
                     />
                   </FormControl>
-                  <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DatePicker
-                      disableFuture
-                      label="Select Date (mm/dd/yyyy)"
-                      openTo="day"
-                      views={['year', 'month', 'day']}
-                      value={date}
-                      onChange={(newValue) => {
-                        setDate(newValue);
-                      }}
-                      renderInput={(params) => <TextField style={{ marginBottom: 20 }} fullWidth {...params} />}
-                    />
-
-                    <TimePicker
-                      label="Select Starting Time"
-                      value={startTime}
-                      onChange={(newValue) => {
-                        setStartTime(newValue);
-                      }}
-                      renderInput={(params) => <TextField style={{ marginBottom: 20 }} fullWidth {...params} />}
-                    />
-                    <TimePicker
-                      label="Select Ending Time"
-                      value={endTime}
-                      onChange={(newValue) => {
-                        setEndTime(newValue);
-                      }}
-                      renderInput={(params) => <TextField style={{ marginBottom: 20 }} fullWidth {...params} />}
-                    />
-                  </LocalizationProvider>
-                  <FormControl fullWidth style={{ marginBottom: 20 }} required>
-                    <InputLabel id="demo-simple-select-label">Type of Volunteers</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      label="Type of Volunteers"
-                    >
-                      <MenuItem value="Students">Students</MenuItem>
-                      <MenuItem value="Adults">Adults</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <Multiselect label="Languages Required" list={list1} />
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="Phone Number"
+                    fullWidth
+                    placeholder='Enter your phone number'
+                    style={{ marginBottom: 20 }}
+                  />
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="Profession"
+                    fullWidth
+                    placeholder='Enter your profession'
+                    style={{ marginBottom: 20 }}
+                  />
+                  <Multiselect label="Skills Known" list={list1} />
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="District"
+                    fullWidth
+                    placeholder='Enter the district'
+                    style={{ marginBottom: 20 }}
+                  />
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="City"
+                    fullWidth
+                    placeholder='Enter the city'
+                    style={{ marginBottom: 20 }}
+                  />
+                  <Multiselect label="Preferred District" list={list1} />
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="Academic Qualification"
+                    fullWidth
+                    style={{ marginBottom: 20 }}
+                    placeholder='Enter your academic qualification'
+                  />
                 </div>
                 <div className="rightTwo">
                   <TextField
@@ -158,57 +158,41 @@ export default function Profile() {
                     placeholder='Enter your username'
                     style={{ marginBottom: 20 }}
                   />
-                  <FormControl fullWidth style={{ marginBottom: 20 }} variant="outlined">
-                    <InputLabel htmlFor="outlined-adornment-password">Confirm Password</InputLabel>
-                    <OutlinedInput
-                      id="outlined-adornment-password"
-                      type={values.showConfirmPassword ? 'text' : 'password'}
-                      value={values.confirmPassword}
-                      onChange={handleChange('confirmPassword')}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label="toggle password visibility"
-                            onClick={handleClickShowConfirmPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            edge="end"
-                          >
-                            {values.showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      label="Confirm Password"
-                    />
-                  </FormControl>
-                  <TextField
-                    required
-                    id="outlined-required"
-                    label="Type"
-                    fullWidth
-                    style={{ marginBottom: 20 }}
-                    placeholder='Enter the type of the event'
-                  />
                   <TextField
                     id="outlined-number"
                     fullWidth
-                    label="Number of Volunteers"
+                    label="Age"
                     type="number"
-                    placeholder='Enter the number of volunteers required'
+                    placeholder='Enter your age'
                     style={{ marginBottom: 20 }}
                     InputLabelProps={{
                       shrink: true,
                     }}
                   />
-
                   <TextField
+                    required
                     id="outlined-required"
-                    label="Link (if any)"
+                    label="Email"
                     fullWidth
                     style={{ marginBottom: 20 }}
-                    placeholder='Enter the link of the event'
+                    placeholder='Enter your email'
                   />
-
-
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="Organization"
+                    fullWidth
+                    style={{ marginBottom: 20 }}
+                    placeholder='Enter the organization name'
+                  />
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="Address"
+                    fullWidth
+                    style={{ marginBottom: 20 }}
+                    placeholder='Enter your address'
+                  />
                   <TextField
                     required
                     id="outlined-required"
@@ -225,21 +209,20 @@ export default function Profile() {
                     style={{ marginBottom: 20 }}
                     placeholder='Enter the state of the event'
                   />
+                  <TextField
+                    required
+                    id="outlined-required"
+                    label="Nationality"
+                    fullWidth
+                    style={{ marginBottom: 20 }}
+                    placeholder='Enter your nationality'
+                  />
 
-                  <Multiselect label="Skills Required" list={list1} />
+                  <Multiselect label="Languages Known" list={list1} />
                 </div>
               </div>
-              <TextField
-                required
-                id="outlined-required"
-                label="Description"
-                fullWidth
-                placeholder='Enter the description of the event'
-                style={{ marginBottom: 20 }}
-                multiline rows={5}
-              />
-              <div className="addBtnWrapper">
-                <Button size="large" variant="outlined" endIcon={<EditIcon />}>Edit</Button>
+              <div className="addBtnWrapper" style={{width: "50%", margin: "10px auto 0 auto"}}>
+                <Button size="large" variant="outlined" endIcon={<EditIcon />} fullWidth>Edit</Button>
               </div>
             </form>
           </div>
