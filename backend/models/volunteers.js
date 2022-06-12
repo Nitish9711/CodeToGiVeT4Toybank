@@ -21,6 +21,14 @@ const volunteerSchema = new Schema({
     nationality:{type: String},
     academicQualification: {type: String},
     languagesKnown:[{type: String}],
+    volunteerReason: String,
+    scheduledMeet:[{
+        title: String,
+        date: Date,
+        link: String,
+        time: String,
+        purpose: String
+    }],
     // Assigned events array event id - [{eventids, contributionStatus - Voluteered|| Not Voluteered || Nonverified || verified}]
     assignedEvents: [{eventId: mongoose.Types.ObjectId, contributionStatus: String}],
     longTermAvailability: [{day: String, startDate: Date, endDate: Date,  time: String, status:{type:String, default:"FREE"}}],
