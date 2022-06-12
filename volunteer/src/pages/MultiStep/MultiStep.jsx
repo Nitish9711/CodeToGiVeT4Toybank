@@ -43,8 +43,7 @@ const BasicForm = ({ handleNext }) => {
             if (response.status === 201) {
                 handleNext();
             }
-            else
-            {
+            else {
                 window.alert("Invalid Email");
             }
         } catch (error) {
@@ -92,12 +91,9 @@ const OTPForm = ({ handleNext, handleBack }) => {
             if (response.status === 201) {
                 handleNext();
             }
-            else {
-                window.alert('Invalid OTP');
-                handleBack();
-            }
         } catch (error) {
-            console.log(error);
+            window.alert('Invalid OTP');
+            handleBack();
         }
     }
     return (
