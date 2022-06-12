@@ -161,11 +161,11 @@ For graph
    Month wise data of no of volunteers
 
 Onground Event Section 
-   remove event id
-   change address to venue in event detai page
-   Mailing issues
+   <!-- remove event id -->
+   <!-- change address to venue in event detai page -->
+   <!-- Mailing issues -->
    route to delete assigned volunteer
-   handle null user at every route
+   <!-- handle null user at every route -->
 
 
 

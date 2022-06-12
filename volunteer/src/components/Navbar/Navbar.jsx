@@ -32,6 +32,11 @@ const ResponsiveAppBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        window.location.reload();
+        setAnchorElUser(null);
+    };
 
     return (
         <AppBar position="static" style={{ background: '#ffcb05' }}>
@@ -159,7 +164,7 @@ const ResponsiveAppBar = () => {
                                     <Typography textAlign="center">Profile</Typography>
                                 </MenuItem>
                             </NavLink>
-                            <MenuItem onClick={handleCloseUserMenu}>
+                            <MenuItem onClick={handleLogout}>
                                 <Typography textAlign="center">Logout</Typography>
                             </MenuItem>
                         </Menu>
