@@ -18,7 +18,7 @@ const onGroundEventsSchema = new Schema({
     district: {type: String, required: true},
     city: {type: String, required: true},
     state: {type: String, required: true, default: "Maharashtra"},
-    volunteers: [{type: mongoose.Types.ObjectId, ref: 'Volunteers'}],
+    volunteers: [{type: String}],
     scheduledMeet: {
         title: String,
         date: Date,
