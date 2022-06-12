@@ -41,7 +41,7 @@ module.exports.createVolunteer = async (req,res) =>{
     try{
     const newvolunteer=new Volunteer(req.body);
     await newvolunteer.save();
-    res.status(200).json(newVolunteer);
+    res.status(200).json({id : newvolunteer._id});
     } catch(e){
         res.status(400);
         return;
