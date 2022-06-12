@@ -143,8 +143,6 @@ make sure routes will be like this domain name/api/typeofROute/routeWork
 <!-- 4. Area of Thing -->
 5. Schdule a meet on base of intrest
 6. Our side mail
-
-
 7. Waiting List of event
 8. Notify about it the change
 

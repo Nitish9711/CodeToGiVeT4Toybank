@@ -89,7 +89,9 @@ module.exports.askDoubt = async(req, res)=>{
 
 module.exports.upcomingEvents = async(req,res) =>{
     const {id}=req.params;
+    // console.log(String(id));
     const vol=await Volunteer.findById(id);
+    console.log(vol);
     const eventsArray=vol.assignedEvents;
     console.log(eventsArray);
     console.log(id);
