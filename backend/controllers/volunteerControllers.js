@@ -89,6 +89,7 @@ module.exports.upcomingEvents = async(req,res) =>{
     const vol=await Volunteer.findById(id);
     const eventsArray=vol.assignedEvents;
     // console.log(eventsArray);
+    console.log(id);
     let events=[];
     for(let e in eventsArray){
         let ob=eventsArray[e];
@@ -96,12 +97,14 @@ module.exports.upcomingEvents = async(req,res) =>{
             let evId=ob.eventId;
             let evName,mode,evDate;
             const virtual = await virtualEvents.findById(evId);
+            console.log(virtual);
             if(virtual){
                 evName=virtual.name;
                 mode="virtual";
                 evDate=virtual.date;
             }else{
                 const onGround = await onGroundEvents.findById(evId);
+                console.log(onGround);
                 if(onGround){
                     evName=onGround.name;
                     mode="onGround";

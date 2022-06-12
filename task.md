@@ -150,3 +150,31 @@ make sure routes will be like this domain name/api/typeofROute/routeWork
 
 9. Turn on/off the assignment
 
+
+Remaining improvment 
+Stats on Dashboards
+   1. No of volunteers
+   2. No of Onground Events
+   3. No of virutal events
+For graph
+   Month wise data of no of volunteers
+
+Onground Event Section 
+   remove event id
+   change address to venue in event detai page
+   Mailing issues
+   route to delete assigned volunteer
+   handle null user at every route
+
+Virtual Events secons
+   remvoe event id
+volunteer section 
+   remove volunteer id
+
+volunteer site
+   upcoming events
+   and past events not assigned
+
+
+
+

@@ -56,6 +56,7 @@ module.exports.deleteonGroundEvent = async (req, res) => {
 };
 module.exports.sendMailToAllVolunteers = async(req, res)=>{
     const {id, message} = req.body;
+    console.log(id, message);
     // console.log(req.body);
     const event = await onGroundEvents.findById(id);
     const promises  = event.volunteers.map(async (volunteerId) =>{
