@@ -20,7 +20,12 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const List = () => {
+const List = ({ listbro }) => {
+  const [rows, setRows] = React.useState([]);
+  React.useEffect(() => {
+    console.log("Rows: ", listbro);
+    listbro && setRows(listbro);
+  }, [listbro])
   function TablePaginationActions(props) {
     const theme = useTheme();
     const { count, page, rowsPerPage, onPageChange } = props;
@@ -85,78 +90,78 @@ const List = () => {
     page: PropTypes.number.isRequired,
     rowsPerPage: PropTypes.number.isRequired,
   };
-  const rows = [
-    {
-      id: 1143155,
-      product: "Acer Nitro 5",
-      img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "John Smith",
-      date: "1 March",
-      amount: 785,
-      method: "Cash on Delivery",
-      status: "Approved",
-    },
-    {
-      id: 2235235,
-      product: "Playstation 5",
-      img: "https://m.media-amazon.com/images/I/31JaiPXYI8L._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "Michael Doe",
-      date: "1 March",
-      amount: 900,
-      method: "Online Payment",
-      status: "Pending",
-    },
-    {
-      id: 2342353,
-      product: "Redragon S101",
-      img: "https://m.media-amazon.com/images/I/71kr3WAj1FL._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "John Smith",
-      date: "1 March",
-      amount: 35,
-      method: "Cash on Delivery",
-      status: "Pending",
-    },
-    {
-      id: 2357741,
-      product: "Razer Blade 15",
-      img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "Jane Smith",
-      date: "1 March",
-      amount: 920,
-      method: "Online",
-      status: "Approved",
-    },
-    {
-      id: 2357841,
-      product: "Razer Blade 15",
-      img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "Jane Smith",
-      date: "1 March",
-      amount: 920,
-      method: "Online",
-      status: "Approved",
-    },
-    {
-      id: 2357851,
-      product: "Razer Blade 15",
-      img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "Jane Smith",
-      date: "1 March",
-      amount: 920,
-      method: "Online",
-      status: "Approved",
-    },
-    {
-      id: 2342355,
-      product: "ASUS ROG Strix",
-      img: "https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg",
-      customer: "Harold Carol",
-      date: "1 March",
-      amount: 2000,
-      method: "Online",
-      status: "Pending",
-    },
-  ];
+  // const rows = [
+  //   {
+  //     id: 1143155,
+  //     product: "Acer Nitro 5",
+  //     img: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+  //     customer: "John Smith",
+  //     date: "1 March",
+  //     amount: 785,
+  //     method: "Cash on Delivery",
+  //     status: "Approved",
+  //   },
+  //   {
+  //     id: 2235235,
+  //     product: "Playstation 5",
+  //     img: "https://m.media-amazon.com/images/I/31JaiPXYI8L._AC_UY327_FMwebp_QL65_.jpg",
+  //     customer: "Michael Doe",
+  //     date: "1 March",
+  //     amount: 900,
+  //     method: "Online Payment",
+  //     status: "Pending",
+  //   },
+  //   {
+  //     id: 2342353,
+  //     product: "Redragon S101",
+  //     img: "https://m.media-amazon.com/images/I/71kr3WAj1FL._AC_UY327_FMwebp_QL65_.jpg",
+  //     customer: "John Smith",
+  //     date: "1 March",
+  //     amount: 35,
+  //     method: "Cash on Delivery",
+  //     status: "Pending",
+  //   },
+  //   {
+  //     id: 2357741,
+  //     product: "Razer Blade 15",
+  //     img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
+  //     customer: "Jane Smith",
+  //     date: "1 March",
+  //     amount: 920,
+  //     method: "Online",
+  //     status: "Approved",
+  //   },
+  //   {
+  //     id: 2357841,
+  //     product: "Razer Blade 15",
+  //     img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
+  //     customer: "Jane Smith",
+  //     date: "1 March",
+  //     amount: 920,
+  //     method: "Online",
+  //     status: "Approved",
+  //   },
+  //   {
+  //     id: 2357851,
+  //     product: "Razer Blade 15",
+  //     img: "https://m.media-amazon.com/images/I/71wF7YDIQkL._AC_UY327_FMwebp_QL65_.jpg",
+  //     customer: "Jane Smith",
+  //     date: "1 March",
+  //     amount: 920,
+  //     method: "Online",
+  //     status: "Approved",
+  //   },
+  //   {
+  //     id: 2342355,
+  //     product: "ASUS ROG Strix",
+  //     img: "https://m.media-amazon.com/images/I/81hH5vK-MCL._AC_UY327_FMwebp_QL65_.jpg",
+  //     customer: "Harold Carol",
+  //     date: "1 March",
+  //     amount: 2000,
+  //     method: "Online",
+  //     status: "Pending",
+  //   },
+  // ];
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -174,9 +179,8 @@ const List = () => {
         <TableHead>
           <TableRow>
             <TableCell className="tableCell">Event ID</TableCell>
-            <TableCell className="tableCell">Type of event</TableCell>
-            <TableCell className="tableCell">Start Date</TableCell>
-            <TableCell className="tableCell">End Date</TableCell>
+            <TableCell className="tableCell">Date</TableCell>
+            <TableCell className="tableCell">Time</TableCell>
             {/* <TableCell className="tableCell">Payment Method</TableCell> */}
             <TableCell className="tableCell">Status</TableCell>
             <TableCell className="tableCell">Remove</TableCell>
@@ -186,21 +190,21 @@ const List = () => {
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows).map((row) => (
-              <TableRow key={row.id}>
-                <TableCell className="tableCell">{row.id}</TableCell>
-                <TableCell className="tableCell">
+              <TableRow key={row.date + row.time}>
+                <TableCell className="tableCell">{row.eventId ? row.eventId : 'NA'}</TableCell>
+                {/* <TableCell className="tableCell">
                   <div className="cellWrapper">
                     {row.product}
                   </div>
-                </TableCell>
-                <TableCell className="tableCell">{row.date}</TableCell>
-                <TableCell className="tableCell">{row.date}</TableCell>
+                </TableCell> */}
+                <TableCell className="tableCell">{row.date ? row.date.split('T')[0] : '--/--/--'}</TableCell>
+                <TableCell className="tableCell">{row.time ? row.time : '--:--'}</TableCell>
                 {/* <TableCell className="tableCell">{row.amount}</TableCell> */}
                 <TableCell className="tableCell">
-                  <span className={`status ${row.status}`}>{row.status}</span>
+                  <span className={`status `}>{row.status ? row.status : '--'}</span>
                 </TableCell>
                 <TableCell className="tableCell">
-                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{fontSize: "11px"}}>
+                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ fontSize: "11px" }}>
                     Delete
                   </Button>
                 </TableCell>
