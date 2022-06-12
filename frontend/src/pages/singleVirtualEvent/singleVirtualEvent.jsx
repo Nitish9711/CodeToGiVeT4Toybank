@@ -56,6 +56,12 @@ const SingleVirtualEvent = () => {
                 <h1 className="itemTitle">{event.name ? event.name : 'No Name'}</h1>
                 <div className="alldetails">
                   <div className="leftdetails">
+                  <div className="detailItem">
+                      <span className="itemKey">Type of Event:</span>
+                      <span className="itemValue">
+                        {event.typeOfEvent}
+                      </span>
+                    </div>
                     <div className="detailItem">
                       <span className="itemKey">Date:</span>
                       <span className="itemValue">

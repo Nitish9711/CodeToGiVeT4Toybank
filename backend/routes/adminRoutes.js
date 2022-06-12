@@ -9,5 +9,7 @@ router.get('/allonGroundEvents', adminController.allonGroundEvents);
 router.get('/allVolunteers', adminController.allVolunteers);
 router.post('/login',adminController.login);
 router.post('/signUp',adminController.signUp);
+router.get('/getAllMeets',adminController.getAllMeets);
+
 
 module.exports = router;

@@ -1,16 +1,22 @@
 export const onGroundColumns = [
-  {
-    field: "_id", headerName: "ID", width: 230, renderCell: (params) => {
-      return (
-        <>
-          {params.row._id}
-        </>
-      );
-    },
-  },
+  // {
+  //   field: "_id", headerName: "ID", width: 230, renderCell: (params) => {
+  //     return (
+  //       <>
+  //         {params.row._id}
+  //       </>
+  //     );
+  //   },
+  // },
   {
     field: "name",
     headerName: "Event Name",
+    width: 200,
+    sortable: false,
+  },
+  {
+    field: "typeOfEvent",
+    headerName: "Event Type",
     width: 200,
     sortable: false,
   },
@@ -56,22 +62,27 @@ export const onGroundColumns = [
   // },
 ];
 export const virtualColumns = [
-  {
-    field: "_id", headerName: "ID", width: 230, renderCell: (params) => {
-      return (
-        <>
-          {params.row._id}
-        </>
-      );
-    },
-  },
+  // {
+  //   field: "_id", headerName: "ID", width: 230, renderCell: (params) => {
+  //     return (
+  //       <>
+  //         {params.row._id}
+  //       </>
+  //     );
+  //   },
+  // },
   {
     field: "name",
     headerName: "Event Name",
     width: 200,
     sortable: false,
   },
-
+  {
+    field: "typeOfEvent",
+    headerName: "Event Type",
+    width: 200,
+    sortable: false,
+  },
   {
     field: "date",
     headerName: "Date",

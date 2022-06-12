@@ -2,6 +2,7 @@ const onGroundEvents = require('../models/onGroundEvents');
 const virtualEvents = require('../models/virtualEvents');
 const Volunteer = require('../models/volunteers');
 const mailUtility = require('../util/mail');
+
 module.exports.getAllVolunteers = async(req, res)=>{
     const allVolunteers = await Volunteer.find({});
     res.status(201).json(allVolunteers);
@@ -83,17 +84,16 @@ module.exports.askDoubt = async(req, res)=>{
     res.status(201).json({message: "Mail_Sent"});
 }
 
-
 module.exports.upcomingEvents = async(req,res) =>{
     const {id}=req.params;
     const vol=await Volunteer.findById(id);
     const eventsArray=vol.assignedEvents;
-    // console.log(eventsArray);
+    console.log(eventsArray);
     console.log(id);
     let events=[];
     for(let e in eventsArray){
         let ob=eventsArray[e];
-        if(ob.contributionStatus==="Not Volunteered"){
+        if(ob.contributionStatus==="NOT VOLUNTEERED"){
             let evId=ob.eventId;
             let evName,mode,evDate;
             const virtual = await virtualEvents.findById(evId);
@@ -128,7 +128,7 @@ module.exports.pastEvents = async(req,res) =>{
     let events=[];
     for(let e in eventsArray){
         let ob=eventsArray[e];
-        if(ob.contributionStatus==="Volunteered"){
+        if(ob.contributionStatus==="VOLUNTEERED"){
             let evId=ob.eventId;
             let evName,mode,evDate;
             const virtual = await virtualEvents.findById(evId);
@@ -145,7 +145,7 @@ module.exports.pastEvents = async(req,res) =>{
                 }
             }
             const event = {eventId : evId , eventName : evName , eventMode : mode , eventDate : evDate};
-            // console.log(event);
+            console.log(event);
             events.push(event); 
         }
     }

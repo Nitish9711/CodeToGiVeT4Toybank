@@ -49,3 +49,25 @@ module.exports.signUp = async (req, res) => {
         return;
     }
 };
+
+module.exports.getAllMeets = async(req,res) =>{
+    const virtual = await VirtualEvents.find();
+    const onground = await onGroundEvents.find();
+    let ans = [];
+    for(let e in virtual){
+        let event = virtual[e];
+        if(new Date(event.scheduledMeet.date)>=Date.now()){
+            // console.log(event.scheduledMeet);
+            ans.push(event.scheduledMeet);
+        }
+    }
+    for(let e in onground){
+        let event = onground[e];
+        if(new Date(event.scheduledMeet.date)>=Date.now()){
+            // console.log(event.scheduledMeet);
+            ans.push(event.scheduledMeet);
+        }
+    }
+    // res.send(ans);
+    res.status(200).json(ans);
+};
