@@ -31,7 +31,7 @@ export default function Events() {
         // return () => {
         //   second
         // }
-    }, [user])
+    }, [user]);
     return (
         <div className="EventLayout">
             <Navbar />

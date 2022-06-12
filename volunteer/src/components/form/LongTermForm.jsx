@@ -31,8 +31,9 @@ function LongTermForm({ setClose }) {
                 day,
                 time: new Date(time).toLocaleTimeString(),
                 typeOfEvent,
+                islong:true
             }
-            const res = await axios.post(`/volunteers/setlongTermAvailability/${user.id}`, payload, { withCredentials: true });
+            const res = await axios.post(`/volunteers/setAvailability/${user.id}`, payload, { withCredentials: true });
             console.log("Result: ", res.data);
             setClose(false);
         } catch (err) {

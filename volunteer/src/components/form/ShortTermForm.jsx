@@ -27,8 +27,9 @@ function ShortTermForm({ setClose }) {
                 date,
                 time: new Date(time).toLocaleTimeString(),
                 typeOfEvent,
+                islong: false
             }
-            const res = await axios.post(`/volunteers/setshortTermAvailability/${user.id}`, payload, { withCredentials: true });
+            const res = await axios.post(`/volunteers/setAvailability/${user.id}`, payload, { withCredentials: true });
             console.log("Result: ", res.data);
             setClose(false);
         } catch (err) {
