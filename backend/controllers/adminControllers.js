@@ -72,6 +72,7 @@ module.exports.getAllMeets = async(req,res) =>{
     res.status(200).json(ans);
 };
 
+
 module.exports.monthWiseData = async(req,res)=>{
     var ob1 = {
        Jan : 0,
@@ -117,5 +118,67 @@ module.exports.monthWiseData = async(req,res)=>{
          console.log(month);
          ob1[month]+=1;
      }
-     res.status(201).json(ob1);
+     var ans = [
+         {
+             "name" : "January", 
+            "Total" : 0
+        },
+        {
+            "name" : "February", 
+           "Total" : 0
+       },
+       {
+        "name" : "March", 
+       "Total" : 0
+   },
+   {
+        "name" : "April", 
+        "Total" : 0
+    },
+    {
+        "name" : "May", 
+    "Total" : 0
+    },
+    {
+        "name" : "June", 
+    "Total" : 0
+    },
+    {
+        "name" : "July", 
+    "Total" : 0
+    },
+    {
+        "name" : "August", 
+    "Total" : 0
+    },
+    {
+        "name" : "September", 
+    "Total" : 0
+    },
+    {
+        "name" : "October", 
+    "Total" : 0
+    },
+    {
+        "name" : "November", 
+    "Total" : 0
+    },
+    {
+        "name" : "December", 
+    "Total" : 0
+    }];
+
+    ans[0].Total = ob1.Jan;
+    ans[1].Total = ob1.Feb;
+    ans[2].Total = ob1.Mar;
+    ans[3].Total = ob1.Apr;
+    ans[4].Total = ob1.May;
+    ans[5].Total = ob1.Jun;
+    ans[6].Total = ob1.July;
+    ans[7].Total = ob1.Aug;
+    ans[8].Total = ob1.Sep;
+    ans[9].Total = ob1.Oct;
+    ans[10].Total = ob1.Nov;
+    ans[11].Total = ob1.Dec;
+     res.status(201).json(ans);
 };
