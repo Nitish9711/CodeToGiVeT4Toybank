@@ -7,17 +7,36 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
-const data = [
-  { name: "January", Total: 1200 },
-  { name: "February", Total: 2100 },
-  { name: "March", Total: 800 },
-  { name: "April", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "June", Total: 1700 },
-];
+// const data = [
+//   { name: "January", Total: 1200 },
+//   { name: "February", Total: 2100 },
+//   { name: "March", Total: 800 },
+//   { name: "April", Total: 1600 },
+//   { name: "May", Total: 900 },
+//   { name: "June", Total: 1700 },
+// ];
+
 
 const Chart = ({ aspect, title }) => {
+  const [data, setData] = useState([]);
+
+  async function getMonthWiseData() {
+    try {
+      const response = await axios.get(`/admin/monthWiseData`, { withCredentials: true });
+      // console.log("response: ", response);
+      console.log(response.data);
+
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getMonthWiseData();
+  }, []);
   return (
     <div className="chart">
       <div className="title">{title}</div>
