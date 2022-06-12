@@ -164,12 +164,18 @@ const PersonalForm = () => {
         'English',
         'Hindi',
         'Marathi',
+        'Urdu',
+        'Tamil',
+        'Gujrati'
     ];
     const skillsList = [
         'Story Telling',
         'Photography',
         'Writing and editing',
-        'Board Games'
+        'Board Games',
+        'Computer',
+        'Social Medai Handling',
+        'Program Ambassdor'
     ];
 
     const district = [
