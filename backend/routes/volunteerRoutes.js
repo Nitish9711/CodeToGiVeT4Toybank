@@ -20,4 +20,6 @@ router.post('/setlongTermAvailability/:id' , volunteerController.setlongTermAvai
 router.get('/showshortTermAvailability/:id' , volunteerController.showshortTermAvailability);
 router.post('/setshortTermAvailability/:id' , volunteerController.setshortTermAvailability);
 
+router.post('/setAvailability/:id' , volunteerController.setAvailability);
+
 module.exports = router;

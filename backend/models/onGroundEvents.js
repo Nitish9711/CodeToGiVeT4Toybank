@@ -20,9 +20,11 @@ const onGroundEventsSchema = new Schema({
     state: {type: String, required: true, default: "Maharashtra"},
     volunteers: [{type: String}],
     scheduledMeet: {
+        title: String,
         date: Date,
         link: String,
-        time: String
+        time: String,
+        purpose: String
     }
 });
 module.exports = mongoose.model('OnGroundEvents', onGroundEventsSchema);
