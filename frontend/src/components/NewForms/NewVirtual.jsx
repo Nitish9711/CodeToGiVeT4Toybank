@@ -37,21 +37,28 @@ export default function NewOnGround({ type }) {
         'English',
         'Hindi',
         'Marathi',
+        'Urdu',
+        'Tamil',
+        'Gujrati'
+
     ];
     const skills = [
         'Story Telling',
         'Photography',
         'Writing and editing',
-        'Board Games'
+        'Board Games',
+        'Computer',
+        'Social Medai Handling',
+        'Program Ambassdor'
     ];
     const typeOfEvent = [
-        "Play sessions with Children",
-        "Toy collection and Distribution",
-        "Inventory and Gameplay",
-        "Research and Impact Assessments",
-        "Events and Fundraising",
-        "Content and Design",
-        "Toybank Ambassador",
+        "Translation of English Play2Learn sheets to Hindi",
+        "Translation of English Play2Learn sheets to Marathi",
+        "Translation of English Play2Learn sheets to Gujarati",
+        "Translation of English Play2Learn sheets to Tamil",
+        "Translation of English Play2Learn sheets to Urdu",
+        "Creation of audio instructions in Hindi",
+        "Creation of audio instructions in Marathi"
     ];
 
     const handleAdd = async (e) => {

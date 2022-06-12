@@ -41,12 +41,19 @@ export default function NewOnGround({ type }) {
         'English',
         'Hindi',
         'Marathi',
+        'Urdu',
+        'Tamil',
+        'Gujrati'
+
     ];
     const skills = [
         'Story Telling',
         'Photography',
         'Writing and editing',
-        'Board Games'
+        'Board Games',
+        'Computer',
+        'Social Medai Handling',
+        'Program Ambassdor'
     ];
     const typeOfEvent = [
         "Play sessions with Children",
