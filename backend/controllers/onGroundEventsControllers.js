@@ -111,13 +111,18 @@ module.exports.meetLink = async(req,res)=>{
       })
     
     const volunteerEmailList = await Promise.all(promises)
+    
     console.log(volunteerEmailList)
-    if(volunteerEmailList.len === 0)
-        res.status(201).json({"message": "MAIL_SENT"})
 
-    var emails =await volunteerEmailList.join(", "); //"red,blue,green"
-    await mailUtility.sendMailToVoluntersOfAnEvent(emails,title,  message);
+    if(volunteerEmailList.len != 0){
+        // res.status(201).json({"message": "MAIL_SENT"})   
+            var emails =await volunteerEmailList.join(", "); //"red,blue,green"
+            await mailUtility.sendMailToVoluntersOfAnEvent(emails,title,  message);
+            
+    }
 
+
+    
     res.status(200).json({"message": "MEET_DONE"});
 };
 

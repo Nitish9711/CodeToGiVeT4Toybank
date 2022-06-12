@@ -19,6 +19,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import InputLabel from '@mui/material/InputLabel';
 import IconButton from '@mui/material/IconButton'
 import axios from "axios";
+import { signUpCall } from "../../apiCalls";
+import { useContext } from "react";
+import { AuthContext } from '../../context/AuthContext'
 var BroEmail = "";
 
 function getSteps() {
@@ -39,6 +42,9 @@ const BasicForm = ({ handleNext }) => {
             const response = await axios.post(`/util/sendOTP`, payload, { withCredentials: true });
             if (response.status === 201) {
                 handleNext();
+            }
+            else {
+                window.alert("Invalid Email");
             }
         } catch (error) {
             console.log(error);
@@ -73,7 +79,7 @@ const BasicForm = ({ handleNext }) => {
         </>
     );
 };
-const OTPForm = ({ handleNext }) => {
+const OTPForm = ({ handleNext, handleBack }) => {
     const [OTP, setOTP] = useState("");
     const handleSubmit = async () => {
         try {
@@ -86,7 +92,8 @@ const OTPForm = ({ handleNext }) => {
                 handleNext();
             }
         } catch (error) {
-            console.log(error);
+            window.alert('Invalid OTP');
+            handleBack();
         }
     }
     return (
@@ -116,6 +123,7 @@ const OTPForm = ({ handleNext }) => {
     );
 };
 const PersonalForm = () => {
+    const { dispatch } = useContext(AuthContext);
     const handleSubmit = async (e) => {
         e.preventDefault();
         let payload = volunteer;
@@ -123,7 +131,7 @@ const PersonalForm = () => {
         payload.skills = skills;
         payload.preferredDistrict = preferredDistrict;
         console.log("Volunteer: ", payload);
-        // handleNext();
+        signUpCall(payload, dispatch);
     }
     const [languagesKnown, setLanguagesKnown] = useState([]);
     const [preferredDistrict, setPreferredDistrict] = useState([]);
@@ -395,12 +403,12 @@ const PersonalForm = () => {
 };
 
 
-function getStepContent(step, handleNext) {
+function getStepContent(step, handleNext, handleBack) {
     switch (step) {
         case 0:
             return <BasicForm handleNext={handleNext} />;
         case 1:
-            return <OTPForm handleNext={handleNext} />;
+            return <OTPForm handleNext={handleNext} handleBack={handleBack} />;
         case 2:
             return <PersonalForm handleNext={handleNext} />;
         default:
@@ -438,7 +446,7 @@ const LinaerStepper = () => {
             <>
                 <FormProvider>
                     <form onSubmit={(e) => { e.preventDefault() }}>
-                        {getStepContent(activeStep, handleNext)}
+                        {getStepContent(activeStep, handleNext, handleBack)}
                     </form>
                 </FormProvider>
             </>
