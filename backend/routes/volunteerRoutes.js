@@ -21,5 +21,6 @@ router.get('/showshortTermAvailability/:id' , volunteerController.showshortTermA
 router.post('/setshortTermAvailability/:id' , volunteerController.setshortTermAvailability);
 
 router.post('/setAvailability/:id' , volunteerController.setAvailability);
+router.post('/askDoubts', volunteerController.askDoubt)
 
 module.exports = router;

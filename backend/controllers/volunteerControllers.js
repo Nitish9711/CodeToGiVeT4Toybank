@@ -80,7 +80,7 @@ module.exports.askDoubt = async(req, res)=>{
     const volunteerDoc = Volunteer.findById(volunteerId);
     let eventDoc = await onGroundEvents.findById(eventId);
     if (!eventDoc) {
-      eventDoc = await VirtualEvents.findById(eventId);
+      eventDoc = await virtualEvents.findById(eventId);
     }
     newmessage = "This email is regarding the event " + eventDoc.name + message; 
     const response = mailUtility.askDoubtViaEmail("nitishkumar12c@outlook.com", newmessage);
