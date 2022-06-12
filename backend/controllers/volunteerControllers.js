@@ -116,7 +116,7 @@ module.exports.upcomingEvents = async(req,res) =>{
                     evDate=onGround.date;
                 }
             }
-            const event = {eventId : evId , eventName : evName , eventMode : mode , eventDate : evDate};
+            const event = {id : evId , name : evName , eventMode : mode , date : evDate};
             // console.log(event);
             events.push(event); 
         }
@@ -149,7 +149,7 @@ module.exports.pastEvents = async(req,res) =>{
                     evDate=onGround.date;
                 }
             }
-            const event = {eventId : evId , eventName : evName , eventMode : mode , eventDate : evDate};
+            const event = {id : evId , name : evName , eventMode : mode , date : evDate};
             console.log(event);
             events.push(event); 
         }
