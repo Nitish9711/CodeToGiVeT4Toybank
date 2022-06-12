@@ -151,6 +151,7 @@ make sure routes will be like this domain name/api/typeofROute/routeWork
 9. Turn on/off the assignment
 
 
+
 Remaining improvment 
 Stats on Dashboards
    1. No of volunteers
@@ -166,8 +167,10 @@ Onground Event Section
    route to delete assigned volunteer
    handle null user at every route
 
+
+
 Virtual Events secons
-   remvoe event id
+   remove event id
 volunteer section 
    remove volunteer id
 
