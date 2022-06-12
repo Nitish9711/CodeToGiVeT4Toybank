@@ -21,7 +21,8 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="myEvents">
               <Route index element={<Events />} />
-              <Route path=":eventId" element={<EventDetails />} />
+              <Route path="onGround/:eventId" element={<EventDetails type="onGround"/>} />
+              <Route path="virtual/:eventId" element={<EventDetails type="virtual"/>} />
             </Route>
             <Route path="volunteer" element={<Volunteer />} />
           </Route>

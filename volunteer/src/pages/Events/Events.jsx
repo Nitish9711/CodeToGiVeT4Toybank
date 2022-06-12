@@ -40,14 +40,14 @@ export default function Events() {
             <div className="EventLayoutBottom">
                 <div className="upcomingEvents">
                     <div className="heading">
-                        <h1>Upcoming Events</h1>
+                        {upcoming.length > 0 ? <h1>Upcoming Events</h1> : <h2>No Data Found For Upcoming Events</h2>}
                     </div>
                     <ArrangedCards type="own" list={upcoming} />
                 </div>
                 <hr style={{ width: "99%", marginTop: '50px', marginBottom: '50px' }} />
                 <div className="pastEvents">
                     <div className="heading">
-                        <h1>Past Events</h1>
+                        {past.length > 0 ? <h1>Past Events</h1> : <h2>No Data Found For Past Events</h2>}
                     </div>
                     <ArrangedCards type="own" list={past} />
                 </div>

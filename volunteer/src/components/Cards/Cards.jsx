@@ -58,7 +58,6 @@
 
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -98,9 +97,14 @@ export default function Cards({ type, data, category }) {
                 <CardActions disableSpacing>
                     {type === 'own' &&
                         <>
-                            <NavLink to={`/myEvents/${data.id}`} style={{ textDecoration: "none" }}>
+                            {category==='onGround' ? 
+                            <NavLink to={`/myEvents/onGround/${data.id}`} style={{ textDecoration: "none" }}>
                                 <Button size="small">Learn More</Button>
                             </NavLink>
+                            :
+                            <NavLink to={`/myEvents/virtual/${data.id}`} style={{ textDecoration: "none" }}>
+                                <Button size="small">Learn More</Button>
+                            </NavLink>}
                         </>
                     }
                 </CardActions>

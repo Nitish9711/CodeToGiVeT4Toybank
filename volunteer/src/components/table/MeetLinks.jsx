@@ -19,7 +19,11 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 
 
-const MeetLinks = () => {
+const MeetLinks = ({ impRow }) => {
+    const [rows, setRows] = React.useState([]);
+    React.useEffect(() => {
+        impRow && setRows(impRow);
+    }, [impRow]);
     function TablePaginationActions(props) {
         const theme = useTheme();
         const { count, page, rowsPerPage, onPageChange } = props;
@@ -84,45 +88,45 @@ const MeetLinks = () => {
         page: PropTypes.number.isRequired,
         rowsPerPage: PropTypes.number.isRequired,
     };
-    const rows = [
-        {
-            id: 1,
-            link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            date: "1 March",
-            time: "17:00 GMT+0530"
-        },
-        {
-            id: 2,
-            link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            date: "1 March",
-            time: "17:00 GMT+0530"
-        },
-        {
-            id: 3,
-            link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            date: "1 March",
-            time: "17:00 GMT+0530"
-        },
-        {
-            id: 4,
-            link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            date: "1 March",
-            time: "17:00 GMT+0530"
-        },
-        {
-            id: 5,
-            link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            date: "1 March",
-            time: "17:00 GMT+0530"
-        },
-        {
-            id: 6,
-            link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
-            date: "1 March",
-            time: "17:00 GMT+0530"
-        },
+    // const rows = [
+    //     {
+    //         id: 1,
+    //         link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         date: "1 March",
+    //         time: "17:00 GMT+0530"
+    //     },
+    //     {
+    //         id: 2,
+    //         link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         date: "1 March",
+    //         time: "17:00 GMT+0530"
+    //     },
+    //     {
+    //         id: 3,
+    //         link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         date: "1 March",
+    //         time: "17:00 GMT+0530"
+    //     },
+    //     {
+    //         id: 4,
+    //         link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         date: "1 March",
+    //         time: "17:00 GMT+0530"
+    //     },
+    //     {
+    //         id: 5,
+    //         link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         date: "1 March",
+    //         time: "17:00 GMT+0530"
+    //     },
+    //     {
+    //         id: 6,
+    //         link: "https://m.media-amazon.com/images/I/81bc8mA3nKL._AC_UY327_FMwebp_QL65_.jpg",
+    //         date: "1 March",
+    //         time: "17:00 GMT+0530"
+    //     },
 
-    ];
+    // ];
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(2);
     // const [sno, setSno] = React.useState(0);
@@ -140,7 +144,6 @@ const MeetLinks = () => {
             <Table sx={{ minWidth: 650 }} aria-label="custom pagination table">
                 <TableHead>
                     <TableRow>
-                        <TableCell className="tableCell">S.No.</TableCell>
                         <TableCell className="tableCell">Link</TableCell>
                         <TableCell className="tableCell">Date</TableCell>
                         <TableCell className="tableCell">Time</TableCell>
@@ -150,13 +153,12 @@ const MeetLinks = () => {
                     {(rowsPerPage > 0
                         ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         : rows).map((row) => (
-                            <TableRow key={row.id}>
-                                <TableCell className="tableCell">{row.id}</TableCell>
+                            <TableRow key={row._id}>
 
-                                <TableCell className="tableCell"> <a href={row.link} style={{ textDecoration: "none" }} target="_blank">{row.link}</a></TableCell>
+                                <TableCell className="tableCell"> <a href={row.linksIfAny? row.linksIfAny : ''} style={{ textDecoration: "none" }} target="_blank">{row.description}</a></TableCell>
 
                                 <TableCell className="tableCell">{row.date}</TableCell>
-                                <TableCell className="tableCell">{row.time}</TableCell>
+                                <TableCell className="tableCell">{row.StartTime}</TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
