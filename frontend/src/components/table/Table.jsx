@@ -19,8 +19,38 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import axios from "axios";
 
-const List = ({ impRow }) => {
+const List = ({ impRow, type, id }) => {
+  const handleDelete = (userID)=>{
+    // e.preventDefault();
+    console.log(type, id, userID);
+    if(type === "onGround")
+      onGroundDelete(userID);
+    else
+      virtualDelete(userID);
+  }
+
+  const onGroundDelete = async(userID)=>{
+    // console.log("hello", type);
+    try {
+      const response = await axios.get(`/onGroundEvents/deleteVolEvent/${id}/${userID}`, {withCredentials: true});
+      console.log(response.data);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const virtualDelete = async(userID)=>{
+    // console.log("hello", type);
+    try {
+      const response = await axios.get(`/virtualEvents/deleteVolEvent/${id}/${userID}`, {withCredentials: true});
+      console.log(response.data);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
   const [rows, setRows] = React.useState([]);
   React.useEffect(() => {
     console.log("Rows: ", impRow);
@@ -206,7 +236,7 @@ const List = ({ impRow }) => {
                   <span className={`status ${row.status}`}>{row.status}</span>
                 </TableCell> */}
                 <TableCell className="tableCell">
-                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ fontSize: "11px" }}>
+                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ fontSize: "11px" }} onClick={()=>handleDelete(row._id)}>
                     Delete
                   </Button>
                 </TableCell>

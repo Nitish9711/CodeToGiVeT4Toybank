@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import Cards from '../Cards/Cards'
 
-export default function ArrangedCards({ type }) {
+export default function ArrangedCards({ type, list }) {
     return (
         <div className="ArrangedCardsContainer">
             <Grid
@@ -11,24 +11,13 @@ export default function ArrangedCards({ type }) {
                     paddingLeft: "50px",
                 }}
                 justifyContent="center">
-                <Grid item xs={12} sm={6} md={4}>
-                    <Cards type={type} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Cards type={type} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Cards type={type} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Cards type={type} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Cards type={type} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                    <Cards type={type} />
-                </Grid>
+                {
+                    list.map((event) => (
+                        <Grid item xs={12} sm={6} md={4} key={event.id}>
+                            <Cards type={type} data={event} category={event.eventMode === 'vitual' ? "Virtual Event" : "On Ground Event"}/>
+                        </Grid>
+                    ))
+                }
             </Grid>
         </div>
     )

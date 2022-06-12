@@ -80,7 +80,7 @@ module.exports.askDoubt = async(req, res)=>{
     const volunteerDoc = Volunteer.findById(volunteerId);
     let eventDoc = await onGroundEvents.findById(eventId);
     if (!eventDoc) {
-      eventDoc = await VirtualEvents.findById(eventId);
+      eventDoc = await virtualEvents.findById(eventId);
     }
     newmessage = "This email is regarding the event " + eventDoc.name + message; 
     const response = mailUtility.askDoubtViaEmail("nitishkumar12c@outlook.com", newmessage);
@@ -89,14 +89,16 @@ module.exports.askDoubt = async(req, res)=>{
 
 module.exports.upcomingEvents = async(req,res) =>{
     const {id}=req.params;
+    // console.log(String(id));
     const vol=await Volunteer.findById(id);
+    console.log(vol);
     const eventsArray=vol.assignedEvents;
     console.log(eventsArray);
     console.log(id);
     let events=[];
     for(let e in eventsArray){
         let ob=eventsArray[e];
-        if(ob.contributionStatus==="NOT VOLUNTEERED"){
+        if(ob.contributionStatus==="Nonverified"){
             let evId=ob.eventId;
             let evName,mode,evDate;
             const virtual = await virtualEvents.findById(evId);
@@ -114,7 +116,7 @@ module.exports.upcomingEvents = async(req,res) =>{
                     evDate=onGround.date;
                 }
             }
-            const event = {eventId : evId , eventName : evName , eventMode : mode , eventDate : evDate};
+            const event = {id : evId , name : evName , eventMode : mode , date : evDate};
             // console.log(event);
             events.push(event); 
         }
@@ -147,7 +149,7 @@ module.exports.pastEvents = async(req,res) =>{
                     evDate=onGround.date;
                 }
             }
-            const event = {eventId : evId , eventName : evName , eventMode : mode , eventDate : evDate};
+            const event = {id : evId , name : evName , eventMode : mode , date : evDate};
             console.log(event);
             events.push(event); 
         }

@@ -145,7 +145,7 @@ const SingleOnGroundEvent = () => {
               </Popup>
             </div>
           </div>
-          {volunteerList && <List impRow={volunteerList} />}
+          {volunteerList && <List impRow={volunteerList} type="onGround" id={EventID}/>}
         </div>
       </div>
     </div>

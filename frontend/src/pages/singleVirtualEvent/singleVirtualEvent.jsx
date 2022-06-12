@@ -142,7 +142,7 @@ const SingleVirtualEvent = () => {
               </Popup>
             </div>
           </div>
-          <List impRow={volunteerList} />
+          <List impRow={volunteerList} type="virtual" id={EventID}/>
         </div>
       </div>
     </div>
