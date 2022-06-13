@@ -119,10 +119,24 @@ module.exports.deleteVolEvent=async(req,res)=>{
             array.push(volArray[v]);
         }
     }
-    // console.log(event.volunteers);
     event.volunteers = array;
-    // console.log(event.volunteers);
     await event.save();
+
+    const vol = await Volunteers.findById(volId);
+    const arr = vol.assignedEvents;
+    // console.log(arr);
+    let temp = [];
+    for(let x in arr){
+        let ev = arr[x];
+        if(ev.eventId == evId){
+            ;
+        }else{
+            temp.push(ev);
+        }
+    }
+    vol.assignedEvents = temp;
+    // console.log(vol.assignedEvents);
+    await vol.save();
     res.status(201).json("WORK_DONE");
 }
 
