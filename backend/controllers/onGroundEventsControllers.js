@@ -2,6 +2,7 @@ const onGroundEvents = require('../models/onGroundEvents');
 const Volunteers = require('../models/volunteers');
 const mailUtility = require('../util/mail')
 const mappingUtil = require("../util/algo");
+const volunteers = require('../models/volunteers');
 
 
 module.exports.getAllonGroundEvents = async(req, res)=>{
@@ -146,9 +147,26 @@ module.exports.deleteVolEvent=async(req,res)=>{
             array.push(volArray[v]);
         }
     }
-    // console.log(event.volunteers);
+    console.log(event.volunteers);
     event.volunteers = array;
-    // console.log(event.volunteers);
-    // await event.save();
+    console.log(event.volunteers);
+    await event.save();
+
+    const vol = await volunteers.findById(volId);
+    // console.log(vol);
+    const arr = vol.assignedEvents;
+    // console.log(arr);
+    let temp = [];
+    for(let x in arr){
+        let ev = arr[x];
+        if(ev.eventId == evId){
+            ;
+        }else{
+            temp.push(ev);
+        }
+    }
+    vol.assignedEvents = temp;
+    // console.log(vol.assignedEvents);
+    await vol.save();
     res.status(201).json("WORK_DONE");
 }
