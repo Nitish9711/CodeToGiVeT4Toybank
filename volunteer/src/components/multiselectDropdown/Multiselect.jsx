@@ -33,7 +33,7 @@ export default function Multiselect({ label, list, setState }) {
 
     return (
         <div>
-            <FormControl fullWidth style={{ marginBottom: 20 }}>
+            <FormControl fullWidth style={{ marginBottom: 20 }} required>
                 <InputLabel id="demo-multiple-checkbox-label">{label}</InputLabel>
                 <Select
                     labelId="demo-multiple-checkbox-label"

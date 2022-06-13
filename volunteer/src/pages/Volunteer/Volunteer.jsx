@@ -20,8 +20,15 @@ export default function Volunteer() {
         async function fetchDetails() {
             try {
                 const response = await axios.get(`/volunteers/getDetails/${user.id}`, { withCredentials: true });
-                
-                setAvailibility(response.data.availibility);
+                const response2 = await axios.get(`/volunteers/sendData/${user.id}`, { withCredentials: true });
+                let temp = response.data.availibility;
+                temp && temp.forEach((row) => {
+                    if (row.eventId) {
+                        row.eventId = response2.data[row.eventId];
+                    }
+                })
+                setAvailibility(temp);
+                // console.log("new: ", temp);
             } catch (error) {
                 console.log(error);
             }
@@ -58,11 +65,11 @@ export default function Volunteer() {
                             openPopup={openLongTerm}
                             setOpenPopup={setOpenLongTerm}
                         >
-                            <LongTermForm setClose={setOpenLongTerm}/>
+                            <LongTermForm setClose={setOpenLongTerm} />
                         </Popup>
                     </div>
                 </div>
-                <List listbro={availibility} />
+                <List listbro={availibility} volunteerID={user.id} />
             </div>
         </div>
     )
