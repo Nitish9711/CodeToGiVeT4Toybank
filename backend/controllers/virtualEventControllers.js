@@ -32,7 +32,7 @@ module.exports.createVirtualEvent = async (req,res) =>{
     try{
     const virtualEvent=new VirtualEvents(req.body);
     await virtualEvent.save();
-    // await mappingUtil.VirtualMapping();
+    await mappingUtil.VirtualMapping();
     res.status(200).json(virtualEvent);
     } catch(e){
         res.status(400).json({"error": e});
