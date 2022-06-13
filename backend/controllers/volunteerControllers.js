@@ -307,3 +307,23 @@ module.exports.deleteAvailability = async (req, res )=>{
 //event assgined volunteer 
 //delete from volunteer assigned evetns
 // delete from volunteer availibility
+
+module.exports.sendData = async(req,res)=>{
+    const {id} = req.params;
+    const vol = await Volunteer.findById(id);
+    let avail = vol.availibility;
+    var dict={};
+    for(let x in avail){
+        let data = avail[x];
+        if(data.status=="ALLOTED"){
+            const onground = await onGroundEvents.findById(data.eventId);
+            if(onground){
+                dict[data.eventId]=onground.name;
+            }else{
+                const virtual = await virtualEvents.findById(data.eventId);
+                dict[data.eventId]=onground.name;
+            }
+        }
+    }
+    res.status(200).json(dict);
+};
