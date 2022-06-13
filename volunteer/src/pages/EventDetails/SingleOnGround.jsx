@@ -19,7 +19,7 @@ export default function SingleOnGround() {
                 const response = await axios.get(`/onGroundEvents/getDetails/${EventID}`, { withCredentials: true });
                 console.log("Response: ", response.data);
                 setEvent(response.data.onGroundEvent);
-                setMeetLinks([...meetLinks,response.data?.onGround])
+                response.data.onGroundEvent.scheduledMeet && setMeetLinks([...meetLinks, response.data.onGroundEvent.scheduledMeet])
             } catch (error) {
                 console.log(error);
             }

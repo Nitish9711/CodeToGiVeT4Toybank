@@ -74,9 +74,11 @@ const EventDatatable = ({ type }) => {
               <Link to={`/onGround/${params.row._id}`} style={{ textDecoration: "none" }}>
                 <div className="viewButton">View</div>
               </Link>
-              <div className="editButton">
-                Edit
-              </div>
+              <Link to={`/onGround/edit/${params.row._id}`} style={{ textDecoration: "none" }}>
+                <div className="editButton">
+                  Edit
+                </div>
+              </Link>
               <div
                 className="deleteButton"
                 onClick={() => handleDelete(params.row._id)}
@@ -123,16 +125,18 @@ const EventDatatable = ({ type }) => {
               <Link to={`/virtual/${params.row._id}`} style={{ textDecoration: "none" }}>
                 <div className="viewButton">View</div>
               </Link>
-              <div className="editButton">
-                Edit
-              </div>
+              <Link to={`/virtual/edit/${params.row._id}`} style={{ textDecoration: "none" }}>
+                <div className="editButton">
+                  Edit
+                </div>
+              </Link>
               <div
                 className="deleteButton"
                 onClick={() => handleDelete(params.row._id)}
               >
                 Delete
               </div>
-            </div>
+            </div >
           );
         },
       },
@@ -149,9 +153,9 @@ const EventDatatable = ({ type }) => {
           className="datagrid"
           rows={data}
           columns={virtualColumns.concat(actionColumn)}
-          pageSize={10}
+          pageSize={9}
           disableSelectionOnClick
-          rowsPerPageOptions={[10]}
+          rowsPerPageOptions={[9]}
           getRowId={(row) => row._id}
         />
       </div>

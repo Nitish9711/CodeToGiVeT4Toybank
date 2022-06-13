@@ -2,6 +2,7 @@ const onGroundEvents = require('../models/onGroundEvents');
 const virtualEvents = require('../models/virtualEvents');
 const Volunteer = require('../models/volunteers');
 const mailUtility = require('../util/mail');
+const mappingUtil = require("../util/algo");
 
 module.exports.getAllVolunteers = async(req, res)=>{
     const allVolunteers = await Volunteer.find({});
@@ -197,7 +198,6 @@ module.exports.setAvailability = async(req,res) =>{
     const {id}=req.params;
     console.log(id);
     console.log(islong);
-  
     if(islong){
       const {day,startDate,endDate,time,status} = req.body;
       const vol = await Volunteer.findById(id);
@@ -219,5 +219,20 @@ module.exports.setAvailability = async(req,res) =>{
       console.log(vol.availibility);
       await vol.save();
     }
+
+    // await  mappingUtil.OnGroundmapping();
+    // await mappingUtil.VirtualMapping();
+
     res.status(200).json("DONE");
 };
+module.exports.deleteAvailability = async (req, res )=>{
+    const {id, date} = req.body;
+    var volunteerDoc = Volunteer.findById(id);
+    var availibilityArray = volunteerDoc.availibility;
+    // availibilityArray = 
+}
+// delete availibility
+// volunteer id, date,
+//event assgined volunteer 
+//delete from volunteer assigned evetns
+// delete from volunteer availibility

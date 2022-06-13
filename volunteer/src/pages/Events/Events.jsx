@@ -15,6 +15,7 @@ export default function Events() {
             try {
                 const response = await axios.get(`/volunteers/upcomingEvents/${user.id}`, { withCredentials: true });
                 setUpcoming(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.log(error);
             }
@@ -22,6 +23,7 @@ export default function Events() {
         async function fetchPastEvents() {
             try {
                 const response = await axios.get(`/volunteers/pastEvents/${user.id}`, { withCredentials: true });
+                console.log(response.data);
                 setPast(response.data);
             } catch (error) {
                 console.log(error);

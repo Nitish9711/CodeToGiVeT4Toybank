@@ -10,6 +10,7 @@ import Popup from "../../components/popup/Popup"
 import MailForm from "../../components/mailForm/mailForm";
 import Form from "../../components/form/Form";
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import EventIcon from '@mui/icons-material/Event';
 import axios from 'axios';
 
@@ -45,7 +46,9 @@ const SingleOnGroundEvent = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to={`/onGround/edit/${EventID}`} style={{ textDecoration: "none" }}>
+              <div className="editButton">Edit</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               {/* <img
@@ -84,7 +87,7 @@ const SingleOnGroundEvent = () => {
                         {event.description ? event.description : 'No Description added'}
                       </span>
                     </div>
-                   
+
                   </div>
                   <div className="rightdetails">
                     <div className="detailItem">
@@ -131,7 +134,7 @@ const SingleOnGroundEvent = () => {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
               >
-                <Form type="onGround" id={EventID}/>
+                <Form type="onGround" id={EventID} />
               </Popup>
               <Button variant="contained" size="medium" endIcon={<SendIcon />} onClick={() => { setOpenMail(true); }}>
                 Send Mail
@@ -141,11 +144,11 @@ const SingleOnGroundEvent = () => {
                 openPopup={openMail}
                 setOpenPopup={setOpenMail}
               >
-                <MailForm type="onGround" id={EventID}/>
+                <MailForm type="onGround" id={EventID} />
               </Popup>
             </div>
           </div>
-          {volunteerList && <List impRow={volunteerList} type="onGround" id={EventID}/>}
+          {volunteerList && <List impRow={volunteerList} type="onGround" id={EventID} />}
         </div>
       </div>
     </div>

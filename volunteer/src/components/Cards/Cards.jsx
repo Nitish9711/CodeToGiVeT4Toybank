@@ -68,6 +68,13 @@ import Typography from '@mui/material/Typography';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { NavLink } from "react-router-dom";
 
+function convertDateObj(date) {
+    var d= new Date(date);
+    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+    var finalString = d.getDate() + ' ' + months[d.getMonth()] + ',' + d.getFullYear();
+    return finalString;
+}
 
 export default function Cards({ type, data, category }) {
 
@@ -81,7 +88,8 @@ export default function Cards({ type, data, category }) {
                         </IconButton>
                     }
                     title={data.name ? data.name : "NA"}
-                    subheader={data.date ? new Date(data.date).toUTCString() : '--/--/--'}
+                    // subheader={data.date ? new Date(data.date).toLocaleString("en-In")  : '--/--/--'}
+                    subheader={data.date ? convertDateObj(data.date) : '--/--/--'}
                 />
                 <CardMedia
                     component="img"
@@ -97,14 +105,16 @@ export default function Cards({ type, data, category }) {
                 <CardActions disableSpacing>
                     {type === 'own' &&
                         <>
-                            {category==='onGround' ? 
-                            <NavLink to={`/myEvents/onGround/${data.id}`} style={{ textDecoration: "none" }}>
-                                <Button size="small">Learn More</Button>
-                            </NavLink>
-                            :
-                            <NavLink to={`/myEvents/virtual/${data.id}`} style={{ textDecoration: "none" }}>
-                                <Button size="small">Learn More</Button>
-                            </NavLink>}
+                            {category === 'Virtual Event' ?
+                                <NavLink to={`/myEvents/virtual/${data.id}`} style={{ textDecoration: "none" }}>
+                                    <Button size="small">Learn More</Button>
+                                </NavLink>
+                                :
+                                <NavLink to={`/myEvents/onGround/${data.id}`} style={{ textDecoration: "none" }}>
+                                    <Button size="small">Learn More</Button>
+                                </NavLink>
+                            }
+
                         </>
                     }
                 </CardActions>

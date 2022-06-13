@@ -1,6 +1,7 @@
 const onGroundEvents = require('../models/onGroundEvents');
 const Volunteers = require('../models/volunteers');
 const mailUtility = require('../util/mail')
+const mappingUtil = require("../util/algo");
 
 
 module.exports.getAllonGroundEvents = async(req, res)=>{
@@ -32,6 +33,8 @@ module.exports.createonGroundEvent = async (req,res) =>{
     try{
     const onGroundEvent=new onGroundEvents(req.body);
     await onGroundEvent.save();
+    console.log(req.body);
+    //  mappingUtil.OnGroundmapping();
     res.status(200).json(onGroundEvent);
     } catch(e){
         res.status(400).json({"error": e});
@@ -127,6 +130,10 @@ module.exports.meetLink = async(req,res)=>{
 };
 
 module.exports.deleteVolEvent=async(req,res)=>{
+    //event volunteers remove
+    // volunteer availible delete
+    //volunteer assginged event id
+    
     const {evId,volId} = req.params;
     // console.log(evId);
     // console.log(volId);

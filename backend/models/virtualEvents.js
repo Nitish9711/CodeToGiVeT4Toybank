@@ -14,7 +14,7 @@ const virtualEventsSchema = new Schema({
     languagesRequired: [{type: String}],
     skillsRequired: [{type: String}],
     linksIfAny: {type: String},
-    volunteers: [{type: mongoose.Types.ObjectId, ref: 'Volunteers'}],
+    volunteers: [{type: String}],
     scheduledMeet: {
         title: String,
         date: Date,
