@@ -2,6 +2,7 @@ const virtualEvents = require('../models/virtualEvents');
 const VirtualEvents = require('../models/virtualEvents');
 const Volunteers = require('../models/volunteers');
 const mailUtility = require('../util/mail')
+const mappingUtil = require("../util/algo");
 
 module.exports.getAllVirtualEvents = async(req, res)=>{
     const AllVirtualEvents = await VirtualEvents.find({});
@@ -31,6 +32,7 @@ module.exports.createVirtualEvent = async (req,res) =>{
     try{
     const virtualEvent=new VirtualEvents(req.body);
     await virtualEvent.save();
+    await mappingUtil.VirtualMapping();
     res.status(200).json(virtualEvent);
     } catch(e){
         res.status(400).json({"error": e});
