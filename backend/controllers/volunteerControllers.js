@@ -3,8 +3,6 @@ const virtualEvents = require('../models/virtualEvents');
 const Volunteer = require('../models/volunteers');
 const mailUtility = require('../util/mail');
 const mappingUtil = require("../util/algo");
-var mongoose = require('mongoose');
-
 
 module.exports.getAllVolunteers = async(req, res)=>{
     const allVolunteers = await Volunteer.find({});
@@ -227,79 +225,11 @@ module.exports.setAvailability = async(req,res) =>{
 
     res.status(200).json("DONE");
 };
-function convertDateObj(date) {
-    var d= new Date(date);
-    const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-    var finalString = d.getDate() + ' ' + months[d.getMonth()] + ',' + d.getFullYear();
-    console.log(finalString);
-    return finalString;
-}
 module.exports.deleteAvailability = async (req, res )=>{
     const {id, date} = req.body;
-    var volunteerDoc = await Volunteer.findById(id);
-    // console.log(volunteerDoc);
+    var volunteerDoc = Volunteer.findById(id);
     var availibilityArray = volunteerDoc.availibility;
-    console.log(availibilityArray.length)
-
-
-    var toRemoveEventId =[];
-
-    availibilityArray =  await availibilityArray.filter((ele)=> {
-        const d1 = new Date(ele.date);
-        const d2= new Date(date);
-        d1.setHours(0, 0, 0, 0);
-        d2.setHours(0, 0, 0, 0);
-        // console.log(d1, d2);
-        // console.log(d1 - d2);
-        // console.log(typeof(d1 - d2));
-        if(d1 - d2  === 0 && ele.status=== "ALLOTED"){
-            toRemoveEventId.push(mongoose.mongo.ObjectId(ele.eventId));
-        }
-        //  var difference = d1-d2;
-        return d1-d2 != 0;
-    });
-    // console.log(availibilityArray);
-    console.log(toRemoveEventId);
-    volunteerDoc.availibility = availibilityArray;
-    if(toRemoveEventId.length === 0){
-        // volunteerDoc.save();
-    }
-    else{
-        console.log(volunteerDoc.assignedEvents.length)
-        var copyassignedEvents =  [];
-        for( let x in volunteerDoc.assignedEvents ){
-            if(volunteerDoc.assignedEvents[x].eventId.toString()  === toRemoveEventId[0].toString() ){
-                console.log(volunteerDoc.assignedEvents[x].eventId);
-            }
-            else{
-                copyassignedEvents.push(volunteerDoc.assignedEvents[x]);
-            }
-        }
-
-        volunteerDoc.assignedEvents = copyassignedEvents
-        
-    }
-    volunteerDoc.save();
-    // console.log(volunteerDoc);
-    var event = await onGroundEvents.findById(toRemoveEventId[0]);
-    if(!event){
-        event = await virtualEvents.findById(toRemoveEventId[0])
-    }
-    console.log(event);
-    var copyVolunteers = [];
-    for(let x in event.volunteers){
-        if(event.volunteers[x] === id){
-            
-        }
-        else{
-            copyVolunteers.push(event.volunteers[x]);
-        }
-    }
-    event.volunteers = copyVolunteers;
-    event.save();
-    console.log(event);
-    res.status(201).json({message:"DELETED"});
+    // availibilityArray = 
 }
 // delete availibility
 // volunteer id, date,
