@@ -19,6 +19,8 @@ router.get('/showlongTermAvailability/:id' , volunteerController.showlongTermAva
 router.post('/setlongTermAvailability/:id' , volunteerController.setlongTermAvailability);
 router.get('/showshortTermAvailability/:id' , volunteerController.showshortTermAvailability);
 router.post('/setshortTermAvailability/:id' , volunteerController.setshortTermAvailability);
+router.post('/deleteAvailability', volunteerController.deleteAvailability);
+
 
 router.post('/setAvailability/:id' , volunteerController.setAvailability);
 router.post('/askDoubts', volunteerController.askDoubt)
