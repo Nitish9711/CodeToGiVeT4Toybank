@@ -280,7 +280,7 @@ module.exports.deleteAvailability = async (req, res )=>{
         volunteerDoc.assignedEvents = copyassignedEvents
         
     }
-    volunteerDoc.save();
+    // volunteerDoc.save();
     // console.log(volunteerDoc);
     var event = await onGroundEvents.findById(toRemoveEventId[0]);
     if(!event){
@@ -297,7 +297,7 @@ module.exports.deleteAvailability = async (req, res )=>{
         }
     }
     event.volunteers = copyVolunteers;
-    event.save();
+    // event.save();
     console.log(event);
     res.status(201).json({message:"DELETED"});
 }

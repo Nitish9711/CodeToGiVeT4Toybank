@@ -20,6 +20,11 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 
+function convertTime(time) {
+  time = time.split(':');
+  time = time[0] + ":" + time[1] + " " + time[2].split(' ')[1];
+  return time;
+}
 const List = ({ listbro }) => {
   const [rows, setRows] = React.useState([]);
   React.useEffect(() => {
@@ -198,7 +203,7 @@ const List = ({ listbro }) => {
                   </div>
                 </TableCell> */}
                 <TableCell className="tableCell">{row.date ? row.date.split('T')[0] : '--/--/--'}</TableCell>
-                <TableCell className="tableCell">{row.time ? row.time : '--:--'}</TableCell>
+                <TableCell className="tableCell">{row.time ? convertTime(row.time) : '--:--'}</TableCell>
                 {/* <TableCell className="tableCell">{row.amount}</TableCell> */}
                 <TableCell className="tableCell">
                   <span className={`status `}>{row.status ? row.status : '--'}</span>
