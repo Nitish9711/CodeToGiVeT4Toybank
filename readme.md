@@ -1,4 +1,5 @@
 ### _TOYBANK SYSTEM_
+![ToyBank System](assets_readme\Toybank_Image.jpg)
 
 
 #### Overview
@@ -21,14 +22,18 @@ _The following technologies will be used to make this application -_
   
 
 #### PPT LINK
----link---
+[Link](https://www.canva.com/design/DAFDXjVC8Rk/I3oN9AVzVnYUSFArhbNuXQ/view?utm_content=DAFDXjVC8Rk&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink)
 
 <!-- #### demo video LINK
 still working -->
 
 
 #### WEBSITE LINK
---link-- 
+<!-- --link--  -->
+[Backend API Link](https://toyban-backend.herokuapp.com/)
+[Admin Portal Link](https://toybank-admin-frontend.web.app/)
+[Volunteer Portal Link](https://toybank-volunteer-frontend.web.app/)
+
 
 #### Screenshots/Demo Video
 
