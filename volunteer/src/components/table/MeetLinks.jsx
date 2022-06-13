@@ -156,9 +156,9 @@ const MeetLinks = ({ impRow }) => {
                         : rows).map((row) => (
                             <TableRow key={row.link}>
                                 <TableCell className="tableCell"> <a href={row.link? row.link : ''} style={{ textDecoration: "none" }} rel="noreferrer" target="_blank">{row.title}</a></TableCell>
-                                <TableCell className="tableCell">{row.date}</TableCell>
-                                <TableCell className="tableCell">{row.time}</TableCell>
-                                <TableCell className="tableCell">{row.purpose}</TableCell>
+                                <TableCell className="tableCell">{row.date ? row.date.split('T')[0] : '--/--/--'}</TableCell>
+                                <TableCell className="tableCell">{row.time ? row.time : '--:--'}</TableCell>
+                                <TableCell className="tableCell">{row.purpose? row.purpose : 'NA'}</TableCell>
                             </TableRow>
                         ))}
                 </TableBody>

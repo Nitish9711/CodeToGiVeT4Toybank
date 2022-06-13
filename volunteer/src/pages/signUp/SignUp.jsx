@@ -6,6 +6,7 @@ import LoginForm from '../../components/form/LoginForm';
 import { useState } from 'react';
 import Popup from '../../components/popup/Popup';
 import MultiStep from '../MultiStep/MultiStep'
+import logo from '../../toybank.jpeg'
 
 export default function SignUp() {
     const [openLogin, setOpenLogin] = useState(false);
@@ -14,7 +15,7 @@ export default function SignUp() {
         <div className="signUpLayout">
             <div className="signUpNavbar">
                 <div className="navbarLogo">
-                    <img src='http://localhost:3000/assets/toybank.jpeg' alt="Toybank" />
+                    <img src={logo} alt="Toybank" />
                 </div>
                 <div className="btn">
                     <Button variant="outlined" color="error" size="medium" endIcon={<InputIcon />} onClick={() => setOpenLogin(true)}>
@@ -48,9 +49,9 @@ export default function SignUp() {
                     </div>
                 </div>
             </div >
-            <div className="signUpBottom">
+            {/* <div className="signUpBottom">
 
-            </div>
+            </div> */}
         </div >
     )
 }
