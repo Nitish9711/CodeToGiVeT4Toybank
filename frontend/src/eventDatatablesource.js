@@ -1,6 +1,6 @@
-function convertTime(time){
-   time= time.split(':');
-  time = time[0] + ":"+ time[1] + " "+ time[2].split(' ')[1];
+function convertTime(time) {
+  time = time.split(':');
+  time = time[0] + ":" + time[1] + " " + time[2].split(' ')[1];
   return time;
 }
 export const onGroundColumns = [
@@ -16,7 +16,7 @@ export const onGroundColumns = [
   {
     field: "name",
     headerName: "Event Name",
-    width: 200,
+    width: 150,
     sortable: false,
   },
   {
@@ -43,7 +43,7 @@ export const onGroundColumns = [
     headerName: "Start Time",
     width: 150,
     renderCell: (params) => {
-      
+
       return (
         <>
           {convertTime(params.row.StartTime)}
@@ -56,7 +56,7 @@ export const onGroundColumns = [
     headerName: "End Time",
     width: 150,
     renderCell: (params) => {
-      
+
       return (
         <>
           {convertTime(params.row.EndTime)}
@@ -64,13 +64,26 @@ export const onGroundColumns = [
       );
     },
   },
-  
+
   {
     field: "noOfVolunteersRequired",
     headerName: "Volunteers Rqd.",
     width: 140,
   },
- 
+  {
+    field: "volunteers",
+    headerName: "Assigned Volunteers",
+    width: 140,
+    renderCell: (params) => {
+
+      return (
+        <>
+          {params.row.volunteers ? params.row.volunteers.length : '0'}
+        </>
+      );
+    },
+  },
+
   // {
   //   field: "status",
   //   headerName: "Status",
@@ -97,7 +110,7 @@ export const virtualColumns = [
   {
     field: "name",
     headerName: "Event Name",
-    width: 200,
+    width: 150,
     sortable: false,
   },
   {
@@ -123,7 +136,7 @@ export const virtualColumns = [
     headerName: "Start Time",
     width: 150,
     renderCell: (params) => {
-      
+
       return (
         <>
           {convertTime(params.row.StartTime)}
@@ -136,7 +149,7 @@ export const virtualColumns = [
     headerName: "End Time",
     width: 150,
     renderCell: (params) => {
-      
+
       return (
         <>
           {convertTime(params.row.EndTime)}
@@ -148,6 +161,19 @@ export const virtualColumns = [
     field: "noOfVolunteersRequired",
     headerName: "Volunteers Rqd.",
     width: 140,
+  },
+  {
+    field: "volunteers",
+    headerName: "Assigned Volunteers",
+    width: 140,
+    renderCell: (params) => {
+
+      return (
+        <>
+          {params.row.volunteers ? params.row.volunteers.length : '0'}
+        </>
+      );
+    },
   },
   // {
   //   field: "status",
