@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -15,10 +15,12 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MultipleSelect from "../multiselectDropdown/Multiselect";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 export default function NewOnGround({ type }) {
   const [languagesRequire, setLanguagesRequire] = useState([]);
   const [skillsRequire, setSkillsRequire] = useState([]);
+  const EventID = useParams().eventId;
   let navigate = useNavigate();
   const [event, setEvent] = useState({
     name: "",
@@ -37,6 +39,34 @@ export default function NewOnGround({ type }) {
     city: "",
     state: "",
   });
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      if (type === 'edit') {
+        try {
+          const response = await axios.get(`/onGroundEvents/getDetails/${EventID}`, { withCredentials: true });
+          console.log(response.data.onGroundEvent);
+          setTimeout(() => {
+            if (response) {
+              let payload = response.data.onGroundEvent;
+              payload.date = new Date(payload.date);
+              payload.StartTime = new Date();
+              payload.EndTime = new Date();
+              setEvent(payload);
+            }
+          }, 1);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
+    fetchEvent();
+    // return () => {
+    //   second
+    // }
+  }, [type, EventID])
+
   const languages = ["English", "Hindi", "Marathi", "Urdu", "Tamil", "Gujrati"];
   const skills = [
     "Story Telling",
@@ -87,6 +117,25 @@ export default function NewOnGround({ type }) {
       console.log(error);
     }
   };
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    let payload = event;
+    payload.languagesRequired = languagesRequire;
+    payload.skillsRequired = skillsRequire;
+    payload.StartTime = new Date(payload.StartTime).toLocaleTimeString();
+    payload.EndTime = new Date(payload.EndTime).toLocaleTimeString();
+    console.log(payload);
+    try {
+      const response = await axios.post(`/onGroundEvents/edit/${EventID}`, payload, {
+        withCredentials: true,
+      });
+      console.log(response.data);
+      navigate("/onGround/" + EventID);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <form>
       <div className="newForm">
@@ -290,7 +339,7 @@ export default function NewOnGround({ type }) {
       />
       <div className="addBtnWrapper">
         {type === "edit" ? (
-          <Button size="large" variant="outlined" endIcon={<EditIcon />}>
+          <Button size="large" variant="outlined" endIcon={<EditIcon />} onClick={handleEdit}>
             Edit
           </Button>
         ) : (

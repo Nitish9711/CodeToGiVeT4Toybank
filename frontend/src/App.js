@@ -31,6 +31,9 @@ function App() {
                   path="new"
                   element={<OnGroundNew title="Add New On Ground Event" type="new" category="onGround" />}
                 />
+                <Route path = "edit">
+                  <Route path=":eventId" element= {<OnGroundNew title="Edit On Ground Event" type="edit" category="onGround" />} />
+                </Route>
               </Route>
               <Route path="virtual">
                 <Route index element={<List type='virtualEvent' />} />
@@ -39,6 +42,9 @@ function App() {
                   path="new"
                   element={<OnGroundNew title="Add New Virtual Event" type="new" category="virtual" />}
                 />
+                <Route path = "edit">
+                  <Route path=":eventId" element= {<OnGroundNew title="Edit On Virtual Event" type="edit" category="virtual" />} />
+                </Route>
               </Route>
               <Route path="volunteers">
                 <Route index element={<List type='volunteer' />} />

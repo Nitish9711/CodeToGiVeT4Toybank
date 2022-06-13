@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -15,11 +15,13 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import MultipleSelect from "../multiselectDropdown/Multiselect";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 export default function NewOnGround({ type }) {
   const [languagesRequire, setLanguagesRequire] = useState([]);
   const [skillsRequire, setSkillsRequire] = useState([]);
   let navigate = useNavigate();
+  const EventID = useParams().eventId;
   const [event, setEvent] = useState({
     name: "",
     date: new Date(),
@@ -75,6 +77,53 @@ export default function NewOnGround({ type }) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      if (type === 'edit') {
+        try {
+          const response = await axios.get(`/virtualEvents/getDetails/${EventID}`, { withCredentials: true });
+          console.log(response.data.virtualEvent);
+          setTimeout(() => {
+            if (response) {
+              let payload = response.data.virtualEvent;
+              payload.date = new Date(payload.date);
+              payload.StartTime = new Date();
+              payload.EndTime = new Date();
+              setEvent(payload);
+            }
+          }, 1);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    }
+
+    fetchEvent();
+    // return () => {
+    //   second
+    // }
+  }, [type, EventID])
+
+  const handleEdit = async (e) => {
+    e.preventDefault();
+    let payload = event;
+    payload.languagesRequired = languagesRequire;
+    payload.skillsRequired = skillsRequire;
+    payload.StartTime = new Date(payload.StartTime).toLocaleTimeString();
+    payload.EndTime = new Date(payload.EndTime).toLocaleTimeString();
+    console.log(payload);
+    try {
+      const response = await axios.post(`/virtualEvents/edit/${EventID}`, payload, {
+        withCredentials: true,
+      });
+      console.log(response.data);
+      navigate("/virtual/" + EventID);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <form>
       <div className="newForm">
@@ -221,7 +270,7 @@ export default function NewOnGround({ type }) {
       />
       <div className="addBtnWrapper">
         {type === "edit" ? (
-          <Button size="large" variant="outlined" endIcon={<EditIcon />}>
+          <Button size="large" variant="outlined" endIcon={<EditIcon />} onClick={handleEdit}>
             Edit
           </Button>
         ) : (
