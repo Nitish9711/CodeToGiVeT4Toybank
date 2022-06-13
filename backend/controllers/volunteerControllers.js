@@ -220,12 +220,17 @@ module.exports.setAvailability = async(req,res) =>{
       await vol.save();
     }
 
-    await  mappingUtil.OnGroundmapping();
-    await mappingUtil.VirtualMapping();
+    // await  mappingUtil.OnGroundmapping();
+    // await mappingUtil.VirtualMapping();
 
     res.status(200).json("DONE");
 };
-
+module.exports.deleteAvailability = async (req, res )=>{
+    const {id, date} = req.body;
+    var volunteerDoc = Volunteer.findById(id);
+    var availibilityArray = volunteerDoc.availibility;
+    // availibilityArray = 
+}
 // delete availibility
 // volunteer id, date,
 //event assgined volunteer 

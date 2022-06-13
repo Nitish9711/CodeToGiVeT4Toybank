@@ -1,3 +1,8 @@
+function convertTime(time){
+   time= time.split(':');
+  time = time[0] + ":"+ time[1] + " "+ time[2].split(' ')[1];
+  return time;
+}
 export const onGroundColumns = [
   // {
   //   field: "_id", headerName: "ID", width: 230, renderCell: (params) => {
@@ -37,12 +42,29 @@ export const onGroundColumns = [
     field: "StartTime",
     headerName: "Start Time",
     width: 150,
+    renderCell: (params) => {
+      
+      return (
+        <>
+          {convertTime(params.row.StartTime)}
+        </>
+      );
+    },
   },
   {
     field: "EndTime",
     headerName: "End Time",
     width: 150,
+    renderCell: (params) => {
+      
+      return (
+        <>
+          {convertTime(params.row.EndTime)}
+        </>
+      );
+    },
   },
+  
   {
     field: "noOfVolunteersRequired",
     headerName: "Volunteers Rqd.",
@@ -100,11 +122,27 @@ export const virtualColumns = [
     field: "StartTime",
     headerName: "Start Time",
     width: 150,
+    renderCell: (params) => {
+      
+      return (
+        <>
+          {convertTime(params.row.StartTime)}
+        </>
+      );
+    },
   },
   {
     field: "EndTime",
     headerName: "End Time",
     width: 150,
+    renderCell: (params) => {
+      
+      return (
+        <>
+          {convertTime(params.row.EndTime)}
+        </>
+      );
+    },
   },
   {
     field: "noOfVolunteersRequired",
