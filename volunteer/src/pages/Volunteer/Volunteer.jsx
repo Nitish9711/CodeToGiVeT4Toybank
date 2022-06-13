@@ -20,7 +20,7 @@ export default function Volunteer() {
         async function fetchDetails() {
             try {
                 const response = await axios.get(`/volunteers/getDetails/${user.id}`, { withCredentials: true });
-                
+                const response2 = await axios.get(`/volunteers/getDetails/${user.id}`, { withCredentials: true });
                 setAvailibility(response.data.availibility);
             } catch (error) {
                 console.log(error);
@@ -62,7 +62,7 @@ export default function Volunteer() {
                         </Popup>
                     </div>
                 </div>
-                <List listbro={availibility} />
+                <List listbro={availibility} volunteerID={user.id}/>
             </div>
         </div>
     )
