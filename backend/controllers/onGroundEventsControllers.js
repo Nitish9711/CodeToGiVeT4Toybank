@@ -106,7 +106,7 @@ module.exports.meetLink = async(req,res)=>{
     onGroundEvent.scheduledMeet.time=time;
     onGroundEvent.scheduledMeet.purpose=purpose;
     onGroundEvent.save();
-    var message = "we have organized a meet regarding. The puropse of the meet is "  + purpose + ". It is on " + new Date(date).toISOString().split('T')[0]
+    var message = "we have organized a meet. Meet Link is " + meetlink + "\nThe puropse of the meet is "  + purpose + ". It is on " + new Date(date).toISOString().split('T')[0]
     + " at " + time + ". Hope to see you there!";
     console.log(message);
 
