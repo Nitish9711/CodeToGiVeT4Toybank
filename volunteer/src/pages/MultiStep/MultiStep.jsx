@@ -133,7 +133,7 @@ const PersonalForm = () => {
     password: "",
     age: 0,
     phoneno: "",
-    email: "",
+    email: BroEmail,
     profession: "",
     organization: "",
     addresss: "",
