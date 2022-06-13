@@ -321,7 +321,7 @@ module.exports.sendData = async(req,res)=>{
                 dict[data.eventId]=onground.name;
             }else{
                 const virtual = await virtualEvents.findById(data.eventId);
-                dict[data.eventId]=onground.name;
+                dict[data.eventId]=virtual.name;
             }
         }
     }

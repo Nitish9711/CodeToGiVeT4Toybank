@@ -201,7 +201,7 @@ const List = ({ listbro, volunteerID }) => {
       <Table sx={{ minWidth: 650 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Event ID</TableCell>
+            <TableCell className="tableCell">Event</TableCell>
             <TableCell className="tableCell">Date</TableCell>
             <TableCell className="tableCell">Time</TableCell>
             {/* <TableCell className="tableCell">Payment Method</TableCell> */}
