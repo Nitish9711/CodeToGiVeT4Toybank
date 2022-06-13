@@ -3,6 +3,7 @@ const Volunteers = require('../models/volunteers');
 const mailUtility = require('../util/mail')
 const mappingUtil = require("../util/algo");
 const volunteers = require('../models/volunteers');
+var mongoose = require('mongoose');
 
 
 module.exports.getAllonGroundEvents = async(req, res)=>{
@@ -169,4 +170,32 @@ module.exports.deleteVolEvent=async(req,res)=>{
     // console.log(vol.assignedEvents);
     await vol.save();
     res.status(201).json("WORK_DONE");
+}
+module.exports.assignVolunteer = async( req, res, next)=>{
+    const {id, email} = req.body;   
+    const volunteer = await Volunteers.findOne({email : email});
+    console.log(volunteer);
+    if(!volunteer){
+        res.status(401).json({message: "NOT_FOUND"});
+        return;
+    }
+    
+    var event = await onGroundEvents.findById(id);
+    console.log(volunteer._id);
+    event.volunteers.push(volunteer._id);
+    console.log(event);
+    var e_id = mongoose.Types.ObjectId(event._id);
+    volunteer.assignedEvents.push({eventId: e_id, contributionStatus: "Verified"});
+    
+    const date = event.date;
+    const time = event.StartTime;
+    const status = "ALLOTED";
+    const eventId = id;
+    volunteer.availibility.push({date, time, status, eventId});
+    
+    // console.log(volunteer);
+    volunteer.save();
+    event.save();
+    res.status(201).json("DONE");
+
 }

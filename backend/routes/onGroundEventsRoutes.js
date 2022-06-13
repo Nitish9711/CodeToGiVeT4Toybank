@@ -11,5 +11,5 @@ router.post('/delete/:id', onGroundEventsController.deleteonGroundEvent);
 router.get('/getAll', onGroundEventsController.getAllonGroundEvents);
 router.post('/meetLink/:id',onGroundEventsController.meetLink);
 router.get('/deleteVolEvent/:evId/:volId',onGroundEventsController.deleteVolEvent);
-
+router.post('/assignVolunteer', onGroundEventsController.assignVolunteer);
 module.exports = router;
