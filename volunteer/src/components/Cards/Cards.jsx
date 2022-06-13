@@ -97,14 +97,16 @@ export default function Cards({ type, data, category }) {
                 <CardActions disableSpacing>
                     {type === 'own' &&
                         <>
-                            {category==='onGround' ? 
-                            <NavLink to={`/myEvents/onGround/${data.id}`} style={{ textDecoration: "none" }}>
-                                <Button size="small">Learn More</Button>
-                            </NavLink>
-                            :
-                            <NavLink to={`/myEvents/virtual/${data.id}`} style={{ textDecoration: "none" }}>
-                                <Button size="small">Learn More</Button>
-                            </NavLink>}
+                            {category === 'Virtual Event' ?
+                                <NavLink to={`/myEvents/virtual/${data.id}`} style={{ textDecoration: "none" }}>
+                                    <Button size="small">Learn More</Button>
+                                </NavLink>
+                                :
+                                <NavLink to={`/myEvents/onGround/${data.id}`} style={{ textDecoration: "none" }}>
+                                    <Button size="small">Learn More</Button>
+                                </NavLink>
+                            }
+
                         </>
                     }
                 </CardActions>

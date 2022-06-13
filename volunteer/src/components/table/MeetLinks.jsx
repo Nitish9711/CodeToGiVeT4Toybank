@@ -147,18 +147,18 @@ const MeetLinks = ({ impRow }) => {
                         <TableCell className="tableCell">Link</TableCell>
                         <TableCell className="tableCell">Date</TableCell>
                         <TableCell className="tableCell">Time</TableCell>
+                        <TableCell className="tableCell">Purpose</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {(rowsPerPage > 0
                         ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         : rows).map((row) => (
-                            <TableRow key={row._id}>
-
-                                <TableCell className="tableCell"> <a href={row.linksIfAny? row.linksIfAny : ''} style={{ textDecoration: "none" }} target="_blank">{row.description}</a></TableCell>
-
+                            <TableRow key={row.link}>
+                                <TableCell className="tableCell"> <a href={row.link? row.link : ''} style={{ textDecoration: "none" }} rel="noreferrer" target="_blank">{row.title}</a></TableCell>
                                 <TableCell className="tableCell">{row.date}</TableCell>
-                                <TableCell className="tableCell">{row.StartTime}</TableCell>
+                                <TableCell className="tableCell">{row.time}</TableCell>
+                                <TableCell className="tableCell">{row.purpose}</TableCell>
                             </TableRow>
                         ))}
                 </TableBody>
