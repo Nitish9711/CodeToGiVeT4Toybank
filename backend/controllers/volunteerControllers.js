@@ -53,9 +53,10 @@ module.exports.createVolunteer = async (req,res) =>{
 
 module.exports.editVolunteer = async(req,res) =>{
     const { id } = req.params;
-    await Volunteer.findByIdAndUpdate(id, { ...req.body.volunteer});
-    const newVolunteer = Volunteer.findById(id);
-    res.status(200).json(newvolunteer);
+    await Volunteer.findByIdAndUpdate(id, { ...req.body});
+    const newVolunteer = await Volunteer.findById(id);
+    console.log(newVolunteer);
+    res.status(200).json(newVolunteer);
     return;
 };
 
@@ -280,7 +281,7 @@ module.exports.deleteAvailability = async (req, res )=>{
         volunteerDoc.assignedEvents = copyassignedEvents
         
     }
-    volunteerDoc.save();
+    // volunteerDoc.save();
     // console.log(volunteerDoc);
     var event = await onGroundEvents.findById(toRemoveEventId[0]);
     if(!event){
@@ -297,7 +298,7 @@ module.exports.deleteAvailability = async (req, res )=>{
         }
     }
     event.volunteers = copyVolunteers;
-    event.save();
+    // event.save();
     console.log(event);
     res.status(201).json({message:"DELETED"});
 }

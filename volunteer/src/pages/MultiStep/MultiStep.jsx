@@ -131,7 +131,7 @@ const PersonalForm = () => {
     name: "",
     username: "",
     password: "",
-    age: "",
+    age: 0,
     phoneno: "",
     email: "",
     profession: "",
@@ -302,9 +302,9 @@ const PersonalForm = () => {
         type="number"
         placeholder="Enter your age"
         style={{ marginBottom: 20 }}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        // InputLabelProps={{
+        //   shrink: true,
+        // }}
         value={volunteer.age}
         onChange={(e) => {
           setVolunteer({ ...volunteer, age: e.target.value });
