@@ -20,6 +20,7 @@ export default function Volunteer() {
         async function fetchDetails() {
             try {
                 const response = await axios.get(`/volunteers/getDetails/${user.id}`, { withCredentials: true });
+                
                 setAvailibility(response.data.availibility);
             } catch (error) {
                 console.log(error);

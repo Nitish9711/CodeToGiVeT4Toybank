@@ -149,6 +149,6 @@ module.exports.deleteVolEvent=async(req,res)=>{
     // console.log(event.volunteers);
     event.volunteers = array;
     // console.log(event.volunteers);
-    await event.save();
+    // await event.save();
     res.status(201).json("WORK_DONE");
 }
