@@ -20,7 +20,10 @@ const utilRoutes = require("./routes/utilRoutes");
 const mappingUtil = require("./util/algo");
 
 const app = express();
-mappingUtil.OnGroudnmapping();
+
+// mappingUtil.OnGroudnmapping();
+// mappingUtil.VirtualMapping();
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");

@@ -7,16 +7,16 @@ function findCommonElements(arr1, arr2) {
     return arr1.some((item) => arr2.includes(item));
 }
 
-async function OnGroudnmapping() {
+async function OnGroundmapping() {
     var onGround = await onGroundEvents.find({});
-    // console.log(onGround.length);
+    console.log(onGround.length);
     // events which has already assigned events
 
     onGround = onGround.filter((ele) => {
         // console.log(ele.volunteers.length)
         return String(ele.volunteers.length) !== ele.noOfVolunteersRequired;
     });
-    // console.log(onGround.length)
+    console.log(onGround.length)
     // past events remove
     onGround = onGround.filter((ele) => {
         // console.log(ele.name)
@@ -96,7 +96,7 @@ async function OnGroudnmapping() {
                         String(confirmedVolunteers.length) <
                         String(event.noOfVolunteersRequired)
                         ) {
-                        console.log("preffred district volunteer ", volunteer.name);
+                        // console.log("preffred district volunteer ", volunteer.name);
                         await confirmedVolunteers.push(matches[x]);
                         confirmedIdx.push(x);
                     }
@@ -121,7 +121,7 @@ async function OnGroudnmapping() {
             await confirmedVolunteers.push(matches[i]);
             i++;
         }
-        // console.log(confirmedVolunteers);
+        console.log(confirmedVolunteers);
         console.log("final confirmed Volunteer ",confirmedVolunteers);
           for(let x in confirmedVolunteers){
               var volunteer = await Volunteers.findById(confirmedVolunteers[x]);
@@ -154,7 +154,7 @@ async function OnGroudnmapping() {
     }
 }
 
-async function virtualMapping() {
+async function VirtualMapping() {
     var virtual = await VirtualEvents.find({});
     // console.log(virtual.length);
     // events which has already assigned events
@@ -185,13 +185,13 @@ async function virtualMapping() {
         return d1 - d2;
     });
 
-    console.log(onGround.length)
-    for(let x in onGround){
-        console.log(onGround[x].name);
+    console.log(virtual.length)
+    for(let x in virtual){
+        console.log(virtual[x].name);
     }
 
-    for (let e in onGround) {
-        const event = onGround[e];
+    for (let e in virtual) {
+        const event = virtual[e];
         console.log("event " , event);
         console.log("event date ", event.date);
         const allVolunteers = await Volunteers.find({});
@@ -287,7 +287,7 @@ async function virtualMapping() {
               console.log(volunteer);
               await volunteer.save();
           }
-          const toUpdate =    await onGroundEvents.findById(event._id);
+          const toUpdate =    await VirtualEvents.findById(event._id);
           for( let z in confirmedVolunteers){
             //   const str = 
               toUpdate.volunteers.push((confirmedVolunteers[z]));
@@ -300,5 +300,5 @@ async function virtualMapping() {
     }
 }
 
-exports.OnGroudnmapping = OnGroudnmapping;
-exports.virtualMapping = virtualMapping;
+exports.OnGroundmapping = OnGroundmapping;
+exports.VirtualMapping = VirtualMapping;
