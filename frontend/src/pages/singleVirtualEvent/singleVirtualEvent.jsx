@@ -11,6 +11,7 @@ import MailForm from "../../components/mailForm/mailForm";
 import Form from "../../components/form/Form";
 import { useParams } from 'react-router-dom';
 import EventIcon from '@mui/icons-material/Event';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const SingleVirtualEvent = () => {
@@ -43,7 +44,9 @@ const SingleVirtualEvent = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <Link to={`/virtual/edit/${EventID}`} style={{ textDecoration: "none" }}>
+              <div className="editButton">Edit</div>
+            </Link>
             <h1 className="title">Information</h1>
             <div className="item">
               {/* <img
@@ -56,7 +59,7 @@ const SingleVirtualEvent = () => {
                 <h1 className="itemTitle">{event.name ? event.name : 'No Name'}</h1>
                 <div className="alldetails">
                   <div className="leftdetails">
-                  <div className="detailItem">
+                    <div className="detailItem">
                       <span className="itemKey">Type of Event:</span>
                       <span className="itemValue">
                         {event.typeOfEvent}
@@ -128,7 +131,7 @@ const SingleVirtualEvent = () => {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
               >
-                <Form type="virtual" id={EventID}/>
+                <Form type="virtual" id={EventID} />
               </Popup>
               <Button variant="contained" size="medium" endIcon={<SendIcon />} onClick={() => { setOpenMail(true); }}>
                 Send Mail
@@ -138,11 +141,11 @@ const SingleVirtualEvent = () => {
                 openPopup={openMail}
                 setOpenPopup={setOpenMail}
               >
-                <MailForm type="virtual" id={EventID}/>
+                <MailForm type="virtual" id={EventID} />
               </Popup>
             </div>
           </div>
-          <List impRow={volunteerList} type="virtual" id={EventID}/>
+          <List impRow={volunteerList} type="virtual" id={EventID} />
         </div>
       </div>
     </div>

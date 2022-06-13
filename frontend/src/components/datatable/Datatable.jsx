@@ -68,8 +68,8 @@ const Datatable = () => {
         className="datagrid"
         rows={data}
         columns={volunteerColumns.concat(actionColumn)}
-        pageSize={10}
-        rowsPerPageOptions={[10]}
+        pageSize={9}
+        rowsPerPageOptions={[9]}
         disableSelectionOnClick
         getRowId={(row) => row._id}
       />
