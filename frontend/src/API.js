@@ -9,6 +9,7 @@ export const login = async (user, dispatch) => {
         localStorage.setItem('admin', JSON.stringify(response.data));
         console.log("success");
     } catch (error) {
+        window.alert("Invalid Credentials")
         console.log("failure");
         dispatch(loginFailure(error));
     }
