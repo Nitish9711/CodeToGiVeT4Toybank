@@ -53,9 +53,10 @@ module.exports.createVolunteer = async (req,res) =>{
 
 module.exports.editVolunteer = async(req,res) =>{
     const { id } = req.params;
-    await Volunteer.findByIdAndUpdate(id, { ...req.body.volunteer});
-    const newVolunteer = Volunteer.findById(id);
-    res.status(200).json(newvolunteer);
+    await Volunteer.findByIdAndUpdate(id, { ...req.body});
+    const newVolunteer = await Volunteer.findById(id);
+    console.log(newVolunteer);
+    res.status(200).json(newVolunteer);
     return;
 };
 
