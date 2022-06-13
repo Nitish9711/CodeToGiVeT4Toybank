@@ -9,6 +9,7 @@ router.post('/create', virtualEventsController.createVirtualEvent);
 router.post('/edit/:id', virtualEventsController.editVirtualEvent);
 router.post('/delete/:id', virtualEventsController.deleteVirtualEvent);
 router.get('/getAll', virtualEventsController.getAllVirtualEvents);
+router.post('/assignVolunteer', virtualEventsController.assignVolunteer);
 
 router.post('/meetLink/:id',virtualEventsController.meetLink);
 

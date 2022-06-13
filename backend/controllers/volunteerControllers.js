@@ -223,7 +223,7 @@ module.exports.setAvailability = async(req,res) =>{
       await vol.save();
     }
 
-    // await  mappingUtil.OnGroundmapping();
+    await  mappingUtil.OnGroundmapping();
     // await mappingUtil.VirtualMapping();
 
     res.status(200).json("DONE");
@@ -321,7 +321,7 @@ module.exports.sendData = async(req,res)=>{
                 dict[data.eventId]=onground.name;
             }else{
                 const virtual = await virtualEvents.findById(data.eventId);
-                dict[data.eventId]=onground.name;
+                dict[data.eventId]=virtual.name;
             }
         }
     }

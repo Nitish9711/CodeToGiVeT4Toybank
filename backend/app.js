@@ -21,7 +21,7 @@ const mappingUtil = require("./util/algo");
 
 const app = express();
 
-// mappingUtil.OnGroudnmapping();
+// mappingUtil.OnGroundmapping();
 // mappingUtil.VirtualMapping();
 
 
