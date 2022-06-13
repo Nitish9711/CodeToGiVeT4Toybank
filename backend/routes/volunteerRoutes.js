@@ -25,4 +25,6 @@ router.post('/deleteAvailability', volunteerController.deleteAvailability);
 router.post('/setAvailability/:id' , volunteerController.setAvailability);
 router.post('/askDoubts', volunteerController.askDoubt)
 
+router.get('/sendData/:id',volunteerController.sendData);
+
 module.exports = router;
