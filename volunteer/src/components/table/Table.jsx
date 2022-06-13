@@ -19,18 +19,36 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import LastPageIcon from '@mui/icons-material/LastPage';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import axios from "axios";
 
 function convertTime(time) {
   time = time.split(':');
   time = time[0] + ":" + time[1] + " " + time[2].split(' ')[1];
   return time;
 }
-const List = ({ listbro }) => {
+
+const List = ({ listbro, volunteerID }) => {
+  const handleDelete = async (date) => {
+    try {
+      const payload = {
+        id: volunteerID,
+        date
+      }
+      console.log(payload);
+      const response = await axios.post("/volunteers/deleteAvailability", payload, { withCredentials: true });
+      // console.log(response.data);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const [rows, setRows] = React.useState([]);
   React.useEffect(() => {
     console.log("Rows: ", listbro);
     listbro && setRows(listbro);
   }, [listbro])
+
   function TablePaginationActions(props) {
     const theme = useTheme();
     const { count, page, rowsPerPage, onPageChange } = props;
@@ -209,7 +227,7 @@ const List = ({ listbro }) => {
                   <span className={`status `}>{row.status ? row.status : '--'}</span>
                 </TableCell>
                 <TableCell className="tableCell">
-                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ fontSize: "11px" }}>
+                  <Button variant="outlined" startIcon={<DeleteIcon />} style={{ fontSize: "11px" }} onClick={() => { handleDelete(row.date) }}>
                     Delete
                   </Button>
                 </TableCell>
