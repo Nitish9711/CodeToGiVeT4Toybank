@@ -14,7 +14,7 @@ export default function ArrangedCards({ type, list }) {
                 {
                     list.map((event) => (
                         <Grid item xs={12} sm={6} md={4} key={event.id}>
-                            <Cards type={type} data={event} category={event.eventMode === 'vitual' ? "Virtual Event" : "On Ground Event"}/>
+                            <Cards type={type} data={event} category={event.eventMode === 'virtual' ? "Virtual Event" : "On Ground Event"}/>
                         </Grid>
                     ))
                 }

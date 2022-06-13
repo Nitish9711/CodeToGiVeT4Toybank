@@ -19,7 +19,7 @@ export default function SingleVirtual() {
                 const response = await axios.get(`/virtualEvents/getDetails/${EventID}`, { withCredentials: true });
                 console.log("Response: ", response.data);
                 setEvent(response.data.virtualEvent);
-                setMeetLinks([...meetLinks, response.data?.virtualEvent])
+                response.data.virtualEvent.scheduledMeet && setMeetLinks([...meetLinks, response.data.virtualEvent.scheduledMeet])
             } catch (error) {
                 console.log(error);
             }
