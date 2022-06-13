@@ -141,3 +141,30 @@ module.exports.deleteVolEvent=async(req,res)=>{
 }
 
 
+module.exports.assignVolunteer = async( req, res, next)=>{
+    const {id, email} = req.body;   
+    const volunteer = await Volunteers.findOne({email : email});
+    console.log(volunteer);
+    if(!volunteer){
+        res.status(401).json({message: "NOT_FOUND"});
+        return;
+    }
+    
+    var event = await VirtualEvents.findById(id);
+    console.log(volunteer._id);
+    event.volunteers.push(volunteer._id);
+    console.log(event);
+    var e_id = mongoose.Types.ObjectId(event._id);
+    volunteer.assignedEvents.push({eventId: e_id, contributionStatus: "Verified"});
+    
+    const date = event.date;
+    const time = event.StartTime;
+    const status = "ALLOTED";
+    const eventId = id;
+    volunteer.availibility.push({date, time, status, eventId});
+    
+    // console.log(volunteer);
+    volunteer.save();
+    event.save();
+    res.status(201).json("DONE");
+}

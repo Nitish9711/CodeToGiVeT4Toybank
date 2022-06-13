@@ -197,5 +197,4 @@ module.exports.assignVolunteer = async( req, res, next)=>{
     volunteer.save();
     event.save();
     res.status(201).json("DONE");
-
 }
