@@ -5,6 +5,29 @@ const onGroundEvents = require("../models/onGroundEvents");
 const Volunteers = require("../models/volunteers");
 const VirtualEvents = require("../models/virtualEvents");
 
+// title: String,
+//date: Date,
+//link: String,
+//time: String,
+//purpose: String
+module.exports.sendData=async(req,res)=>{
+  const onground = await onGroundEvents.find();
+  let ans=[];
+  for(let x in onground){
+    let event = onground[x];
+    let temp = {name : event.name , meetLink : event.scheduledMeet.link , date : event.scheduledMeet.date , time : event.scheduledMeet.time , title : event.scheduledMeet.title , purpose : event.scheduledMeet.purpose};
+    ans.push(temp);
+  }
+
+  const virtual = await VirtualEvents.find();
+  for(let x in virtual){
+    let event = virtual[x];
+    let temp = {name : event.name , meetLink : event.scheduledMeet.link , date : event.scheduledMeet.date , time : event.scheduledMeet.time , title : event.scheduledMeet.title , purpose : event.scheduledMeet.purpose};
+    ans.push(temp);
+  }
+  res.status(201).json(ans);
+};
+
 const sendEvents = async (req, res, next) => {
   var onGround = await onGroundEvents.find({});
   onGround = onGround.filter((ele) => {
