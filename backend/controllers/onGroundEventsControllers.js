@@ -36,7 +36,7 @@ module.exports.createonGroundEvent = async (req,res) =>{
     const onGroundEvent=new onGroundEvents(req.body);
     await onGroundEvent.save();
     console.log(req.body);
-    //  mappingUtil.OnGroundmapping();
+     mappingUtil.OnGroundmapping();
     res.status(200).json(onGroundEvent);
     } catch(e){
         res.status(400).json({"error": e});
