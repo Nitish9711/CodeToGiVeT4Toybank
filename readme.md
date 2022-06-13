@@ -1,5 +1,5 @@
 ### _TOYBANK SYSTEM_
-![ToyBank System](assets_readme\Toybank_Image.jpg)
+![ToyBank System](assets_readme/Toybank_Image.jpg)
 
 
 #### Overview
