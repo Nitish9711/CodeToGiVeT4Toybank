@@ -17,7 +17,7 @@ const Home = () => {
           <Widget type="Volunteers" />
         </div>
         <div className="charts">
-          <Chart title="Last 6 Months (Events Organized this year )" aspect={3 / 1} />
+          <Chart title="Current Year (Events Organized this year )" aspect={3 / 1} />
         </div>
         {/* <div className="listContainer">
           <div className="listTitle">Latest Volunteers</div>

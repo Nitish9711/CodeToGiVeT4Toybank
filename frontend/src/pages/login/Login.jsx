@@ -26,7 +26,7 @@ const Login = () => {
       type: "dark"
     }
   });
-  const paperStyle = { padding: 20, width: 280, margin: "20px auto 0px auto" }
+  const paperStyle = { padding: 20, width: 280, margin: "10px auto 0px auto" }
   const avatarStyle = { backgroundColor: '#1bbd7e' }
   const btnstyle = { margin: '20px 0' }
   return (
@@ -53,7 +53,7 @@ const Login = () => {
               label="Remember me"
             />
             <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth onClick={handleLogin}>Sign in</Button>
-            <Typography >
+            {/* <Typography >
               <Link href="#" >
                 Forgot password ?
               </Link>
@@ -62,7 +62,7 @@ const Login = () => {
               <Link href="#" >
                 Sign Up
               </Link>
-            </Typography>
+            </Typography> */}
           </Paper>
         </Grid>
       </ThemeProvider>
