@@ -6,8 +6,9 @@ const mongoose = require('mongoose');
 function findCommonElements(arr1, arr2) {
     return arr1.some((item) => arr2.includes(item));
 }
-
+var emailList = []
 async function OnGroundmapping() {
+    emailList = [];
     var onGround = await onGroundEvents.find({});
     console.log(onGround.length);
     // events which has already assigned events
@@ -51,13 +52,18 @@ async function OnGroundmapping() {
         var matches = [];
         for (let x in allVolunteers) {
             let volunteer = allVolunteers[x];
-            //   console.log(volunteer.name);
             const volunteerAv = volunteer.availibility;
+              console.log(volunteer.name, event.name);
             //   console.log(volunteerAv);
             for (let y in volunteerAv) {
                 const ele = volunteerAv[y];
                 const d1 = new Date(ele.date);
                 const d2 = new Date(event.date);
+                // const d1 =ele.date;
+                // const d2 = event.date;
+                // console.log(d1.toLocaleDateString(undefined, {timeZone: 'Asia/Kolkata'}), 
+                // d2.toLocaleDateString(undefined, {timeZone: 'Asia/Kolkata'}));
+                // const date1 = d1.getDate();
                 d1.setHours(0, 0, 0, 0);
                 d2.setHours(0, 0, 0, 0);
                 // console.log(d1 - d2);
@@ -67,12 +73,12 @@ async function OnGroundmapping() {
                         event.languagesRequired,
                         volunteer.languagesKnown
                     );
-                    // console.log(volunteer._id.toString() + " " + knowLanguage);
                     let skillMatches = findCommonElements(
                         event.skillsRequired,
                         volunteer.skills
-                    );
-
+                        );
+                        
+                    console.log(volunteer._id.toString() + " " + knowLanguage  + ' ' + skillMatches);
                     // console.log(event.skillsRequired);
                     // console.log(volunteer.skills);
                     if (knowLanguage && skillMatches) {
@@ -139,6 +145,10 @@ async function OnGroundmapping() {
               volunteer.availibility[idx]["eventId"] = String(event._id);
               volunteer.assignedEvents.push({eventId: mongoose.Types.ObjectId(event._id), contributionStatus: "Nonverified"})
               console.log(volunteer);
+              emailList.push({
+                "email": volunteer.email,
+                "eventName": event.name
+              })
               await volunteer.save();
           }
           const toUpdate =    await onGroundEvents.findById(event._id);
@@ -152,6 +162,8 @@ async function OnGroundmapping() {
           
 
     }
+    console.log(emailList);
+
 }
 
 async function VirtualMapping() {

@@ -223,7 +223,7 @@ module.exports.setAvailability = async(req,res) =>{
       await vol.save();
     }
 
-    // await  mappingUtil.OnGroundmapping();
+    await  mappingUtil.OnGroundmapping();
     // await mappingUtil.VirtualMapping();
 
     res.status(200).json("DONE");
