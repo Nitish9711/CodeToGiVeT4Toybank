@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { NavLink } from "react-router-dom";
+import logo from '../../toybank.jpeg'
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -43,7 +44,7 @@ const ResponsiveAppBar = () => {
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <NavLink to="/" style={{ textDecoration: "none" }}>
-                        <img src='http://localhost:3000/assets/toybank.jpeg' style={{ height: "59px", cursor: 'pointer' }} alt="Toybank" />
+                        <img src={logo} style={{ height: "59px", cursor: 'pointer' }} alt="Toybank" />
                     </NavLink>
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton

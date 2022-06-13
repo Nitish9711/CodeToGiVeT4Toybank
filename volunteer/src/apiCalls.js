@@ -6,6 +6,7 @@ export const loginCall = async (userCredential, dispatch) => {
     const res = await axios.post("/volunteers/login", userCredential);
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (err) {
+    window.alert("Invalid Credentials")
     dispatch({ type: "LOGIN_FAILURE", payload: err });
   }
 };
