@@ -1,3 +1,61 @@
+### _TOYBANK SYSTEM_
+
+
+#### Overview
+
+_Toybank System is a web application which is used to connect Admin to Volunteers and vice versa. Our objectives for this project are -_
+
+- _Designed an effective system where Admins can easily connect with Volunteers and vice versa._
+- _Map the volunteers to the scheduled events based on skills,location,languages known,availability._
+- _Designed an easy interface for the volunteers to get updated about event details._
+
+#### Technology used
+
+_The following technologies will be used to make this application -_
+- _Express_
+- _MongoDB_
+- _NodeJS_
+- _React_
+- _Javascript_
+
+  
+
+#### PPT LINK
+---link---
+
+<!-- #### demo video LINK
+still working -->
+
+
+#### WEBSITE LINK
+--link-- 
+
+#### Screenshots/Demo Video
+
+#### _ADMIN_
+##### 1) Admin Dashboard
+![Admin Dashboard](assets_readme/ADMINPAGE.png)
+##### 2) Event List Page      
+![mapped](assets_readme/eventList.png)
+##### 3) Event Details 
+![meetschedule](assets_readme/img3.png)
+
+#### _VOLUNTEER_
+##### 1) Landing Page
+![VOLUNTEERHOME](assets_readme/img6.png)
+##### 2) My Events Page
+![eventsAssigned](assets_readme/img1.png)
+##### 3) set Availability 
+![Withdraw](assets_readme/img2.png)
+
+
+
+
+<!-- _Add some screens and a demo_ -->
+
+# Documentation
+
+
 # **Code to give toy bank project backend**
 
 
@@ -264,3 +322,13 @@ Response:
         message: "MAIL_SENT"
 }
 ```
+
+
+
+## Contributor
+[Nitish Kumar](https://github.com/Nitish9711)
+[Tanvi Singh](https://github.com/TanviSingh007)
+[Tushar Bharti](https://github.com/TusharCanCode)
+[Akshit Ahuja](https://github.com/akshitahuja888)
+
+
