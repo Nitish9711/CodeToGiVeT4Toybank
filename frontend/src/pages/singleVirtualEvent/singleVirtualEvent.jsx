@@ -12,12 +12,15 @@ import Form from "../../components/form/Form";
 import { useParams } from 'react-router-dom';
 import EventIcon from '@mui/icons-material/Event';
 import { Link } from "react-router-dom";
+import AddForm from "../../components/mailForm/addForm";
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import axios from 'axios';
 
 const SingleVirtualEvent = () => {
   const [openPopup, setOpenPopup] = React.useState(false);
   const [openMail, setOpenMail] = React.useState(false);
   const EventID = useParams().eventId;
+  const [openAdd, setOpenAdd] = React.useState(false);
   const [event, setEvent] = React.useState({});
   const [volunteerList, setVolunteerList] = React.useState([])
   React.useEffect(() => {
@@ -37,6 +40,14 @@ const SingleVirtualEvent = () => {
     //   second
     // }
   }, [EventID])
+
+  const handlePopup = () => {
+    if (event.volunteers && String(event.volunteers.length) === event.noOfVolunteersRequired)
+      window.alert("First Remove some volunteers");
+    else
+      setOpenAdd(true);
+  }
+
   return (
     <div className="single">
       <Sidebar />
@@ -123,6 +134,9 @@ const SingleVirtualEvent = () => {
           <div className="bottomTopSection">
             <h1 className="title">Assigned Volunteers</h1>
             <div className="bottomButtons">
+              <Button variant="contained" size="medium" endIcon={<AddCircleOutlineIcon />} className="MeetBtn" onClick={handlePopup}>
+                Add Volunteer
+              </Button>
               <Button variant="contained" size="medium" endIcon={<AlarmIcon />} className="MeetBtn" onClick={() => { setOpenPopup(true); }}>
                 Schedule Meeting
               </Button>
@@ -142,6 +156,13 @@ const SingleVirtualEvent = () => {
                 setOpenPopup={setOpenMail}
               >
                 <MailForm type="virtual" id={EventID} />
+              </Popup>
+              <Popup
+                title="Send Mail to Volunteers"
+                openPopup={openAdd}
+                setOpenPopup={setOpenAdd}
+              >
+                <AddForm type="onGround" id={EventID} setClose={setOpenAdd} />
               </Popup>
             </div>
           </div>
