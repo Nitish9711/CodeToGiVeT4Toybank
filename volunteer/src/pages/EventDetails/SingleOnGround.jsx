@@ -36,13 +36,13 @@ export default function SingleOnGround() {
                 <h1 className="title">Information</h1>
                 <div className="item">
                     <div className="details">
-                        <h1 className="itemTitle">{event.name ? event.name : 'No Name'}</h1>
+                        <h1 className="itemTitle">{event.typeOfEvent ? event.typeOfEvent : ' '}</h1>
                         <div className="alldetails">
                             <div className="leftdetails">
                                 <div className="detailItem">
-                                    <span className="itemKey">Type of Event:</span>
+                                    <span className="itemKey">Event Name:</span>
                                     <span className="itemValue">
-                                        {event.typeOfEvent}
+                                        {event.name ? event.name : 'No Name'}
                                     </span>
                                 </div>
                                 <div className="detailItem">

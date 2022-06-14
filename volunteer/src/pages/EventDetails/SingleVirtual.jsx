@@ -35,13 +35,13 @@ export default function SingleVirtual() {
             <div className="left">
                 <div className="item">
                     <div className="details">
-                        <h1 className="itemTitle">{event.name ? event.name : 'No Name'}</h1>
+                        <h1 className="itemTitle">{event.typeOfEvent ? event.typeOfEvent : ' '}</h1>
                         <div className="alldetails">
                             <div className="leftdetails">
                                 <div className="detailItem">
-                                    <span className="itemKey">Type of Event:</span>
+                                    <span className="itemKey">Event Name:</span>
                                     <span className="itemValue">
-                                        {event.typeOfEvent}
+                                        {event.name ? event.name : 'No Name'}
                                     </span>
                                 </div>
                                 <div className="detailItem">
@@ -109,11 +109,11 @@ export default function SingleVirtual() {
                             openPopup={openMail}
                             setOpenPopup={setOpenMail}
                         >
-                            <AskToyBank EventID={EventID} closeForm={setOpenMail}/>
+                            <AskToyBank EventID={EventID} closeForm={setOpenMail} />
                         </Popup>
                     </div>
                 </div>
-                <MeetLinks impRow={meetLinks}/>
+                <MeetLinks impRow={meetLinks} />
             </div>
         </>
     )
