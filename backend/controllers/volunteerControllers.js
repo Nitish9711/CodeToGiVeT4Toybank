@@ -108,14 +108,14 @@ module.exports.upcomingEvents = async(req,res) =>{
             const virtual = await virtualEvents.findById(evId);
             console.log(virtual);
             if(virtual){
-                evName=virtual.name;
+                evName=virtual.typeOfEvent;
                 mode="virtual";
                 evDate=virtual.date;
             }else{
                 const onGround = await onGroundEvents.findById(evId);
                 console.log(onGround);
                 if(onGround){
-                    evName=onGround.name;
+                    evName=onGround.typeOfEvent;
                     mode="onGround";
                     evDate=onGround.date;
                 }
@@ -142,13 +142,13 @@ module.exports.pastEvents = async(req,res) =>{
             let evName,mode,evDate;
             const virtual = await virtualEvents.findById(evId);
             if(virtual){
-                evName=virtual.name;
+                evName=virtual.typeOfEvent;
                 mode="virtual";
                 evDate=virtual.date;
             }else{
                 const onGround = await onGroundEvents.findById(evId);
                 if(onGround){
-                    evName=onGround.name;
+                    evName=onGround.typeOfEvent;
                     mode="onGround";
                     evDate=onGround.date;
                 }
@@ -318,10 +318,10 @@ module.exports.sendData = async(req,res)=>{
         if(data.status=="ALLOTED"){
             const onground = await onGroundEvents.findById(data.eventId);
             if(onground){
-                dict[data.eventId]=onground.name;
+                dict[data.eventId]=onground.typeOfEvent;
             }else{
                 const virtual = await virtualEvents.findById(data.eventId);
-                dict[data.eventId]=virtual.name;
+                dict[data.eventId]=virtual.typeOfEvent;
             }
         }
     }
